@@ -13,7 +13,7 @@ import "slick-carousel/slick/slick-theme.css";
 //   1200: { items: 3 },
 // };
 
-const WelcomeStore = ({ WcBtn, titie, des }) => {
+const WelcomeStore = ({ WcBtn, tit, des }) => {
   // const settings = {
   //   dots: false,
   //   infinite: true,
