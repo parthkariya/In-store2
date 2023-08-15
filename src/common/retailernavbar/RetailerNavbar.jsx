@@ -364,9 +364,9 @@ const RetailerNavbar = ({ setTab }) => {
                       onClick={() => setCustomerDropdown(!getcustomerDropdown)}
                     >
                       My Account{" "}
-                      {/* {getcustomerDropdown ? <BsChevronUp /> : <BsChevronDown />} */}
+                      {getcustomerDropdown ? <BsChevronUp /> : <BsChevronDown />}
                     </Link>
-                    {getcustomerDropdown ? <BsChevronUp /> : <BsChevronDown />}
+                    {/* {getcustomerDropdown ? <BsChevronUp /> : <BsChevronDown />} */}
                   </div>
                 </NavLink>
                 {getcustomerDropdown ? (

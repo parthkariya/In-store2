@@ -399,9 +399,9 @@ const MallNavbar = ({ setTab, get_mall_auth_data }) => {
                       onClick={() => setCustomerDropdown(!getcustomerDropdown)}
                     >
                       Account{" "}
-
+                      {getcustomerDropdown ? <BsChevronUp style={{ marginTop: "1px" }} /> : <BsChevronDown style={{ marginTop: "1px" }} />}
                     </Link>
-                    {getcustomerDropdown ? <BsChevronUp style={{ marginTop: "1px" }} /> : <BsChevronDown style={{ marginTop: "1px" }} />}
+
                   </div>
                 </NavLink>
                 {/* <Link>

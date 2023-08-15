@@ -359,13 +359,13 @@ const CustomerNavbar = ({ setTab, getsingalmalldata }) => {
                     onClick={() => setCustomerDropdown(!getcustomerDropdown)}
                   >
                     Account{" "}
-                    {/* {getcustomerDropdown ? <BsChevronUp /> : <BsChevronDown />} */}
+                    {getcustomerDropdown ? <BsChevronUp /> : <BsChevronDown />}
                   </Link>
-                  {getcustomerDropdown ? (
+                  {/* {getcustomerDropdown ? (
                     <BsChevronUp style={{ marginTop: "1px" }} />
                   ) : (
                     <BsChevronDown style={{ marginTop: "1px" }} />
-                  )}
+                  )} */}
                   {getcustomerDropdown ? (
                     <>
                       <div className="navbar-acc-menu-open-warapp">

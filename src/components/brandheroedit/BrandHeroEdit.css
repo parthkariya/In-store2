@@ -4,7 +4,8 @@
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    height: 30vh;
+    height: fit-content;
+    max-height: 300px;
     /* z-index: -1; */
     background-color: #dedede;
 }
@@ -52,6 +53,12 @@
 @media screen and (max-width:865px) {
     .brand-hero-edit-icon {
         transform: translate(220px, -60px);
+    }
+}
+
+@media screen and (max-width:768px) {
+    .brand-hero-edit-main-wrapp {
+        height: 20vh;
     }
 }
 

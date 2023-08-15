@@ -91,6 +91,12 @@
     }
 }
 
+@media screen and (max-width:768px) {
+    .brand-hero-edit-main-wrapp {
+        height: 20vh;
+    }
+}
+
 @media screen and (max-width:470px) {
     .brand-hero-edit-icon {
         transform: translate(160px, -60px);

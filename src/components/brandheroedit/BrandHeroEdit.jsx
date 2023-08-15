@@ -98,7 +98,7 @@ const BrandHeroEdit = ({ get_mall_auth_data, sidebaropen }) => {
       {/* logo wrapp */}
       <div className="band-inn-logo-wrapp band-inn-logo-wrapp-space-left" style={{ left: sidebaropen === false ? "5%" : "" }}  {...getRootlogoProps()} >
         {/* <div style={{ width: '100%' }} {...getRootlogoProps()}> */}
-        0<input
+        <input
           {...getInputlogoProps()}
           accept="image/jpeg, image/jpg, image/png, image/eps"
         />

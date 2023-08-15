@@ -87,7 +87,37 @@ const ContactDetail = ({ get_mall_auth_data }) => {
                     fontWeight: "600",
                   }}
                 >
-                  Trading hours: {get_mall_auth_data.mon_fri_from_time && get_mall_auth_data.mon_fri_from_time} - {get_mall_auth_data.mon_fri_to_time && get_mall_auth_data.mon_fri_to_time} (Mon-Fri)
+                  Trading hours: {get_mall_auth_data.mon_fri_from_time && get_mall_auth_data.mon_fri_from_time}am - {get_mall_auth_data.mon_fri_to_time && get_mall_auth_data.mon_fri_to_time}pm (Mon-Fri)
+                </p>
+              </div>
+
+              <div className="cd_add_time_wrapp">
+                <img src={images.clock} alt="" />
+                <p
+                  style={{
+                    color: "var(--color-black)",
+                    fontSize: "1rem",
+                    fontWeight: "600",
+                  }}
+                >
+                  Trading hours: {get_mall_auth_data.sat_from_time
+                    && get_mall_auth_data.mon_fri_from_time}am - {get_mall_auth_data.mon_fri_to_time && get_mall_auth_data.sat_to_time
+                  }pm (Stureday)
+                </p>
+              </div>
+
+              <div className="cd_add_time_wrapp">
+                <img src={images.clock} alt="" />
+                <p
+                  style={{
+                    color: "var(--color-black)",
+                    fontSize: "1rem",
+                    fontWeight: "600",
+                  }}
+                >
+                  Trading hours: {get_mall_auth_data.holiday_from_time && get_mall_auth_data.holiday_from_time}am - {get_mall_auth_data.holiday_to_time
+                    && get_mall_auth_data.holiday_to_time
+                  }pm (Holiday)
                 </p>
               </div>
               <div className="cd_add_time_wrapp">
