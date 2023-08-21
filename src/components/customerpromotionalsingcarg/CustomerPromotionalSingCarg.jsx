@@ -15,7 +15,7 @@ const CustomerPromotionalSingCarg = ({ x, setTab, SetProId, SetBrandId }) => {
             }}
             className="cust-promotional-banner-imgbox"
         >
-            <img src={x.image_path} className="cust-promotional-banner-sing-img" />
+            <img src={x.image_path} className="cust-promotional-banner-sing-img" alt="" />
             {/* <img src={images.about_1} className="cust-promotional-banner-sing-img" /> */}
         </button>
     );

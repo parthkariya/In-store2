@@ -9,6 +9,7 @@ import { BsChevronDown } from "react-icons/bs";
 const CutomerMallEvents = ({ getsingalmalldata }) => {
   const { get_mall_auth_data, get_mall_store_data } = useMallContext();
 
+
   const perPage = 3;
   const [totalPages, setTotalPages] = useState(1);
   const [page, setPage] = useState(1);

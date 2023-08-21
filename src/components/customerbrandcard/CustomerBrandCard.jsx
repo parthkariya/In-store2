@@ -53,7 +53,7 @@ const CustomerBrandCard = ({ data, getmovieapi, replce, mainitem, getWishlist, g
     const token = JSON.parse(localStorage.getItem("is_token"));
 
     const formdata = new FormData();
-    formdata.append("id", mainitem.id);
+    formdata.append("product_banner_tiles_id", data.id);
 
 
     axios
@@ -66,7 +66,7 @@ const CustomerBrandCard = ({ data, getmovieapi, replce, mainitem, getWishlist, g
       .then((res) => {
         console.log("ggg", JSON.stringify(res.data, null, 2));
         if (res.data.success == 1) {
-          getWishlist()
+          getmovieapi(getid);
           SetLoading(false);
         } else {
           null;
@@ -92,7 +92,11 @@ const CustomerBrandCard = ({ data, getmovieapi, replce, mainitem, getWishlist, g
           {replce == 1 ? (
             <>
               {data.is_wishlist == 1 ? (
-                <button className="cbc_card_hart_icon">
+                <button
+                  onClick={() => {
+                    removelist(getid);
+                  }}
+                  className="cbc_card_hart_icon">
                   {/* <FiHeart size={20} /> */}
                   <img src={images.heart_orange} />
                 </button>

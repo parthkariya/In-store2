@@ -80,7 +80,7 @@ const MallNearMeSing = ({ setTab }) => {
             });
     };
 
-    // sear mall list api
+    // search mall list api
 
     const getSearchMallList = async (value) => {
         console.log("value", value);
@@ -106,6 +106,7 @@ const MallNearMeSing = ({ setTab }) => {
 
                 setTotalPages(res.data.last_page);
                 setMallList([...mallList, ...res.data.data]);
+
                 setLoading(false);
             })
             .catch((err) => {
@@ -116,7 +117,13 @@ const MallNearMeSing = ({ setTab }) => {
     useEffect(() => {
         getMallList();
         getCustomer();
+
     }, [page]);
+
+    useEffect(() => {
+        console.log("all mall are", mallList);
+
+    }, [mallList])
 
 
     return (

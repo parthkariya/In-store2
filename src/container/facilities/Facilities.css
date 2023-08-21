@@ -6,6 +6,13 @@
   margin-right: 3rem;
 }
 
+@media screen and (max-width: 1380px) {
+  .facilities_cards_wrapp {
+
+    margin-right: 0rem;
+  }
+}
+
 @media (max-width: 500px) {
   .facilities_cards_wrapp {
 

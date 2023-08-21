@@ -120,6 +120,11 @@
     margin-top: 0.5rem;
 }
 
+.img-upl-border {
+    border: 1px solid #000;
+    max-width: 250px;
+}
+
 
 
 .mm_img_upload_wrapp {

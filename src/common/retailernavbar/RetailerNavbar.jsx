@@ -359,13 +359,27 @@ const RetailerNavbar = ({ setTab }) => {
                   }}
                 >
                   <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
-                    <Link
-                      to={""}
-                      onClick={() => setCustomerDropdown(!getcustomerDropdown)}
-                    >
-                      My Account{" "}
-                      {getcustomerDropdown ? <BsChevronUp /> : <BsChevronDown />}
-                    </Link>
+                    {login === "true" && getrole == 3 ?
+                      <>
+                        <Link
+                          to={""}
+                          onClick={() => setCustomerDropdown(!getcustomerDropdown)}
+                          className="my-acc-nav-flex"
+                        >
+                          My Account{" "}
+                          {getcustomerDropdown ? <BsChevronUp /> : <BsChevronDown />}
+                        </Link>
+                      </> :
+                      <>
+                        <Link
+                          to={""}
+                          onClick={() => setCustomerDropdown(!getcustomerDropdown)}
+                          className="my-acc-nav-flex"
+                        >
+                          Account{" "}
+                          {getcustomerDropdown ? <BsChevronUp /> : <BsChevronDown />}
+                        </Link>
+                      </>}
                     {/* {getcustomerDropdown ? <BsChevronUp /> : <BsChevronDown />} */}
                   </div>
                 </NavLink>
@@ -420,7 +434,7 @@ const RetailerNavbar = ({ setTab }) => {
                         </>
                       ) : (
                         <>
-                          {getrole == 3 ? <></> : null}
+                          {/* {getrole == 3 ? <></> : null}
 
                           <Link
                             to="/branddashboard"
@@ -446,15 +460,7 @@ const RetailerNavbar = ({ setTab }) => {
                           >
                             Account Setting
                           </Link>
-                          {/* {is_login === true || role === 4 ? <Link to="/customer"
-                                            className="navbar-acc-menu-link"
-                                        >
-                                            Customer
-                                        </Link> : <Link to="/"
-                                            className="navbar-acc-menu-link"
-                                        >
-                                            Customer
-                                        </Link>} */}
+                  
                           <Link
                             to=""
                             className="navbar-acc-menu-link"
@@ -498,6 +504,24 @@ const RetailerNavbar = ({ setTab }) => {
                           </Link>
                           <Link className="navbar-acc-menu-link">
                             My Brand in mall
+                          </Link> */}
+                          <Link
+                            to=""
+                            className="navbar-acc-menu-link"
+                            onClick={() => {
+                              setTab(2);
+                            }}
+                          >
+                            Account Setting
+                          </Link>
+                          <Link
+                            to=""
+                            className="navbar-acc-menu-link"
+                          // onClick={() => {
+                          //   setTab(2);
+                          // }}
+                          >
+                            Track Consumer Data
                           </Link>
                           <Link className="navbar-acc-menu-link">Help</Link>
                           {/* {is_login === true ? (<><Link onClick={logout}>Logout</Link></>) : (<></>)} */}

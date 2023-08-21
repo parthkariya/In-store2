@@ -34,6 +34,11 @@
     margin-bottom: 1rem;
 }
 
+.wel-store-txt {
+    font-size: 18px;
+    font-weight: 400;
+}
+
 @media (max-width: 700px) {
     .welcome_cards_warpp {
         padding: 0rem 1rem;

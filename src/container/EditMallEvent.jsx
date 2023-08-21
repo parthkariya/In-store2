@@ -45,6 +45,7 @@ const EditMallEvent = ({
   const [terms_condition, setterms_condition] = useState(
     geteventdata1.terms_condition ? geteventdata1.terms_condition : ""
   );
+  const [getcondation, setcondation] = useState(false);
 
   const onDateChage = (dates) => {
     const [start, end] = dates;
@@ -129,6 +130,7 @@ const EditMallEvent = ({
           )
         );
       }
+      setcondation(true);
       if (acceptedFiles.length === 0) {
         window.location.reload(true);
       }
@@ -315,62 +317,139 @@ const EditMallEvent = ({
           {/* upload images wrapp start */}
           <div className="mm_img_upload_wrapp">
             {/* single upload image */}
-            <div className="myprofile_inner_sec2">
-              {/* <h4 className="myprofile_upload_img_card_name" style={{ marginBottom: "10px" }}>
-              Upload the Event image <br />
-              (200 x 150 pixels)
-            </h4> */}
-              <h4 style={{ marginBottom: "10px" }} className="myprofile_upload_img_card_name">
-                Upload the Event image <br />
-                (200 x 150 pixels)
-              </h4>
-              {files && files.length > 0 ? (
-                <div className="myprofile_inner_sec2_img_upload">{thumbs}</div>
-              ) : (
-                <div
-                  style={{ width: "100%" }}
-                  {...getRootProps({ className: "dropzone" })}
-                >
-                  <div className="myprofile_inner_sec2_img_upload">
-                    <AiOutlineCloudUpload
-                      style={{
-                        width: "60px",
-                        height: "60px",
-                        color: "var(--color-orange)",
-                        marginBottom: "10px",
-                      }}
-                    />
-                    <h4>.PDF .JPG .PNG</h4>
-                    <p>You can also upload file by</p>
-                    <input
-                      {...getInputProps()}
-                      accept="image/jpeg, image/jpg, image/png, image/eps"
-                      type="file"
-                      name="photos"
-                    />
-                    <button type="button" className="click_upload_btn" style={{ marginBottom: "10px" }}>
-                      clic here
-                    </button>
-                    {/* <a href="">clicking here</a> */}
-                  </div>
-                  <div className="btnn-main">
-                    <button
-                      className="btn btn-orange mb_8"
-                      type="button"
-                      onClick={() => {
-                        // setFiles([]);
-                      }}
-                    >
-                      Upload File
-                    </button>
-                  </div>
-                </div>
-              )}
-              {/* <div className="myprofile_upload_img_btn_wrapp"> */}
-              <button className="btn btn-blue" onClick={() => setFiles([])}>
-                Cancel
-              </button>
-              {/* </div> */}
+            <div className="img-upl-border">
+
+              <div className="myprofile_inner_sec2" {...getRootProps()} style={{ border: "none", paddingBottom: "0px" }}>
+                {/* <input
+                {...getInputlogoProps()}
+                accept="image/jpeg, image/jpg, image/png, image/eps"
+              /> */}
+                <h4 style={{ marginBottom: "10px" }} className="myprofile_upload_img_card_name">
+                  Upload the Event image <br />
+                  (200 x 150 pixels)
+                </h4>
+                {getcondation === true ?
+
+                  <>
+                    {files && files.length > 0 ? <div className="myprofile_inner_sec2_img_upload">{thumbs}</div> :
+
+                      <div style={{ width: "100%" }}  >
+                        <div className="myprofile_inner_sec2_img_upload">
+                          <AiOutlineCloudUpload
+                            style={{
+                              width: "60px",
+                              height: "60px",
+                              color: "var(--color-orange)",
+                              marginBottom: "10px",
+                            }}
+                          />
+                          <h4>.PDF .JPG .PNG</h4>
+                          <p>You can also upload file by</p>
+                          {/* <input
+                            {...getRootProps()}
+                            accept="image/jpeg, image/jpg, image/png, image/eps"
+                          /> */}
+                          <button type="button" className="click_upload_btn" style={{ marginBottom: "10px" }}>
+                            click here
+                          </button>
+                          {/* <a href="">clicking here</a> */}
+                        </div>
+                        <div className="btnn-main">
+                          <button
+                            className="btn btn-orange mb_8"
+                            type="button"
+                            onClick={() => {
+                              // setFiles([]);
+                            }}
+                          >
+                            Upload File
+                          </button>
+                        </div>
+                      </div>
+                    }
+
+                  </>
+                  :
+                  <>
+                    {geteventdata1.image_path === null ?
+                      <>
+                        <div style={{ width: "100%" }}  {...getRootProps()}>
+                          <div className="myprofile_inner_sec2_img_upload">
+                            <AiOutlineCloudUpload
+                              style={{
+                                width: "60px",
+                                height: "60px",
+                                color: "var(--color-orange)",
+                                marginBottom: "10px",
+                              }}
+                            />
+                            <h4>.PDF .JPG .PNG</h4>
+                            <p>You can also upload file by</p>
+                            <input
+                              {...getRootProps()}
+                              accept="image/jpeg, image/jpg, image/png, image/eps"
+                            />
+                            <button type="button" className="click_upload_btn" style={{ marginBottom: "10px" }}>
+                              click here
+                            </button>
+                            {/* <a href="">clicking here</a> */}
+                          </div>
+                          <div className="btnn-main">
+                            <button
+                              className="btn btn-orange mb_8"
+                              type="button"
+                              onClick={() => {
+                                // setFiles([]);
+                              }}
+                            >
+                              Upload File
+                            </button>
+                          </div>
+                        </div>
+                        <button className="btn btn-blue" onClick={() => setFiles([])}>
+                          Cancel
+                        </button>
+                      </>
+
+                      :
+                      <>
+                        <div className="myprofile_inner_sec2_img_upload">
+
+
+                          <img
+                            src={geteventdata1.image_path}
+                            style={{ width: "100%", height: "100%" }}
+                            className="img-fluidb"
+                          />
+
+
+                        </div>
+                        <div className="btnn-main" style={{ width: "100%" }}>
+                          <button
+                            className="btn btn-orange mb_8"
+                            type="button"
+                            onClick={() => {
+                              // setFiles([]);
+                            }}
+                          >
+                            Upload File
+                          </button>
+                        </div>
+
+                      </>
+
+                    }
+
+
+                  </>
+
+                }
+              </div>
+              <div style={{ display: "flex", alingitem: "center", paddingLeft: "5px", paddingRight: "5px" }}>
+                <button className="btn btn-blue" onClick={() => setFiles([])} style={{ marginBottom: "10px", marginLeft: "10px", marginRight: "10px" }}>
+                  Cancel
+                </button>
+              </div>
             </div>
           </div>
           {/* upload images wrapp end */}

@@ -44,6 +44,14 @@
     gap: 25px;
 }
 
+.mall_upload_btn_wrapp_res {
+    display: flex !important;
+}
+
+.cus-acc-setting {
+    margin-left: 4rem;
+}
+
 .input_box-cus-pass {
     background: #dadada;
     min-height: 30px;
@@ -64,6 +72,17 @@
 
     .mm_form_input_wrapp-customer-acc-setting {
         width: 100%;
-
     }
 }
+
+@media screen and (max-width:768px) {
+    .cus-acc-setting {
+        margin-left: 1rem;
+    }
+}
+
+/* @media screen and (max-width:px) {
+    .cus-acc-setting {
+        margin-left: 2rem;
+    }
+} */

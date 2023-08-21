@@ -504,6 +504,7 @@ const HomeNavbar = (
                                 <Link
                                     to={""}
                                     onClick={() => setCustomerDropdown(!getcustomerDropdown)}
+                                    className="my-acc-nav-flex"
                                 >
                                     Account{" "}
                                     {getcustomerDropdown ? <BsChevronUp /> : <BsChevronDown />}
@@ -557,21 +558,21 @@ const HomeNavbar = (
                                                     className="navbar-acc-menu-link"
                                                     onClick={() => setIsOpen3(true)}
                                                 >
-                                                    Login
+                                                    Login / Sign Up
                                                 </Link>
                                             ) : null}
-                                            {login === false || login === null ? (
+                                            {/* {login === false || login === null ? (
                                                 <Link
                                                     className="navbar-acc-menu-link"
                                                     onClick={() => setIsOpen(true)}
                                                 >
                                                     Sign Up
                                                 </Link>
-                                            ) : null}
+                                            ) : null} */}
                                             {/* <Link className="navbar-acc-menu-link">My profile</Link> */}
-                                            <Link to="/customer" className="navbar-acc-menu-link">
+                                            {/* <Link to="/customer" className="navbar-acc-menu-link">
                                                 Customer Registration
-                                            </Link>
+                                            </Link> */}
                                             <Link className="navbar-acc-menu-link">Help</Link>
                                             {/* {is_login === true ? (<><Link onClick={logout}>Logout</Link></>) : (<></>)} */}
                                             {login === "true" ? (
@@ -686,6 +687,7 @@ const HomeNavbar = (
 
                             <Link to="/mall">Mall Registration</Link>
                             <Link to="/retailer">Brand Registration</Link>
+                            <Link to="/customer">Customer Registration</Link>
 
                             {/* {getcondation === false ? (
                 <Link onClick={() => setIsOpen2(true)}>Sign Up</Link>

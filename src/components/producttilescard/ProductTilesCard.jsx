@@ -20,6 +20,7 @@ import {
 import { BiSearch } from "react-icons/bi";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import ReactModal from "react-modal";
+import moment from "moment";
 
 const options = [
   { value: "chocolate", label: "Chocolate" },
@@ -81,8 +82,12 @@ const ProductTilesCard = ({
   const [weekname, SetWeekName] = useState("");
   const [weekname1, SetWeekName1] = useState("");
   const [weekname2, SetWeekName2] = useState("");
+  const [getTag, setTag] = useState("");
+
   const [Region, setRegion] = useState([]);
   const [mallsOption, setMallsOption] = useState([]);
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
 
   // const [deletemodalstate, setDleteModalstate] = useState(false);
   const [getcondition, setCondition] = useState(false);
@@ -132,6 +137,7 @@ const ProductTilesCard = ({
         : item.categorys.id
     );
     setDiscription(item.description ? item.description : item.description);
+    setTag(item.tag ? item.tag : item.tag);
     setPrice(item.price ? item.price : item.price);
     SetWeekName(item.weeks ? item.weeks.name : "");
     SetWeekName1(item.weeks ? item.weeks.from_date : "");
@@ -179,16 +185,25 @@ const ProductTilesCard = ({
       return;
     } else if (mallidarray == "" || undefined) {
       Notification("error", "Error!", "Please Select Mall!");
-    } else if (Week == "" || undefined) {
-      Notification("error", "Error!", "Please Select Week!");
+      return;
+    } else if (startDate == "" || startDate == undefined) {
+      Notification("error", "Error", "Please Enter Start Date");
+      return;
+    } else if (endDate == "" || endDate == undefined) {
+      Notification("error", "Error", "Please Enter End Date");
+      return;
     } else if (regionidarray == "" || undefined) {
       Notification("error", "Error!", "Please Select Region!");
+      return;
     } else if (BrandName == "" || undefined) {
       Notification("error", "Error!", "Please Select Brand!");
+      return;
     } else if (Price == "" || undefined) {
       Notification("error", "Error!", "Please Enter Price!");
+      return;
     } else if (Description == "" || undefined) {
       Notification("error", "Error!", "Please Enter Description!");
+      return;
     } else {
       const formdata = await new FormData();
       await formdata.append("id", item.id);
@@ -203,7 +218,9 @@ const ProductTilesCard = ({
       await formdata.append("category_id", CategoryId);
       await formdata.append("price", Price);
       await formdata.append("description", Description);
-      await formdata.append("week_id", Week);
+      await formdata.append("tag", getTag);
+      await formdata.append("from_date", moment(startDate).format("YYYY-MM-DD"));
+      await formdata.append("to_date", moment(endDate).format("YYYY-MM-DD"));
       await formdata.append("region_child_id[0]", "");
       if (files[0] !== undefined) {
         await formdata.append("image", files[0]);
@@ -341,6 +358,12 @@ const ProductTilesCard = ({
     setToggle(id);
   };
 
+  const onDateChage = (dates) => {
+    const [start, end] = dates;
+    setStartDate(start);
+    setEndDate(end);
+  };
+
   return (
     <>
       <div className="leaderboard-card-main-wrapp product-tiles-card-main-wrapp">
@@ -416,7 +439,32 @@ const ProductTilesCard = ({
               </div>
             </div>
             {/* Leaderboard inputbox end */}
+            <div className="leaderboard-card-inpbox-wrapp">
+              <label className="leaderboard-card-lbl" htmlFor="">Week</label>
+              {/* <input
+              type="date"
+              value={eventEndDate}
+              onChange={(e) => setEventEndDate(e.target.value)}
+              name=""
+              id=""
+              className="input_box"
+            /> */}
+              <DatePicker
+                selected={startDate}
+                onChange={onDateChage}
+                startDate={startDate}
+                endDate={endDate}
+                selectsRange
+                // selectsDisabledDaysInRange
+                // inline
+                monthsShown={2}
 
+
+                calendarStartDay={1}
+                className="leaderboard-card-inp"
+                placeholderText="Select your week"
+              />
+            </div>
             {/* Leaderboard inputbox start */}
             <div className="leaderboard-card-inpbox-wrapp">
               <label className="leaderboard-card-lbl">Brand(s):</label>
@@ -494,6 +542,17 @@ const ProductTilesCard = ({
                 placeholder="XS, S, M, L, XL, XXL"
                 value={Description}
                 onChange={(e) => setDiscription(e.target.value)}
+              />
+            </div>
+
+            <div className="leaderboard-card-inpbox-wrapp">
+              <label className="leaderboard-card-lbl">Tags:<br /><span style={{ fontSize: "9px" }}>[seperated by commas]</span></label>
+              <textarea
+                style={{ height: "60px" }}
+                className="leaderboard-card-inp"
+                placeholder="White,tekkies,sneakers,shoes,trainers,running"
+                value={getTag}
+                onChange={(e) => setTag(e.target.value)}
               />
             </div>
             {/* Leaderboard inputbox end */}
@@ -595,7 +654,7 @@ const ProductTilesCard = ({
               {item.cart_status === 0 ? (
                 <>
                   <button
-                    className="btn btn-orange"
+                    className="btn btn-green"
                     onClick={() => {
                       Addtocart();
                       // window.location.reload(true);
@@ -606,7 +665,7 @@ const ProductTilesCard = ({
                 </>
               ) : (
                 <button
-                  className="btn btn-orange"
+                  className="btn btn-green"
                 // onClick={() => {
                 //   window.location.reload(true);
                 //   Addtocart();
@@ -628,7 +687,7 @@ const ProductTilesCard = ({
             </button> */}
             <div className="leaderboard-btn-box">
               <button
-                className="btn btn-orange"
+                className="btn btn-blue"
                 onClick={() => UpdatePromotionBanner()}
               >
                 Update
@@ -643,7 +702,7 @@ const ProductTilesCard = ({
               {item.cart_status === 0 ? (
                 <>
                   <button
-                    className="btn btn-orange"
+                    className="btn btn-green"
                     onClick={() => {
                       Addtocart();
                       // window.location.reload(true);
@@ -654,7 +713,7 @@ const ProductTilesCard = ({
                 </>
               ) : (
                 <button
-                  className="btn btn-orange"
+                  className="btn btn-green"
                 // onClick={() => {
                 //   window.location.reload(true);
                 //   Addtocart();
@@ -673,7 +732,7 @@ const ProductTilesCard = ({
             </Link> */}
             <div className="leaderboard-btn-box">
               <button
-                className="btn btn-orange"
+                className="btn btn-blue"
                 onClick={() => UpdatePromotionBanner()}
               >
                 Update
@@ -706,7 +765,7 @@ const ProductTilesCard = ({
               />
             </div>
 
-            <div
+            {/* <div
               className="leaderboard-card-inpbox-wrapp"
               style={{ alignItems: "center" }}
             >
@@ -726,9 +785,7 @@ const ProductTilesCard = ({
                   week_data.map((item, index) => {
                     return (
                       <>
-                        {/* <option selected disabled value="">
-                      Auto-fill from database
-                    </option> */}
+                     
                         <option value={item.id} key={index}>
                           {item.name} &nbsp;&nbsp;&nbsp; {item.from_date}{" "}
                           &nbsp;&nbsp;&nbsp; {item.to_date}
@@ -737,7 +794,7 @@ const ProductTilesCard = ({
                     );
                   })}
               </select>
-            </div>
+            </div> */}
 
             {/* mall selected tag */}
             <div className="select_mall_tag_btns_wrapp">

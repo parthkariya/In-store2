@@ -300,7 +300,7 @@ const AddProductTilesBanner = ({ get_mall_auth_data, setTab }) => {
                             Select the malls that your brand features in:
                         </p>
 
-                        <div
+                        {/* <div
                             className="leaderboard-card-inpbox-wrapp"
                             style={{ alignItems: "center" }}
                         >
@@ -321,9 +321,7 @@ const AddProductTilesBanner = ({ get_mall_auth_data, setTab }) => {
                                     week_data.map((item, index) => {
                                         return (
                                             <>
-                                                {/* <option selected disabled value="">
-                      Auto-fill from database
-                    </option> */}
+
                                                 <option value={item.id} key={index}>
                                                     {item.name} &nbsp;&nbsp;&nbsp; {item.from_date}{" "}
                                                     &nbsp;&nbsp;&nbsp; {item.to_date}
@@ -332,14 +330,8 @@ const AddProductTilesBanner = ({ get_mall_auth_data, setTab }) => {
                                         );
                                     })}
                             </select>
-                            {/* <button
-              className="leaderboard-card-inp"
-              style={{ color: "rgb(129 128 128)", textAlign: "start" }}
-              onClick={() => openMallModal()}
-            >
-              Select Mall
-            </button> */}
-                        </div>
+ 
+                        </div> */}
                         {/* mall search */}
                         <div className="select_mall_serch_wrapp">
                             <input type="search" placeholder="Search" className="input_box" />

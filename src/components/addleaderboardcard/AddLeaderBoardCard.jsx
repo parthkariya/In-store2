@@ -42,20 +42,27 @@ const AddLeaderBoardCard = ({
     const [Price, setPrice] = useState("");
     const [Description, setDiscription] = useState("");
     const [mallsOption, setMallsOption] = useState([]);
+    // const [startDate, setStartDate] = useState();
+    // const [endDate, setEndDate] = useState();
 
     const [Week, setWeek] = useState("");
     const [Region, setRegion] = useState([]);
 
     // select date funtion is start
 
-    const [startDate, setStartDate] = useState(null);
-    const [endDate, setEndDate] = useState(null);
+    const [startDate, setStartDate] = useState();
+    const [endDate, setEndDate] = useState();
 
     useEffect(() => {
         console.log("startDate", startDate);
         console.log("endDate", endDate);
     }, [startDate, endDate]);
 
+    const onDateChage = (dates) => {
+        const [start, end] = dates;
+        setStartDate(start);
+        setEndDate(end);
+    };
     const {
 
         getBrand,
@@ -146,8 +153,12 @@ const AddLeaderBoardCard = ({
             Notification("error", "Error!", "Please Select Mall!");
         } else if (regionidarray == "" || undefined) {
             Notification("error", "Error!", "Please Select Region!");
-        } else if (gatweek == "" || undefined) {
-            Notification("error", "Error!", "Please Select Week!");
+        } else if (startDate == "" || startDate == undefined) {
+            Notification("error", "Error", "Please Enter Start Date");
+            return;
+        } else if (endDate == "" || endDate == undefined) {
+            Notification("error", "Error", "Please Enter End Date");
+            return;
         } else if (BrandName == "" || undefined) {
             Notification("error", "Error!", "Please Select Brand!");
         } else if (Category == "" || undefined) {
@@ -165,7 +176,9 @@ const AddLeaderBoardCard = ({
 
             await formdata.append("brand_id", BrandName);
             await formdata.append("category_id", Category);
-            await formdata.append("week_id", gatweek);
+            // await formdata.append("week_id", gatweek);
+            await formdata.append("from_date", moment(startDate).format("YYYY-MM-DD"));
+            await formdata.append("to_date", moment(endDate).format("YYYY-MM-DD"));
 
             if (files[0] !== undefined) {
                 await formdata.append("image", files[0]);
@@ -256,6 +269,33 @@ const AddLeaderBoardCard = ({
             </button> */}
                     </div>
                     {/* Leaderboard inputbox end */}
+
+                    <div className="leaderboard-card-inpbox-wrapp">
+                        <label className="leaderboard-card-lbl" htmlFor="">Week</label>
+                        {/* <input
+              type="date"
+              value={eventEndDate}
+              onChange={(e) => setEventEndDate(e.target.value)}
+              name=""
+              id=""
+              className="input_box"
+            /> */}
+                        <DatePicker
+                            selected={startDate}
+                            onChange={onDateChage}
+                            startDate={startDate}
+                            endDate={endDate}
+                            selectsRange
+                            // selectsDisabledDaysInRange
+                            // inline
+                            monthsShown={2}
+
+
+                            calendarStartDay={1}
+                            className="leaderboard-card-inp"
+                            placeholderText="Select your week"
+                        />
+                    </div>
 
                     {/* Leaderboard inputbox start */}
                     <div className="leaderboard-card-inpbox-wrapp">

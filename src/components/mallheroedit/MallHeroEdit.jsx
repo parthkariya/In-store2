@@ -130,6 +130,7 @@ const MallHeroEdit = ({ get_mall_auth_data, sidebaropen }) => {
           <input
             {...getInputbannerProps()}
             accept="image/jpeg, image/jpg, image/png, image/eps"
+          // style={{ position: "relative" }}
           />
 
           {/* banner img */}
@@ -147,11 +148,15 @@ const MallHeroEdit = ({ get_mall_auth_data, sidebaropen }) => {
               )}
             </>
           ) : (
-            <img
-              src={get_mall_auth_data.banner_mall_path}
-              style={{ width: "100%", height: "100%" }}
-              className="img-fluid"
-            />
+            <>
+              <img
+                src={get_mall_auth_data.banner_mall_path}
+                style={{ width: "100%", height: "100%" }}
+                className="img-fluid"
+              />
+
+              <img src={images.card_edit} alt="" style={{ position: "absolute", top: "105px", right: "100px" }} className="mall-hero-edit-icon edit-icon-positon-resp" />
+            </>
           )}
         </div>
 
@@ -162,31 +167,36 @@ const MallHeroEdit = ({ get_mall_auth_data, sidebaropen }) => {
           {...getRootlogoProps()}
         >
           {/* <div style={{ width: '100%' }} {...getRootlogoProps()}> */}
-          <input
-            {...getInputlogoProps()}
-            accept="image/jpeg, image/jpg, image/png, image/eps"
-          />
-          {getcondation === true ? (
-            <>
-              {files2 && files2.length > 0 ? (
-                thumbs2
-              ) : (
-                <button type="button">
-                  <img
-                    src={images.card_edit}
-                    className="brand-hero-logo-edit-icon"
-                  />
-                </button>
-              )}
-            </>
-          ) : (
-            <img
-              src={get_mall_auth_data.shopping_center_logo_mall_path}
-              style={{ width: "100%", height: "100%", maxHeight: "175px" }}
-              className="img-fluid"
+          <div style={{ position: 'relative' }}>
+            <input
+              {...getInputlogoProps()}
+              accept="image/jpeg, image/jpg, image/png, image/eps"
             />
-          )}
-          {/* </div> */}
+            {getcondation === true ? (
+              <>
+                {files2 && files2.length > 0 ? (
+                  thumbs2
+                ) : (
+                  <button type="button">
+                    <img
+                      src={images.card_edit}
+                      className="brand-hero-logo-edit-icon"
+                    />
+                  </button>
+                )}
+              </>
+            ) : (
+              <>
+                <img
+                  src={get_mall_auth_data.shopping_center_logo_mall_path}
+                  style={{ width: "100%", height: "100%", maxHeight: "175px" }}
+                  className="img-fluid"
+                />
+                <img src={images.card_edit} alt="" style={{ position: "absolute", top: "25px", right: "20px" }} />
+              </>
+            )}
+            {/* </div> */}
+          </div>
         </div>
       </div>
     </div>

@@ -27,7 +27,7 @@ const PromotionHero = ({ getdprodata }) => {
                     : x.image_path
                 }
                 alt=""
-                className="mall_hero_banner_img"
+                className="mall_hero_banner_img" style={{ objectFit: "initial" }}
               />
             </div>
           );

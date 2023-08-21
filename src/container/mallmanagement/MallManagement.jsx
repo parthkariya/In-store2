@@ -141,6 +141,8 @@ const MallManagement = ({ get_mall_auth_data, sidebaropen, setTab }) => {
 
   const [getcondation, SetCondation] = useState(false);
   const [getcondation1, SetCondation1] = useState(false);
+  const [getcondation2, SetCondation2] = useState(false);
+  const [getcondation3, SetCondation3] = useState(false);
   const { getRootProps: getRootlogoProps, getInputProps: getInputlogoProps } =
     useDropzone({
       onDrop: (acceptedFiles) => {
@@ -200,6 +202,7 @@ const MallManagement = ({ get_mall_auth_data, sidebaropen, setTab }) => {
           )
         );
       }
+      SetCondation2(true);
 
       if (acceptedFiles.length === 0) {
         window.location.reload(true);
@@ -222,6 +225,8 @@ const MallManagement = ({ get_mall_auth_data, sidebaropen, setTab }) => {
           )
         );
       }
+      SetCondation3(true);
+
       if (acceptedFiles.length === 0) {
         window.location.reload(true);
       }
@@ -422,11 +427,14 @@ const MallManagement = ({ get_mall_auth_data, sidebaropen, setTab }) => {
               )}
             </>
           ) : (
-            <img
-              src={get_mall_auth_data.banner_mall_path}
-              style={{ width: "100%", height: "100%", }}
-              className="img-fluid"
-            />
+            <>
+              <img
+                src={get_mall_auth_data.banner_mall_path}
+                style={{ width: "100%", height: "100%", }}
+                className="img-fluid"
+              />
+              <img src={images.card_edit} alt="" style={{ position: "absolute", top: "105px", right: "100px" }} className="mall-hero-edit-icon edit-icon-positon-resp" />
+            </>
           )}
         </div>
 
@@ -451,11 +459,14 @@ const MallManagement = ({ get_mall_auth_data, sidebaropen, setTab }) => {
               )}
             </>
           ) : (
-            <img
-              src={get_mall_auth_data.shopping_center_logo_mall_path}
-              style={{ width: "100%", height: "100%", maxHeight: "175px" }}
-              className="img-fluid"
-            />
+            <>
+              <img
+                src={get_mall_auth_data.shopping_center_logo_mall_path}
+                style={{ width: "100%", height: "100%", maxHeight: "175px" }}
+                className="img-fluid"
+              />
+              <img src={images.card_edit} alt="" style={{ position: "absolute", top: "25px", right: "20px" }} />
+            </>
           )}
           {/* </div> */}
         </div>
@@ -984,197 +995,541 @@ const MallManagement = ({ get_mall_auth_data, sidebaropen, setTab }) => {
           {/* upload images wrapp start */}
           <div className="mm_img_upload_wrapp mall-acc-manager-upl-img-part">
             {/* single upload image */}
-            <div className="myprofile_inner_sec2">
-              <h6 className="myprofile_upload_img_card_name">
-                Upload the Shopping centre logo (200px x 200px)
-              </h6>
-              {files && files.length > 0 ? (
-                <div className="myprofile_inner_sec2_img_upload">{thumbs}</div>
-              ) : (
-                <div style={{ width: "100%" }} {...getRootlogoProps()}>
-                  <div className="myprofile_inner_sec2_img_upload">
-                    <AiOutlineCloudUpload
-                      style={{
-                        width: "60px",
-                        height: "60px",
-                        color: "var(--color-orange)",
-                        marginBottom: "10px",
-                      }}
-                    />
-                    <h4>.PDF .JPG .PNG</h4>
-                    <p>You can also upload file by</p>
-                    <input
-                      {...getInputlogoProps()}
-                      accept="image/jpeg, image/jpg, image/png, image/eps"
-                    />
-                    <button type="button" className="click_upload_btn" style={{ marginBottom: "10px" }}>
-                      click here
-                    </button>
-                    {/* <a href="">clicking here</a> */}
-                  </div>
-                  <div className="btnn-main">
-                    <button
-                      className="btn btn-orange mb_8"
-                      type="button"
-                      onClick={() => {
-                        // setFiles([]);
-                      }}
-                    >
-                      Upload File
-                    </button>
-                  </div>
-                </div>
-              )}
-              {/* <div className="myprofile_upload_img_btn_wrapp"> */}
-              <button className="btn btn-blue" onClick={() => setFiles([])}>
-                Cancel
-              </button>
-              {/* </div> */}
-            </div>
-            {/* single upload image */}
-            <div className="myprofile_inner_sec2">
-              <h6 className="myprofile_upload_img_card_name">
-                Upload the Shopping centre Banner (1300px x 275px)
-              </h6>
-              {files2 && files2.length > 0 ? (
-                <div className="myprofile_inner_sec2_img_upload">{thumbs2}</div>
-              ) : (
-                <div style={{ width: "100%" }} {...getRootMapProps()}>
-                  <div className="myprofile_inner_sec2_img_upload">
-                    <AiOutlineCloudUpload
-                      style={{
-                        width: "60px",
-                        height: "60px",
-                        color: "var(--color-orange)",
-                        marginBottom: "10px",
-                      }}
-                    />
-                    <h4>.PDF .JPG .PNG</h4>
-                    <p>You can also upload file by</p>
-                    <input
-                      {...getInputMapProps()}
-                      accept="image/jpeg, image/jpg, image/png, image/eps"
-                    />
-                    <button type="button" className="click_upload_btn" style={{ marginBottom: "10px" }}>
-                      click here
-                    </button>
-                    {/* <a href="">clicking here</a> */}
-                  </div>
-                  <div className="btnn-main">
-                    <button
-                      className="btn btn-orange mb_8"
-                      type="button"
-                      onClick={() => {
-                        // setFiles([]);
-                      }}
-                    >
-                      Upload File
-                    </button>
-                  </div>
-                </div>
-              )}
-              {/* <div className="myprofile_upload_img_btn_wrapp"> */}
-              <button className="btn btn-blue" onClick={() => setFiles2([])}>
-                Cancel
-              </button>
-              {/* </div> */}
-            </div>
-            {/* single upload image */}
-            <div className="myprofile_inner_sec2">
-              <h6 className="myprofile_upload_img_card_name">
-                Upload the Shopping centre thumbnail (720px x 200px)
-              </h6>
-              {files3 && files3.length > 0 ? (
-                <div className="myprofile_inner_sec2_img_upload">{thumbs3}</div>
-              ) : (
-                <div style={{ width: "100%" }} {...getRootBannerProps()}>
-                  <div className="myprofile_inner_sec2_img_upload">
-                    <AiOutlineCloudUpload
-                      style={{
-                        width: "60px",
-                        height: "60px",
-                        color: "var(--color-orange)",
-                        marginBottom: "10px",
-                      }}
-                    />
-                    <h4>.PDF .JPG .PNG</h4>
-                    <p>You can also upload file by</p>
-                    <input
-                      {...getInputBannerProps()}
-                      accept="image/jpeg, image/jpg, image/png, image/eps"
-                    />
-                    <button type="button" className="click_upload_btn" style={{ marginBottom: "10px" }}>
-                      click here
-                    </button>
-                    {/* <a href="">clicking here</a> */}
-                  </div>
-                  <div className="btnn-main">
-                    <button
-                      className="btn btn-orange mb_8"
-                      type="button"
-                      onClick={() => {
-                        // setFiles([]);
-                      }}
-                    >
-                      Upload File
-                    </button>
-                  </div>
-                </div>
-              )}
+            <div className="img-upl-border">
 
-              <button className="btn btn-blue" onClick={() => setFiles3([])}>
-                Cancel
-              </button>
+              <div className="myprofile_inner_sec2" {...getRootlogoProps()} style={{ border: "none", paddingBottom: "0px" }}>
+                {/* <input
+                {...getInputlogoProps()}
+                accept="image/jpeg, image/jpg, image/png, image/eps"
+              /> */}
+                <h6 className="myprofile_upload_img_card_name">
+                  Upload the Shopping centre logo (200px x 200px)
+                </h6>
+                {getcondation === true ?
+
+                  <>
+                    {files && files.length > 0 ? <div className="myprofile_inner_sec2_img_upload">{thumbs}</div> :
+
+                      <div style={{ width: "100%" }}  >
+                        <div className="myprofile_inner_sec2_img_upload">
+                          <AiOutlineCloudUpload
+                            style={{
+                              width: "60px",
+                              height: "60px",
+                              color: "var(--color-orange)",
+                              marginBottom: "10px",
+                            }}
+                          />
+                          <h4>.PDF .JPG .PNG</h4>
+                          <p>You can also upload file by</p>
+                          <input
+                            {...getInputlogoProps()}
+                            accept="image/jpeg, image/jpg, image/png, image/eps"
+                          />
+                          <button type="button" className="click_upload_btn" style={{ marginBottom: "10px" }}>
+                            click here
+                          </button>
+                          {/* <a href="">clicking here</a> */}
+                        </div>
+                        <div className="btnn-main">
+                          <button
+                            className="btn btn-orange mb_8"
+                            type="button"
+                            onClick={() => {
+                              // setFiles([]);
+                            }}
+                          >
+                            Upload File
+                          </button>
+                        </div>
+                      </div>
+                    }
+
+                  </>
+                  :
+                  <>
+                    {get_mall_auth_data.shopping_center_logo_mall_path === null ?
+                      <>
+                        <div style={{ width: "100%" }}  {...getRootlogoProps()}>
+                          <div className="myprofile_inner_sec2_img_upload">
+                            <AiOutlineCloudUpload
+                              style={{
+                                width: "60px",
+                                height: "60px",
+                                color: "var(--color-orange)",
+                                marginBottom: "10px",
+                              }}
+                            />
+                            <h4>.PDF .JPG .PNG</h4>
+                            <p>You can also upload file by</p>
+                            <input
+                              {...getInputlogoProps()}
+                              accept="image/jpeg, image/jpg, image/png, image/eps"
+                            />
+                            <button type="button" className="click_upload_btn" style={{ marginBottom: "10px" }}>
+                              click here
+                            </button>
+                            {/* <a href="">clicking here</a> */}
+                          </div>
+                          <div className="btnn-main">
+                            <button
+                              className="btn btn-orange mb_8"
+                              type="button"
+                              onClick={() => {
+                                // setFiles([]);
+                              }}
+                            >
+                              Upload File
+                            </button>
+                          </div>
+                        </div>
+                        <button className="btn btn-blue" onClick={() => setFiles([])}>
+                          Cancel
+                        </button>
+                      </>
+
+                      :
+                      <>
+                        <div className="myprofile_inner_sec2_img_upload">
+
+
+                          <img
+                            src={get_mall_auth_data.shopping_center_logo_mall_path}
+                            style={{ width: "100%", height: "100%" }}
+                            className="img-fluidb"
+                          />
+
+
+                        </div>
+                        <div className="btnn-main" style={{ width: "100%" }}>
+                          <button
+                            className="btn btn-orange mb_8"
+                            type="button"
+                            onClick={() => {
+                              // setFiles([]);
+                            }}
+                          >
+                            Upload File
+                          </button>
+                        </div>
+
+                      </>
+
+                    }
+
+
+                  </>
+
+                }
+              </div>
+              <div style={{ display: "flex", alingitem: "center", paddingLeft: "5px", paddingRight: "5px" }}>
+                <button className="btn btn-blue" onClick={() => setFiles([])} style={{ marginBottom: "10px", marginLeft: "10px", marginRight: "10px" }}>
+                  Cancel
+                </button>
+              </div>
             </div>
             {/* single upload image */}
-            <div className="myprofile_inner_sec2">
-              <h6 className="myprofile_upload_img_card_name">
-                Upload the Shopping centre map (max 800kb)
-              </h6>
-              {files4 && files4.length > 0 ? (
-                <div className="myprofile_inner_sec2_img_upload">{thumbs4}</div>
-              ) : (
-                <div
-                  style={{ width: "100%" }}
-                  {...getRootProps({ className: "dropzone" })}
-                >
-                  <div className="myprofile_inner_sec2_img_upload">
-                    <AiOutlineCloudUpload
-                      style={{
-                        width: "60px",
-                        height: "60px",
-                        color: "var(--color-orange)",
-                        marginBottom: "10px",
-                      }}
-                    />
-                    <h4>.PDF .JPG .PNG</h4>
-                    <p>You can also upload file by</p>
-                    <input
-                      {...getInputProps()}
-                      accept="image/jpeg, image/jpg, image/png, image/eps"
-                    />
-                    <button type="button" className="click_upload_btn" style={{ marginBottom: "10px" }}>
-                      click here
-                    </button>
-                    {/* <a href="">clicking here</a> */}
-                  </div>
-                  <div className="btnn-main">
-                    <button
-                      className="btn btn-orange mb_8"
-                      type="button"
-                      onClick={() => {
-                        // setFiles([]);
-                      }}
-                    >
-                      Upload File
-                    </button>
-                  </div>
-                </div>
-              )}
+            <div className="img-upl-border">
 
-              <button className="btn btn-blue" onClick={() => setFiles4([])}>
-                Cancel
-              </button>
+              <div className="myprofile_inner_sec2" {...getRootMapProps()} style={{ border: "none", paddingBottom: "0px" }}>
+                {/* <input
+                {...getInputlogoProps()}
+                accept="image/jpeg, image/jpg, image/png, image/eps"
+              /> */}
+                <h6 className="myprofile_upload_img_card_name">
+                  Upload the Shopping centre Banner (1300px x 275px)
+                </h6>
+                {getcondation1 === true ?
+
+                  <>
+                    {files2 && files2.length > 0 ? <div className="myprofile_inner_sec2_img_upload">{thumbs2}</div> :
+
+                      <div style={{ width: "100%" }}  >
+                        <div className="myprofile_inner_sec2_img_upload">
+                          <AiOutlineCloudUpload
+                            style={{
+                              width: "60px",
+                              height: "60px",
+                              color: "var(--color-orange)",
+                              marginBottom: "10px",
+                            }}
+                          />
+                          <h4>.PDF .JPG .PNG</h4>
+                          <p>You can also upload file by</p>
+                          <input
+                            {...getInputMapProps()}
+                            accept="image/jpeg, image/jpg, image/png, image/eps"
+                          />
+                          <button type="button" className="click_upload_btn" style={{ marginBottom: "10px" }}>
+                            click here
+                          </button>
+                          {/* <a href="">clicking here</a> */}
+                        </div>
+                        <div className="btnn-main">
+                          <button
+                            className="btn btn-orange mb_8"
+                            type="button"
+                            onClick={() => {
+                              // setFiles([]);
+                            }}
+                          >
+                            Upload File
+                          </button>
+                        </div>
+                      </div>
+                    }
+
+                  </>
+                  :
+                  <>
+                    {get_mall_auth_data.banner_mall_path === null ?
+                      <>
+                        <div style={{ width: "100%" }}  {...getRootMapProps()}>
+                          <div className="myprofile_inner_sec2_img_upload">
+                            <AiOutlineCloudUpload
+                              style={{
+                                width: "60px",
+                                height: "60px",
+                                color: "var(--color-orange)",
+                                marginBottom: "10px",
+                              }}
+                            />
+                            <h4>.PDF .JPG .PNG</h4>
+                            <p>You can also upload file by</p>
+                            <input
+                              {...getInputlogoProps()}
+                              accept="image/jpeg, image/jpg, image/png, image/eps"
+                            />
+                            <button type="button" className="click_upload_btn" style={{ marginBottom: "10px" }}>
+                              click here
+                            </button>
+                            {/* <a href="">clicking here</a> */}
+                          </div>
+                          <div className="btnn-main">
+                            <button
+                              className="btn btn-orange mb_8"
+                              type="button"
+                              onClick={() => {
+                                // setFiles([]);
+                              }}
+                            >
+                              Upload File
+                            </button>
+                          </div>
+                        </div>
+                        <button className="btn btn-blue" onClick={() => setFiles2([])}>
+                          Cancel
+                        </button>
+                      </>
+
+                      :
+                      <>
+                        <div className="myprofile_inner_sec2_img_upload">
+
+
+                          <img
+                            src={get_mall_auth_data.banner_mall_path}
+                            style={{ width: "100%", height: "100%" }}
+                            className="img-fluidb"
+                          />
+
+
+                        </div>
+                        <div className="btnn-main" style={{ width: "100%" }}>
+                          <button
+                            className="btn btn-orange mb_8"
+                            type="button"
+                            onClick={() => {
+                              // setFiles([]);
+                            }}
+                          >
+                            Upload File
+                          </button>
+                        </div>
+
+                      </>
+
+                    }
+
+
+                  </>
+
+                }
+              </div>
+              <div style={{ display: "flex", alingitem: "center", paddingLeft: "5px", paddingRight: "5px" }}>
+                <button className="btn btn-blue" onClick={() => setFiles2([])} style={{ marginBottom: "10px", marginLeft: "10px", marginRight: "10px" }}>
+                  Cancel
+                </button>
+              </div>
+            </div>
+            {/* single upload image */}
+            {/* single upload image */}
+            <div className="img-upl-border">
+
+              <div className="myprofile_inner_sec2" {...getRootBannerProps()} style={{ border: "none", paddingBottom: "0px" }}>
+                {/* <input
+                {...getInputlogoProps()}
+                accept="image/jpeg, image/jpg, image/png, image/eps"
+              /> */}
+                <h6 className="myprofile_upload_img_card_name">
+                  Upload the Shopping centre thumbnail (720px x 200px)
+                </h6>
+                {getcondation2 === true ?
+
+                  <>
+                    {files3 && files3.length > 0 ? <div className="myprofile_inner_sec2_img_upload">{thumbs3}</div> :
+
+                      <div style={{ width: "100%" }}  >
+                        <div className="myprofile_inner_sec2_img_upload">
+                          <AiOutlineCloudUpload
+                            style={{
+                              width: "60px",
+                              height: "60px",
+                              color: "var(--color-orange)",
+                              marginBottom: "10px",
+                            }}
+                          />
+                          <h4>.PDF .JPG .PNG</h4>
+                          <p>You can also upload file by</p>
+                          <input
+                            {...getRootBannerProps()}
+                            accept="image/jpeg, image/jpg, image/png, image/eps"
+                          />
+                          <button type="button" className="click_upload_btn" style={{ marginBottom: "10px" }}>
+                            click here
+                          </button>
+                          {/* <a href="">clicking here</a> */}
+                        </div>
+                        <div className="btnn-main">
+                          <button
+                            className="btn btn-orange mb_8"
+                            type="button"
+                            onClick={() => {
+                              // setFiles([]);
+                            }}
+                          >
+                            Upload File
+                          </button>
+                        </div>
+                      </div>
+                    }
+
+                  </>
+                  :
+                  <>
+                    {get_mall_auth_data.shopping_center_thumbnail_mall_path === null ?
+                      <>
+                        <div style={{ width: "100%" }}  {...getRootBannerProps()}>
+                          <div className="myprofile_inner_sec2_img_upload">
+                            <AiOutlineCloudUpload
+                              style={{
+                                width: "60px",
+                                height: "60px",
+                                color: "var(--color-orange)",
+                                marginBottom: "10px",
+                              }}
+                            />
+                            <h4>.PDF .JPG .PNG</h4>
+                            <p>You can also upload file by</p>
+                            {/* <input
+                              {...getInputlogoProps()}
+                              accept="image/jpeg, image/jpg, image/png, image/eps"
+                            /> */}
+                            <button type="button" className="click_upload_btn" style={{ marginBottom: "10px" }}>
+                              click here
+                            </button>
+                            {/* <a href="">clicking here</a> */}
+                          </div>
+                          <div className="btnn-main">
+                            <button
+                              className="btn btn-orange mb_8"
+                              type="button"
+                              onClick={() => {
+                                // setFiles([]);
+                              }}
+                            >
+                              Upload File
+                            </button>
+                          </div>
+                        </div>
+                        <button className="btn btn-blue" onClick={() => setFiles3([])}>
+                          Cancel
+                        </button>
+                      </>
+
+                      :
+                      <>
+                        <div className="myprofile_inner_sec2_img_upload">
+
+
+                          <img
+                            src={get_mall_auth_data.shopping_center_thumbnail_mall_path}
+                            style={{ width: "100%", height: "100%" }}
+                            className="img-fluidb"
+                          />
+
+
+                        </div>
+                        <div className="btnn-main" style={{ width: "100%" }}>
+                          <button
+                            className="btn btn-orange mb_8"
+                            type="button"
+                            onClick={() => {
+                              // setFiles([]);
+                            }}
+                          >
+                            Upload File
+                          </button>
+                        </div>
+
+                      </>
+
+                    }
+
+
+                  </>
+
+                }
+              </div>
+              <div style={{ display: "flex", alingitem: "center", paddingLeft: "5px", paddingRight: "5px" }}>
+                <button className="btn btn-blue" onClick={() => setFiles3([])} style={{ marginBottom: "10px", marginLeft: "10px", marginRight: "10px" }}>
+                  Cancel
+                </button>
+              </div>
+            </div>
+            {/* single upload image */}
+            <div className="img-upl-border">
+
+              <div className="myprofile_inner_sec2" {...getRootProps()} style={{ border: "none", paddingBottom: "0px" }}>
+                {/* <input
+                {...getInputlogoProps()}
+                accept="image/jpeg, image/jpg, image/png, image/eps"
+              /> */}
+                <h6 className="myprofile_upload_img_card_name">
+                  Upload the Shopping centre map (max 800kb)
+                </h6>
+                {getcondation3 === true ?
+
+                  <>
+                    {files4 && files4.length > 0 ? <div className="myprofile_inner_sec2_img_upload">{thumbs4}</div> :
+
+                      <div style={{ width: "100%" }}  >
+                        <div className="myprofile_inner_sec2_img_upload">
+                          <AiOutlineCloudUpload
+                            style={{
+                              width: "60px",
+                              height: "60px",
+                              color: "var(--color-orange)",
+                              marginBottom: "10px",
+                            }}
+                          />
+                          <h4>.PDF .JPG .PNG</h4>
+                          <p>You can also upload file by</p>
+                          {/* <input
+                            {...getRootProps()}
+                            accept="image/jpeg, image/jpg, image/png, image/eps"
+                          /> */}
+                          <button type="button" className="click_upload_btn" style={{ marginBottom: "10px" }}>
+                            click here
+                          </button>
+                          {/* <a href="">clicking here</a> */}
+                        </div>
+                        <div className="btnn-main">
+                          <button
+                            className="btn btn-orange mb_8"
+                            type="button"
+                            onClick={() => {
+                              // setFiles([]);
+                            }}
+                          >
+                            Upload File
+                          </button>
+                        </div>
+                      </div>
+                    }
+
+                  </>
+                  :
+                  <>
+                    {get_mall_auth_data.shopping_center_map_mall_path === null ?
+                      <>
+                        <div style={{ width: "100%" }}>
+                          <div className="myprofile_inner_sec2_img_upload">
+                            <AiOutlineCloudUpload
+                              style={{
+                                width: "60px",
+                                height: "60px",
+                                color: "var(--color-orange)",
+                                marginBottom: "10px",
+                              }}
+                            />
+                            <h4>.PDF .JPG .PNG</h4>
+                            <p>You can also upload file by</p>
+                            {/* <input
+                              {...getRootProps()}
+                              accept="image/jpeg, image/jpg, image/png, image/eps"
+                            /> */}
+                            <button type="button" className="click_upload_btn" style={{ marginBottom: "10px" }}>
+                              click here
+                            </button>
+                            {/* <a href="">clicking here</a> */}
+                          </div>
+                          <div className="btnn-main">
+                            <button
+                              className="btn btn-orange mb_8"
+                              type="button"
+                              onClick={() => {
+                                // setFiles([]);
+                              }}
+                            >
+                              Upload File
+                            </button>
+                          </div>
+                        </div>
+                        {/* <button className="btn btn-blue" onClick={() => setFiles4([])}>
+                          Cancel
+                        </button> */}
+                      </>
+
+                      :
+                      <>
+                        <div className="myprofile_inner_sec2_img_upload">
+
+
+                          <img
+                            src={get_mall_auth_data.shopping_center_map_mall_path}
+                            style={{ width: "100%", height: "100%" }}
+                            className="img-fluidb"
+                          />
+
+
+                        </div>
+                        <div className="btnn-main" style={{ width: "100%" }}>
+                          <button
+                            className="btn btn-orange mb_8"
+                            type="button"
+                            onClick={() => {
+                              // setFiles([]);
+                            }}
+                          >
+                            Upload File
+                          </button>
+                        </div>
+
+                      </>
+
+                    }
+
+
+                  </>
+
+                }
+              </div>
+              <div style={{ display: "flex", alingitem: "center", paddingLeft: "5px", paddingRight: "5px" }}>
+                <button className="btn btn-blue" onClick={() => setFiles4([])} style={{ marginBottom: "10px", marginLeft: "10px", marginRight: "10px" }}>
+                  Cancel
+                </button>
+              </div>
             </div>
           </div>
 
@@ -1205,7 +1560,7 @@ const MallManagement = ({ get_mall_auth_data, sidebaropen, setTab }) => {
           </div>
         </div>
         {/* mall management form end */}
-      </div>
+      </div >
     </>
   );
 };

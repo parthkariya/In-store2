@@ -110,6 +110,9 @@ const CustomerBrandItems = ({ setTab, proid, brandid }) => {
     <div>
       {/* <MallHero get_mall_auth_data={get_mall_auth_data} /> */}
       {/* <CustomerHeroSecond /> */}
+
+      {/* old design setup product banner show this design */}
+
       {getlist1 && getlist1.length > 0
         ? getlist1.map((item, index) => {
           return (
@@ -118,6 +121,8 @@ const CustomerBrandItems = ({ setTab, proid, brandid }) => {
         })
         : null}
 
+      {/* New design setup brand banner show this design */}
+      {/* <CustomerProductTilesHero /> */}
 
       <div className="mm_main_wrapp">
         <div className='edit-brand-back-iconbox' onClick={() => setTab(2)}><IoChevronBack className='edit-brand-back-icon' /> <p className='edit-brand-back-txt'>Back</p></div>

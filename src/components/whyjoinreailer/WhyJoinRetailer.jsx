@@ -2,39 +2,35 @@ import React from "react";
 // import "./WhayJoin.css";
 import images from "../../constants/images";
 
-const WhayJoinRetailer = () => {
+const WhayJoinRetailer = ({ getRetailerHomeData }) => {
 
 
     return (
         <div className="main_wrapp">
             <div className="container whayjoin_wrapp why-sec-gap">
-                <h2 className="h2" style={{ marginBottom: "15px" }}>Why Join In-store?</h2>
-                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh volutpat.</p>
+                <h2 className="h2" style={{ marginBottom: "15px" }}>{getRetailerHomeData ? getRetailerHomeData.benifit_title : ""}</h2>
+                <p></p>
                 <div className="whyjoin_grid">
                     <div className="whyjoin_grid_item">
-                        <img src={images.home_eye} alt="" />
+                        <img src={getRetailerHomeData ? getRetailerHomeData.benifit_image_1_path : ""} alt="" />
                         <p>
-                            1The In-store platform is 100%
-                            Native Advertising
+                            {getRetailerHomeData ? getRetailerHomeData.benifit_1 : ""}
                         </p>
                     </div>
                     <div className="whyjoin_grid_item">
-                        <img src={images.home_location} alt="" />
-                        <p>Advanced customer segmentation
-                            and targeting</p>
+                        <img src={getRetailerHomeData ? getRetailerHomeData.benifit_image_2_path : ""} alt="" />
+                        <p>{getRetailerHomeData ? getRetailerHomeData.benifit_2 : ""}</p>
                     </div>
                     <div className="whyjoin_grid_item">
-                        <img src={images.home_shapes} alt="" />
+                        <img src={getRetailerHomeData ? getRetailerHomeData.benifit_image_3_path : ""} alt="" />
                         <p>
-                            Unified platform where marketing,
-                            products and consumers come together.
+                            {getRetailerHomeData ? getRetailerHomeData.benifit_3 : ""}
                         </p>
                     </div>
                     <div className="whyjoin_grid_item">
-                        <img src={images.home_archive} alt="" />
+                        <img src={getRetailerHomeData ? getRetailerHomeData.benifit_image_4_path : ""} alt="" />
                         <p>
-                            Advance customer insights
-                            and analytics
+                            {getRetailerHomeData ? getRetailerHomeData.benifit_4 : ""}
                         </p>
                     </div>
                 </div>

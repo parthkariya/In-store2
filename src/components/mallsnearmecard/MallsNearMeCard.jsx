@@ -97,11 +97,20 @@ const MallsNearMeCard = ({ setTab, item, SetSingalMallData, getMallList }) => {
             }}
           >
             {/* <p className="mallnearme-card-txt">{item.name} </p> */}
-            <img
+            {/* <img
               src={
                 item.banner_mall_path === null
                   ? images.mall_hero_banner
                   : item.banner_mall_path
+              }
+              className="mallnearme-card-img"
+            /> */}
+
+            <img
+              src={
+                item.shopping_center_thumbnail_mall_path === null
+                  ? images.shopping_center_thumbnail_mall_path
+                  : item.shopping_center_thumbnail_mall_path
               }
               className="mallnearme-card-img"
             />

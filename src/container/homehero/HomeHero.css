@@ -23,7 +23,7 @@
     /* flex-direction: column; */
     justify-content: flex-start;
     width: 100%;
-    z-index: 999;
+    /* z-index: 999; */
 }
 
 
@@ -34,7 +34,9 @@
     flex-direction: column;
     justify-content: center;
     gap: 30px;
+    z-index: 999;
 }
+
 
 .homehero_text_base>img {
     height: 100%;
@@ -101,6 +103,10 @@
     }
 } */
 
+.home-hero-txtt {
+    width: 88% !important;
+}
+
 .banner-overlay {
     width: 60vw;
     position: absolute;
@@ -115,5 +121,11 @@
 @media (max-width: 720px) {
     .homehero_text_base {
         width: 80%;
+    }
+}
+
+@media (max-width: 450px) {
+    .home-hero-txtt {
+        width: 100% !important;
     }
 }

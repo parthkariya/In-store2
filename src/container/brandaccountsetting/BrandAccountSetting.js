@@ -113,7 +113,7 @@ const BrandAccountSetting = ({ get_mall_auth_data, sidebaropen, setTab }) => {
     getbrandData.secondary_contact && getbrandData.secondary_contact
   );
 
-  const [getmode, setMode] = useState(1);
+  const [getmode, setMode] = useState(getbrandData.type && getbrandData.type);
 
   const [getmallname, setMallname] = useState(
     getbrandData.brand_id && getbrandData.brand_id
@@ -288,51 +288,60 @@ const BrandAccountSetting = ({ get_mall_auth_data, sidebaropen, setTab }) => {
 
   const UpdateMallData = async () => {
     {
-      const data = await new FormData();
-      await data.append("retailer_id", Number(retailertype));
-      await data.append("store_type", getmode);
-      await data.append("brand", getmallname);
-      await data.append("address", brandadd);
-      await data.append("address_2", brandadd2);
-      await data.append("address_3", brandadd3);
-      // await data.append("mall_id", malldrop);
-      await data.append("website", mallWebsite);
-      await data.append("brand_email", getbrand);
-      await data.append("insta", mallInsta);
-      await data.append("fb", mallfb);
-      await data.append("tweet", mallTwitter);
-      await data.append("number", contactPerson);
-      await data.append("email", contactNumber);
-      await data.append("secondary_contact", scondrycontect);
-      await data.append("secondary_email", secondryemail);
-      for (var i = 0; i < mallsOption.length; i++) {
-        await data.append("mall_id[" + i + "]", mallsOption[i].value);
-      }
-      await data.append("terms_condition", isAcceptTerm === true ? 1 : 0);
-      if (files[0] !== undefined) {
-        await data.append("store_logo", files[0]);
+      if (mallsOption == "" || undefined) {
+        Notification("error", "Error", "Please Selct Mall");
+        return;
+      } else if (contactPerson == "" || undefined) {
+        Notification("error", "Error", "Please Enter Number");
+        return;
       } else {
-      }
-      if (files2[0] !== undefined) {
-        await data.append("banner_store", files2[0]);
-      } else {
-      }
-      if (files3[0] !== undefined) {
-        await data.append("store_brand", files3[0]);
-      } else {
-      }
-      console.log("-=-=-=->brand-update", data);
-      const data1 = await UpdateStore(data);
-      if (data1) {
-        if (data1.success === 1) {
-          console.log("mall-data", data1);
-          Notification(
-            "success",
-            "Success!",
-            "Account Setting Updated Successfully!"
-          );
-          getStore();
-          setTab(1);
+        const data = await new FormData();
+        await data.append("retailer_id", Number(retailertype));
+        await data.append("store_type", getmode);
+        await data.append("brand", getmallname);
+        await data.append("address", brandadd);
+        await data.append("address_2", brandadd2);
+        await data.append("address_3", brandadd3);
+        // await data.append("mall_id", malldrop);
+        await data.append("website", mallWebsite);
+        await data.append("brand_email", getbrand);
+        await data.append("insta", mallInsta);
+        await data.append("fb", mallfb);
+        await data.append("tweet", mallTwitter);
+        await data.append("number", contactPerson);
+        await data.append("email", contactNumber);
+        await data.append("secondary_contact", scondrycontect);
+        await data.append("secondary_email", secondryemail);
+
+        for (var i = 0; i < mallsOption.length; i++) {
+          await data.append("mall_id[" + i + "]", mallsOption[i].value);
+        }
+        await data.append("terms_condition", isAcceptTerm === true ? 1 : 0);
+        if (files[0] !== undefined) {
+          await data.append("store_logo", files[0]);
+        } else {
+        }
+        if (files2[0] !== undefined) {
+          await data.append("banner_store", files2[0]);
+        } else {
+        }
+        if (files3[0] !== undefined) {
+          await data.append("store_brand", files3[0]);
+        } else {
+        }
+        console.log("-=-=-=->brand-update", data);
+        const data1 = await UpdateStore(data);
+        if (data1) {
+          if (data1.success === 1) {
+            console.log("mall-data", data1);
+            Notification(
+              "success",
+              "Success!",
+              "Account Setting Updated Successfully!"
+            );
+            getStore();
+            setTab(1);
+          }
         }
       }
     }
@@ -395,11 +404,19 @@ const BrandAccountSetting = ({ get_mall_auth_data, sidebaropen, setTab }) => {
               )}
             </>
           ) : (
-            <img
-              src={get_mall_auth_data.store_banner_path}
-              style={{ width: "100%", height: "100%" }}
-              className="img-fluid"
-            />
+            <>
+              <img
+                src={get_mall_auth_data.store_banner_path}
+                style={{ width: "100%", height: "100%" }}
+                className="img-fluid"
+              />
+              <img
+                src={images.card_edit}
+                alt=""
+                style={{ position: "absolute", top: "105px", right: "100px" }}
+                className="mall-hero-edit-icon edit-icon-positon-resp"
+              />
+            </>
           )}
         </div>
 
@@ -428,17 +445,25 @@ const BrandAccountSetting = ({ get_mall_auth_data, sidebaropen, setTab }) => {
               )}
             </>
           ) : (
-            <img
-              src={get_mall_auth_data.store_logo_path}
-              style={{
-                width: "100%",
-                height: "100%",
-                maxHeight: "175px",
-                objectFit: "contain",
-              }}
-              // className="img-fluidb"
-            />
+            <>
+              <img
+                src={get_mall_auth_data.store_logo_path}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  maxHeight: "175px",
+                  objectFit: "contain",
+                }}
+                // className="img-fluidb"
+              />
+              <img
+                src={images.card_edit}
+                alt=""
+                style={{ position: "absolute", top: "25px", right: "20px" }}
+              />
+            </>
           )}
+
           {/* </div> */}
         </div>
       </div>
@@ -525,8 +550,13 @@ const BrandAccountSetting = ({ get_mall_auth_data, sidebaropen, setTab }) => {
                     type="radio"
                     id="Online"
                     name="gender"
-                    onChange={(e) => setMode(1)}
-                    value={getmode}
+                    value="1"
+                    checked={getmode == 1}
+                    onChange={(e) => {
+                      setMode(e.target.value);
+                      console.log("-->", getmode);
+                    }}
+                    // onChange={(e) => e.target.value}
                   />
                   <label className="course-form-txt" for="male">
                     Independent Retailer
@@ -538,8 +568,13 @@ const BrandAccountSetting = ({ get_mall_auth_data, sidebaropen, setTab }) => {
                     type="radio"
                     id="In-Person"
                     name="gender"
-                    value={getmode}
-                    onChange={(e) => setMode(2)}
+                    value="2"
+                    checked={getmode == 2}
+                    // onChange={(e) => setMode(2)}
+                    onChange={(e) => {
+                      setMode(e.target.value);
+                      console.log("-->", getmode);
+                    }}
                   />
                   <label className="course-form-txt" for="specifyColor">
                     Group Retailer
@@ -803,113 +838,330 @@ const BrandAccountSetting = ({ get_mall_auth_data, sidebaropen, setTab }) => {
           {/* upload images wrapp start */}
           <div className="mm_img_upload_wrapp mm_img_upload_wrapp_retailer">
             {/* single upload image */}
-            <div className="myprofile_inner_sec2">
-              <h4 style={{ marginBottom: "10px" }}>
-                Upload the Brand logo (200 x 150 pixels)
-              </h4>
-              {files && files.length > 0 ? (
-                <div className="myprofile_inner_sec2_img_upload">{thumbs}</div>
-              ) : (
-                <div style={{ width: "100%" }} {...getRootlogoProps()}>
-                  <div className="myprofile_inner_sec2_img_upload">
-                    <AiOutlineCloudUpload
-                      style={{
-                        width: "60px",
-                        height: "60px",
-                        color: "var(--color-orange)",
-                        marginBottom: "10px",
-                      }}
-                    />
-                    <h4>.PDF .JPG .PNG</h4>
-                    <p>You can also upload file by</p>
-                    <input
-                      {...getInputlogoProps()}
-                      accept="image/jpeg, image/jpg, image/png, image/eps"
-                    />
-                    <button
-                      type="button"
-                      className="click_upload_btn"
-                      style={{ marginBottom: "10px" }}
-                    >
-                      click here
-                    </button>
-                    {/* <a href="">clicking here</a> */}
-                  </div>
-                  <div className="btnn-main">
-                    <button
-                      className="btn btn-orange"
-                      type="button"
-                      onClick={() => {
-                        // setFiles([]);
-                      }}
-                      style={{ marginBottom: "10px" }}
-                    >
-                      Upload File
-                    </button>
-                  </div>
-                </div>
-              )}
-              {/* <div className="myprofile_upload_img_btn_wrapp"> */}
-              <button className="btn btn-blue" onClick={() => setFiles([])}>
-                Cancel
-              </button>
-              {/* </div> */}
+            <div className="img-upl-border">
+              <div
+                className="myprofile_inner_sec2"
+                {...getRootlogoProps()}
+                style={{
+                  border: "none",
+                  paddingBottom: "0px",
+                  maxWidth: "250px",
+                }}
+              >
+                {/* <input
+                {...getInputlogoProps()}
+                accept="image/jpeg, image/jpg, image/png, image/eps"
+              /> */}
+                <h6 className="myprofile_upload_img_card_name">
+                  Upload the Shopping centre logo (200px x 200px)
+                </h6>
+                {getcondation === true ? (
+                  <>
+                    {files && files.length > 0 ? (
+                      <div className="myprofile_inner_sec2_img_upload">
+                        {thumbs}
+                      </div>
+                    ) : (
+                      <div style={{ width: "100%" }}>
+                        <div className="myprofile_inner_sec2_img_upload">
+                          <AiOutlineCloudUpload
+                            style={{
+                              width: "60px",
+                              height: "60px",
+                              color: "var(--color-orange)",
+                              marginBottom: "10px",
+                            }}
+                          />
+                          <h4>.PDF .JPG .PNG</h4>
+                          <p>You can also upload file by</p>
+                          <input
+                            {...getInputlogoProps()}
+                            accept="image/jpeg, image/jpg, image/png, image/eps"
+                          />
+                          <button
+                            type="button"
+                            className="click_upload_btn"
+                            style={{ marginBottom: "10px" }}
+                          >
+                            click here
+                          </button>
+                          {/* <a href="">clicking here</a> */}
+                        </div>
+                        <div className="btnn-main">
+                          <button
+                            className="btn btn-orange mb_8"
+                            type="button"
+                            onClick={() => {
+                              // setFiles([]);
+                            }}
+                          >
+                            Upload File
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <>
+                    {get_mall_auth_data.store_logo_path === null ? (
+                      <>
+                        <div style={{ width: "100%" }} {...getRootlogoProps()}>
+                          <div className="myprofile_inner_sec2_img_upload">
+                            <AiOutlineCloudUpload
+                              style={{
+                                width: "60px",
+                                height: "60px",
+                                color: "var(--color-orange)",
+                                marginBottom: "10px",
+                              }}
+                            />
+                            <h4>.PDF .JPG .PNG</h4>
+                            <p>You can also upload file by</p>
+                            <input
+                              {...getInputlogoProps()}
+                              accept="image/jpeg, image/jpg, image/png, image/eps"
+                            />
+                            <button
+                              type="button"
+                              className="click_upload_btn"
+                              style={{ marginBottom: "10px" }}
+                            >
+                              click here
+                            </button>
+                            {/* <a href="">clicking here</a> */}
+                          </div>
+                          <div className="btnn-main">
+                            <button
+                              className="btn btn-orange mb_8"
+                              type="button"
+                              onClick={() => {
+                                // setFiles([]);
+                              }}
+                            >
+                              Upload File
+                            </button>
+                          </div>
+                        </div>
+                        <button
+                          className="btn btn-blue"
+                          onClick={() => setFiles([])}
+                        >
+                          Cancel
+                        </button>
+                      </>
+                    ) : (
+                      <>
+                        <div className="myprofile_inner_sec2_img_upload">
+                          <img
+                            src={get_mall_auth_data.store_logo_path}
+                            style={{ width: "100%", height: "100%" }}
+                            className="img-fluidb"
+                          />
+                        </div>
+                        <div className="btnn-main" style={{ width: "100%" }}>
+                          <button
+                            className="btn btn-orange mb_8"
+                            type="button"
+                            onClick={() => {
+                              // setFiles([]);
+                            }}
+                          >
+                            Upload File
+                          </button>
+                        </div>
+                      </>
+                    )}
+                  </>
+                )}
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  alingitem: "center",
+                  paddingLeft: "5px",
+                  paddingRight: "5px",
+                }}
+              >
+                <button
+                  className="btn btn-blue"
+                  onClick={() => setFiles([])}
+                  style={{
+                    marginBottom: "10px",
+                    marginLeft: "10px",
+                    marginRight: "10px",
+                  }}
+                >
+                  Cancel
+                </button>
+              </div>
             </div>
             {/* single upload image */}
-            <div className="myprofile_inner_sec2">
-              <h4 style={{ marginBottom: "10px" }}>
-                Upload the Brand Banner (max 400kb)
-              </h4>
-              {files2 && files2.length > 0 ? (
-                <div className="myprofile_inner_sec2_img_upload">{thumbs2}</div>
-              ) : (
-                <div style={{ width: "100%" }} {...getRootMapProps()}>
-                  <div className="myprofile_inner_sec2_img_upload">
-                    <AiOutlineCloudUpload
-                      style={{
-                        width: "60px",
-                        height: "60px",
-                        color: "var(--color-orange)",
-                        marginBottom: "10px",
-                      }}
-                    />
-                    <h4>.PDF .JPG .PNG</h4>
-                    <p>You can also upload file by</p>
-                    <input
-                      {...getInputMapProps()}
-                      accept="image/jpeg, image/jpg, image/png, image/eps"
-                    />
-                    <button
-                      type="button"
-                      className="click_upload_btn"
-                      style={{ marginBottom: "10px" }}
-                    >
-                      click here
-                    </button>
-                    {/* <a href="">clicking here</a> */}
-                  </div>
-                  <div className="btnn-main">
-                    <button
-                      className="btn btn-orange"
-                      type="button"
-                      onClick={() => {
-                        // setFiles([]);
-                      }}
-                      style={{ marginBottom: "10px" }}
-                    >
-                      Upload File
-                    </button>
-                  </div>
-                </div>
-              )}
-              {/* <div className="myprofile_upload_img_btn_wrapp"> */}
-              <button className="btn btn-blue" onClick={() => setFiles2([])}>
-                Cancel
-              </button>
-              {/* </div> */}
+            <div className="img-upl-border">
+              <div
+                className="myprofile_inner_sec2"
+                {...getRootMapProps()}
+                style={{
+                  border: "none",
+                  paddingBottom: "0px",
+                  maxWidth: "250px",
+                }}
+              >
+                {/* <input
+                {...getInputlogoProps()}
+                accept="image/jpeg, image/jpg, image/png, image/eps"
+              /> */}
+                <h6 className="myprofile_upload_img_card_name">
+                  Upload the Shopping centre Banner (1300px x 275px)
+                </h6>
+                {getcondation1 === true ? (
+                  <>
+                    {files2 && files2.length > 0 ? (
+                      <div className="myprofile_inner_sec2_img_upload">
+                        {thumbs2}
+                      </div>
+                    ) : (
+                      <div style={{ width: "100%" }}>
+                        <div className="myprofile_inner_sec2_img_upload">
+                          <AiOutlineCloudUpload
+                            style={{
+                              width: "60px",
+                              height: "60px",
+                              color: "var(--color-orange)",
+                              marginBottom: "10px",
+                            }}
+                          />
+                          <h4>.PDF .JPG .PNG</h4>
+                          <p>You can also upload file by</p>
+                          <input
+                            {...getInputMapProps()}
+                            accept="image/jpeg, image/jpg, image/png, image/eps"
+                          />
+                          <button
+                            type="button"
+                            className="click_upload_btn"
+                            style={{ marginBottom: "10px" }}
+                          >
+                            click here
+                          </button>
+                          {/* <a href="">clicking here</a> */}
+                        </div>
+                        <div className="btnn-main">
+                          <button
+                            className="btn btn-orange mb_8"
+                            type="button"
+                            onClick={() => {
+                              // setFiles([]);
+                            }}
+                          >
+                            Upload File
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <>
+                    {get_mall_auth_data.store_banner_path === null ? (
+                      <>
+                        <div style={{ width: "100%" }} {...getRootMapProps()}>
+                          <div className="myprofile_inner_sec2_img_upload">
+                            <AiOutlineCloudUpload
+                              style={{
+                                width: "60px",
+                                height: "60px",
+                                color: "var(--color-orange)",
+                                marginBottom: "10px",
+                              }}
+                            />
+                            <h4>.PDF .JPG .PNG</h4>
+                            <p>You can also upload file by</p>
+                            <input
+                              {...getInputlogoProps()}
+                              accept="image/jpeg, image/jpg, image/png, image/eps"
+                            />
+                            <button
+                              type="button"
+                              className="click_upload_btn"
+                              style={{ marginBottom: "10px" }}
+                            >
+                              click here
+                            </button>
+                            {/* <a href="">clicking here</a> */}
+                          </div>
+                          <div className="btnn-main">
+                            <button
+                              className="btn btn-orange mb_8"
+                              type="button"
+                              onClick={() => {
+                                // setFiles([]);
+                              }}
+                            >
+                              Upload File
+                            </button>
+                          </div>
+                        </div>
+                        <button
+                          className="btn btn-blue"
+                          onClick={() => setFiles2([])}
+                        >
+                          Cancel
+                        </button>
+                      </>
+                    ) : (
+                      <>
+                        <div className="myprofile_inner_sec2_img_upload">
+                          <img
+                            src={get_mall_auth_data.store_banner_path}
+                            style={{ width: "100%", height: "100%" }}
+                            className="img-fluidb"
+                          />
+                        </div>
+                        <div className="btnn-main" style={{ width: "100%" }}>
+                          <button
+                            className="btn btn-orange mb_8"
+                            type="button"
+                            onClick={() => {
+                              // setFiles([]);
+                            }}
+                          >
+                            Upload File
+                          </button>
+                        </div>
+                      </>
+                    )}
+                  </>
+                )}
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  alingitem: "center",
+                  paddingLeft: "5px",
+                  paddingRight: "5px",
+                }}
+              >
+                <button
+                  className="btn btn-blue"
+                  onClick={() => setFiles2([])}
+                  style={{
+                    marginBottom: "10px",
+                    marginLeft: "10px",
+                    marginRight: "10px",
+                  }}
+                >
+                  Cancel
+                </button>
+              </div>
             </div>
             {/* single upload image */}
-            <div className="myprofile_inner_sec2">
+            <div
+              className="myprofile_inner_sec2"
+              style={{
+                // border: "none",
+                // paddingBottom: "0px",
+                maxWidth: "250px",
+              }}
+            >
               <h4 style={{ marginBottom: "10px" }}>
                 Upload the Brand in Mall (max 400kb)
               </h4>
@@ -956,7 +1208,7 @@ const BrandAccountSetting = ({ get_mall_auth_data, sidebaropen, setTab }) => {
                 </div>
               )}
               {/* <div className="myprofile_upload_img_btn_wrapp"> */}
-              <button className="btn btn-blue" onClick={() => setFiles2([])}>
+              <button className="btn btn-blue" onClick={() => setFiles3([])}>
                 Cancel
               </button>
               {/* </div> */}

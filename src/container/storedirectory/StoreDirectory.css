@@ -108,7 +108,8 @@
 
 .sd_model_sec1_img_wrapp {
   width: 170px;
-  height: 112px;
+  /* height: 112px; */
+  height: 130px;
   padding: 12px;
   border: 1px solid var(--color-black);
 }
@@ -183,6 +184,35 @@
   width: 20px;
   height: 20px;
   object-fit: contain;
+}
+
+.sd_modal_time {
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+
+}
+
+.sd_modal_time_head {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+@media screen and (max-width: 778px) {
+  .sd_modal_time {
+    margin-left: 0px;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .sd_modal_time {
+    margin-left: 0px;
+    margin: 0px;
+  }
+
+  .sd_model_sec2 {
+    /* flex-direction: row !important; */
+  }
 }
 
 /* Mall Add store Css image */

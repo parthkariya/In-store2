@@ -39,6 +39,7 @@ const ProfileAccountSetting = () => {
   const [image, SetImage] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [passwordVisible2, setPasswordVisible2] = useState(false);
+  const [getcondation, setcondation] = useState(false);
 
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
@@ -69,6 +70,7 @@ const ProfileAccountSetting = () => {
         );
         // console.log("acceptedFiles", acceptedFiles[0].File);
       }
+      setcondation(true);
       if (acceptedFiles.length === 0) {
         window.location.reload(true);
       }
@@ -114,7 +116,7 @@ const ProfileAccountSetting = () => {
   };
 
   return (
-    <div className="mm_main_wrapp" style={{ marginLeft: "4rem" }}>
+    <div className="mm_main_wrapp cus-acc-setting">
       {get_customer_loading === true ? (
         <div
           style={{
@@ -256,11 +258,9 @@ const ProfileAccountSetting = () => {
 
                 </input>
                 {passwordVisible === true ?
-
                   <AiOutlineEye size={22} onClick={togglePasswordVisibility}>{passwordVisible ? 'Hide' : 'Show'}</AiOutlineEye>
                   :
                   <AiOutlineEyeInvisible size={22} onClick={togglePasswordVisibility} >{passwordVisible ? 'Hide' : 'Show'}</AiOutlineEyeInvisible>
-
                 }
               </div>
             </div>
@@ -287,7 +287,6 @@ const ProfileAccountSetting = () => {
 
                   <AiOutlineEye size={22} onClick={togglePasswordVisibility2}>{passwordVisible2 ? 'Hide' : 'Show'}</AiOutlineEye>
                   :
-
                   <AiOutlineEyeInvisible size={22} onClick={togglePasswordVisibility2} >{passwordVisible2 ? 'Hide' : 'Show'}</AiOutlineEyeInvisible>
                 }
               </div>
@@ -299,72 +298,137 @@ const ProfileAccountSetting = () => {
           {/* upload images wrapp start */}
           <div className="profile-setting_img_upload_wrapp">
             {/* single upload image */}
-            <div className="myprofile_inner_sec2">
-              <h4 style={{ marginBottom: "10px" }}>Upload profile pricture
-                (200 x 200 pixels)</h4>
-              {/* {get_customer_data && get_customer_data.cus_profile_path ? (
-                <div className="myprofile_inner_sec2_img_upload">
-                  <img
-                    src={get_customer_data.cus_profile_path}
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      maxHeight: "175px",
-                    }}
-                    className="img-fluid"
-                    alt="file"
-                  />
-                </div>
-              ) : */}
-              {files && files.length > 0 ? (
-                <div className="myprofile_inner_sec2_img_upload">{thumbs}</div>
-              ) : (
-                <div
-                  style={{ width: "100%" }}
-                  {...getRootProps({ className: "dropzone" })}
-                >
-                  <div className="myprofile_inner_sec2_img_upload">
-                    <AiOutlineCloudUpload
-                      style={{
-                        width: "60px",
-                        height: "60px",
-                        color: "var(--color-orange)",
-                        marginBottom: "10px",
-                      }}
-                    />
-                    <h4>.PDF .JPG .PNG</h4>
-                    <p>You can also upload file by</p>
-                    {/* <input type="file" name="file" onChange={handleImage} /> */}
-                    <input
-                      {...getInputProps()}
-                      accept="image/jpeg, image/jpg, image/png, image/eps"
-                      type="file"
-                      name="photos"
-                    // onChange={handleImage}
-                    />
-                    <button type="button" className="click_upload_btn" style={{ marginBottom: "10px" }}>
-                      click here
-                    </button>
-                    {/* <a href="">clicking here</a> */}
-                  </div>
-                  <div className="">
-                    <button
-                      className="btn btn-orange mb_8"
-                      type="button"
-                      onClick={() => {
-                        // setFiles([]);
-                      }}
-                    >
-                      Upload File
-                    </button>
-                  </div>
-                </div>
-              )}
-              {/* <div className="myprofile_upload_img_btn_wrapp"> */}
-              <button className="btn btn-blue" onClick={() => setFiles([])}>
-                Cancel
-              </button>
-              {/* </div> */}
+            <div className="img-upl-border">
+
+              <div className="myprofile_inner_sec2" {...getRootProps()} style={{ border: "none", paddingBottom: "0px" }}>
+                {/* <input
+                {...getInputlogoProps()}
+                accept="image/jpeg, image/jpg, image/png, image/eps"
+              /> */}
+                <h4 style={{ marginBottom: "10px" }}>Upload profile pricture
+                  (200 x 200 pixels)</h4>
+                {getcondation === true ?
+
+                  <>
+                    {files && files.length > 0 ? <div className="myprofile_inner_sec2_img_upload">{thumbs}</div> :
+
+                      <div style={{ width: "100%" }}  >
+                        <div className="myprofile_inner_sec2_img_upload">
+                          <AiOutlineCloudUpload
+                            style={{
+                              width: "60px",
+                              height: "60px",
+                              color: "var(--color-orange)",
+                              marginBottom: "10px",
+                            }}
+                          />
+                          <h4>.PDF .JPG .PNG</h4>
+                          <p>You can also upload file by</p>
+                          {/* <input
+                            {...getRootProps()}
+                            accept="image/jpeg, image/jpg, image/png, image/eps"
+                          /> */}
+                          <button type="button" className="click_upload_btn" style={{ marginBottom: "10px" }}>
+                            click here
+                          </button>
+                          {/* <a href="">clicking here</a> */}
+                        </div>
+                        <div className="btnn-main">
+                          <button
+                            className="btn btn-orange mb_8"
+                            type="button"
+                            onClick={() => {
+                              // setFiles([]);
+                            }}
+                          >
+                            Upload File
+                          </button>
+                        </div>
+                      </div>
+                    }
+
+                  </>
+                  :
+                  <>
+                    {get_customer_data.cus_profile_path === null ?
+                      <>
+                        <div style={{ width: "100%" }}  {...getRootProps()}>
+                          <div className="myprofile_inner_sec2_img_upload">
+                            <AiOutlineCloudUpload
+                              style={{
+                                width: "60px",
+                                height: "60px",
+                                color: "var(--color-orange)",
+                                marginBottom: "10px",
+                              }}
+                            />
+                            <h4>.PDF .JPG .PNG</h4>
+                            <p>You can also upload file by</p>
+                            <input
+                              {...getRootProps()}
+                              accept="image/jpeg, image/jpg, image/png, image/eps"
+                            />
+                            <button type="button" className="click_upload_btn" style={{ marginBottom: "10px" }}>
+                              click here
+                            </button>
+                            {/* <a href="">clicking here</a> */}
+                          </div>
+                          <div className="btnn-main">
+                            <button
+                              className="btn btn-orange mb_8"
+                              type="button"
+                              onClick={() => {
+                                // setFiles([]);
+                              }}
+                            >
+                              Upload File
+                            </button>
+                          </div>
+                        </div>
+                        <button className="btn btn-blue" onClick={() => setFiles([])}>
+                          Cancel
+                        </button>
+                      </>
+
+                      :
+                      <>
+                        <div className="myprofile_inner_sec2_img_upload">
+
+
+                          <img
+                            src={get_customer_data.cus_profile_path}
+                            style={{ width: "100%", height: "100%" }}
+                            className="img-fluidb"
+                          />
+
+
+                        </div>
+                        <div className="btnn-main" style={{ width: "100%" }}>
+                          <button
+                            className="btn btn-orange mb_8"
+                            type="button"
+                            onClick={() => {
+                              // setFiles([]);
+                            }}
+                          >
+                            Upload File
+                          </button>
+                        </div>
+
+                      </>
+
+                    }
+
+
+                  </>
+
+                }
+              </div>
+              <div style={{ display: "flex", alingitem: "center", paddingLeft: "5px", paddingRight: "5px" }}>
+                <button className="btn btn-blue" onClick={() => setFiles([])} style={{ marginBottom: "10px", marginLeft: "10px", marginRight: "10px" }}>
+                  Cancel
+                </button>
+              </div>
             </div>
           </div>
           {/* upload images wrapp end */}
@@ -392,7 +456,7 @@ const ProfileAccountSetting = () => {
           {/* upload button */}
           <div className="mm_form_single_input">
             <label htmlFor="" style={{ minWidth: "135px" }}></label>
-            <div className="mall_upload_btn_wrapp mall_upload_btn_wrapp-customer-acc-setting">
+            <div className="mall_upload_btn_wrapp mall_upload_btn_wrapp-customer-acc-setting mall_upload_btn_wrapp_res">
               <button
                 className="btn btn-orange"
                 onClick={() => UpdateProfile()}

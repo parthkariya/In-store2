@@ -1,11 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from "react";
 import "./WelcomeStore.css";
-import { WelcomeCard } from '../../components';
-import images from '../../constants/images';
+import { WelcomeCard } from "../../components";
+import images from "../../constants/images";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
 
 // const responsive = {
 //   0: { items: 1 },
@@ -13,7 +12,7 @@ import "slick-carousel/slick/slick-theme.css";
 //   1200: { items: 3 },
 // };
 
-const WelcomeStore = ({ WcBtn, tit, des }) => {
+const WelcomeStore = ({ WcBtn, titie, des }) => {
   // const settings = {
   //   dots: false,
   //   infinite: true,
@@ -46,11 +45,17 @@ const WelcomeStore = ({ WcBtn, tit, des }) => {
   //   ],
   // };
 
+  // useEffect(() => {
+  //   console.log("home title", titie);
+  // }, []);
+
   return (
     <div className="main_wrapp">
       <div className="container welcome_store_wrapp wel-sec-gap">
-        <h1 className="h1" style={{ marginBottom: "1rem" }}>{titie ? titie : "Welcome to In-store"}</h1>
-        <p>{des && des}</p>
+        <h1 className="h1" style={{ marginBottom: "1rem" }}>
+          {titie ? titie.welcome_title : "Welcome to In-storeeee"}
+        </h1>
+        <p className="wel-store-txt">{des ? des.welcome_description : ""}</p>
         <div className="welcome_cards_warpp">
           {/* <Slider {...settings}> */}
           {/* <WelcomeCard
@@ -93,7 +98,6 @@ const WelcomeStore = ({ WcBtn, tit, des }) => {
               wc_btn={WcBtn ? "Register brand" : null}
               wc_btnlink={WcBtn ? "/retailer" : null}
               style={{ margin: "0px" }}
-
             />{" "}
           </div>
         </div>
@@ -102,4 +106,4 @@ const WelcomeStore = ({ WcBtn, tit, des }) => {
   );
 };
 
-export default WelcomeStore
+export default WelcomeStore;

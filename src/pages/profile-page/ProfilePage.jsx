@@ -328,6 +328,8 @@ const ProfilePage = () => {
                         width: sidebaropen ? "400px" : "0px",
                         overflow: "hidden",
                         transition: "width 1s ease",
+                        whiteSpace: "nowrap",
+
                       }}
                       onClick={() => setTab(1)}
                       className="profile_sidebar_sig_btn"
@@ -344,6 +346,7 @@ const ProfilePage = () => {
                         width: sidebaropen ? "400px" : "0px",
                         overflow: "hidden",
                         transition: "width 1s ease",
+                        whiteSpace: "nowrap",
                       }}
                       onClick={() => setTab(2)}
                       className="profile_sidebar_sig_btn"
@@ -366,6 +369,8 @@ const ProfilePage = () => {
                         width: sidebaropen ? "400px" : "0px",
                         overflow: "hidden",
                         transition: "width 1s ease",
+                        whiteSpace: "nowrap",
+
                       }}
                       onClick={() => setTab(3)}
                       className="profile_sidebar_sig_btn"
@@ -384,6 +389,8 @@ const ProfilePage = () => {
                         width: sidebaropen ? "400px" : "0px",
                         overflow: "hidden",
                         transition: "width 1s ease",
+                        whiteSpace: "nowrap",
+
                       }}
                       onClick={() => setTab(4)}
                       className="profile_sidebar_sig_btn"
@@ -400,6 +407,8 @@ const ProfilePage = () => {
                         width: sidebaropen ? "400px" : "0px",
                         overflow: "hidden",
                         transition: "width 1s ease",
+                        whiteSpace: "nowrap",
+
                       }}
                       onClick={() => setTab(17)}
                       className="profile_sidebar_sig_btn"
@@ -416,6 +425,8 @@ const ProfilePage = () => {
                         width: sidebaropen ? "400px" : "0px",
                         overflow: "hidden",
                         transition: "width 1s ease",
+                        whiteSpace: "nowrap",
+
                       }}
                       onClick={() => setTab(5)}
                       className="profile_sidebar_sig_btn"
@@ -432,6 +443,8 @@ const ProfilePage = () => {
                         width: sidebaropen ? "400px" : "0px",
                         overflow: "hidden",
                         transition: "width 1s ease",
+                        whiteSpace: "nowrap",
+
                       }}
                       onClick={() => setTab(6)}
                       className="profile_sidebar_sig_btn"
@@ -448,6 +461,7 @@ const ProfilePage = () => {
                         width: sidebaropen ? "400px" : "0px",
                         overflow: "hidden",
                         transition: "width 1s ease",
+                        whiteSpace: "nowrap",
                       }}
                       onClick={() => setTab(7)}
                       className="profile_sidebar_sig_btn"

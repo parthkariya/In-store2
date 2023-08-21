@@ -380,7 +380,7 @@ const MallNavbar = ({ setTab, get_mall_auth_data }) => {
                       location.pathname === "/profile-page" ? "600" : "400",
                   }}
                 >
-                  <div style={{ display: "flex", alignItems: "flex-start", gap: "5px", marginTop: "5px" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: "5px", marginTop: "5px" }}>
                     <Link>
                       <img
                         src={
@@ -394,13 +394,27 @@ const MallNavbar = ({ setTab, get_mall_auth_data }) => {
                         className="nav_profile"
                       />
                     </Link>
-                    <Link
-                      to={""}
-                      onClick={() => setCustomerDropdown(!getcustomerDropdown)}
-                    >
-                      Account{" "}
-                      {getcustomerDropdown ? <BsChevronUp style={{ marginTop: "1px" }} /> : <BsChevronDown style={{ marginTop: "1px" }} />}
-                    </Link>
+                    {login === "true" && getrole == 2 ? <>
+                      <Link
+                        to={""}
+                        onClick={() => setCustomerDropdown(!getcustomerDropdown)}
+                        className="my-acc-nav-flex"
+                      >
+                        My Account{" "}
+                        {getcustomerDropdown ? <BsChevronUp style={{ marginTop: "1px" }} /> : <BsChevronDown style={{ marginTop: "1px" }} />}
+                      </Link>
+
+                    </> : <>
+                      <Link
+                        to={""}
+                        onClick={() => setCustomerDropdown(!getcustomerDropdown)}
+                        className="my-acc-nav-flex"
+                      >
+                        Account{" "}
+                        {getcustomerDropdown ? <BsChevronUp style={{ marginTop: "1px" }} /> : <BsChevronDown style={{ marginTop: "1px" }} />}
+                      </Link>
+
+                    </>}
 
                   </div>
                 </NavLink>
@@ -427,12 +441,12 @@ const MallNavbar = ({ setTab, get_mall_auth_data }) => {
                 {getcustomerDropdown ? (
                   <>
                     <div className="navbar-acc-menu-open-warapp">
-                      <Link to="/mall" className="navbar-acc-menu-link">
+                      {/* <Link to="/mall" className="navbar-acc-menu-link">
                         Mall
-                      </Link>
-                      <Link to="/retailer" className="navbar-acc-menu-link">
+                      </Link> */}
+                      {/* <Link to="/retailer" className="navbar-acc-menu-link">
                         Brand
-                      </Link>
+                      </Link> */}
                       {/* {is_login === true || role === 4 ? <Link to="/customer"
                                                 className="navbar-acc-menu-link"
                                             >
@@ -442,49 +456,87 @@ const MallNavbar = ({ setTab, get_mall_auth_data }) => {
                                             >
                                                 Customer
                                         </Link>} */}
-                      <Link to="/customer" className="navbar-acc-menu-link">
+                      {/* <Link to="/customer" className="navbar-acc-menu-link">
                         Customer
-                      </Link>
-                      {login === "true" || getrole == 2 ? (
+                      </Link> */}
+                      {/* {login === "true" || getrole == 2 ? (
                         <Link
                           to="/profile-page"
                           className="navbar-acc-menu-link"
                         >
                           Mall Dashboard
                         </Link>
-                      ) : null}
+                      ) : null} */}
 
                       {login === false || login === null ? (
-                        <Link
-                          className="navbar-acc-menu-link"
-                          onClick={() => setIsOpen3(true)}
-                        >
-                          Login
-                        </Link>
-                      ) : null}
+                        <>
+                          <Link
+                            to="/mall"
+                            className="navbar-acc-menu-link"
+                          // onClick={() => { setTab(1) }}
+                          >
+                            Mall
+                          </Link>
+                          <Link
+                            to="/retailer"
+                            className="navbar-acc-menu-link"
+                          // onClick={() => { setTab(2) }}
+                          >
+                            Brand
+                          </Link>
+                          <Link
+                            to="/customer"
+                            className="navbar-acc-menu-link"
+                          // onClick={() => { setTab(2) }}
+                          >
+                            Customer
+                          </Link>
+
+                          <Link
+                            className="navbar-acc-menu-link"
+                            onClick={() => setIsOpen3(true)}
+                          >
+                            Login
+                          </Link>
+                          {login === "true" ? (
+                            <button style={{ textAlign: "start" }} onClick={logout}>
+                              Logout
+                            </button>
+                          ) : null}
+                        </>
+
+
+                      ) : (
+                        <>
+                          <Link className="navbar-acc-menu-link" onClick={() => setTab(2)}>Account Setting</Link>
+                          {/* <Link className="navbar-acc-menu-link" onClick={() => setTab()}>Track Consumer Data</Link> */}
+                          <Link className="navbar-acc-menu-link">Track Consumer Data</Link>
+                          <Link className="navbar-acc-menu-link">Help</Link>
+                          {/* {is_login === true ? (<><Link onClick={logout}>Logout</Link></>) : (<></>)} */}
+                          {login === "true" ? (
+                            <button style={{ textAlign: "start" }} onClick={logout}>
+                              Logout
+                            </button>
+                          ) : null}
+                        </>
+                      )}
                       {/* <Link
                                                 className="navbar-acc-menu-link"
                                                 onClick={() => setRegisterCustomerOpen(true)}
                                             >
                                                 Sign Up
                                             </Link> */}
-                      {/* <Link className="navbar-acc-menu-link">My profile</Link> */}
-                      <Link className="navbar-acc-menu-link">Help</Link>
-                      {/* {is_login === true ? (<><Link onClick={logout}>Logout</Link></>) : (<></>)} */}
-                      {login === "true" ? (
-                        <button style={{ textAlign: "start" }} onClick={logout}>
-                          Logout
-                        </button>
-                      ) : null}
+
                     </div>
                   </>
                 ) : null}
-                <div style={{ position: "relative" }}>
-                  <Link to="">
-                    <img src={images.cart_icon} className="cart-icon-img" />
-                  </Link>
-                  <div className="cart-digit-main">0</div>
-                </div>
+                {login === "true" && role == 2 ?
+                  <div style={{ position: "relative" }}>
+                    <Link to="">
+                      <img src={images.cart_icon} className="cart-icon-img" />
+                    </Link>
+                    <div className="cart-digit-main">0</div>
+                  </div> : null}
               </div>
               {/* {getcondation === false ? (
                 <Link onClick={() => setIsOpen3(true)}>

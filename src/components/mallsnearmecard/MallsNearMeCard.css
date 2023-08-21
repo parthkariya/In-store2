@@ -121,8 +121,135 @@
     color: var(--color-orange);
 }
 
+
+
+
 @media screen and (max-width: 600px) {
     .mallnearme-card-main-wrapp-resp-gap {
         gap: 40px;
+    }
+}
+
+
+@media screen and (max-width: 700px) {
+    .mallnearme-card-img {
+        object-fit: initial !important;
+    }
+}
+
+
+
+/* @media screen and (min-width: 1500px) {
+    .mallnearme-card-inner-darkbox-txt {
+        font-size: x-large;
+    }
+
+    .mallnearme-card-main-wrapp {
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 42px;
+        margin: 1rem auto;
+        padding-top: 20px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .mallnearme-card-txt {
+        font-size: x-large;
+        margin-top: 210px;
+    }
+
+    .mallnearme-card-img {
+        object-fit: cover;
+        height: 405px;
+    }
+
+    .mallnearme-card-inner-darkbox {
+        bottom: -195px;
+    }
+
+    .mallnearme-card-main-wrapp-mx-width {
+        max-width: 1780px;
+    }
+
+    .mallnearme-card-rating-txt {
+        font-size: 13px;
+    }
+
+    .mallnearme-card-rating-main {
+        height: 60px;
+        width: 60px;
+    }
+} */
+
+
+@media screen and (max-width:2512px) {
+    .mallnearme-card-img {
+        object-fit: cover;
+    }
+
+    .mallnearme-card-imgbox {
+        height: 375px;
+    }
+
+    .mallnearme-card-main-wrapp-mx-width {
+        max-width: 1940px;
+    }
+
+    .mallnearme-card-main-wrapp {
+        grid-template-columns: repeat(auto-fill, minmax(475px, 1fr));
+        gap: 30px;
+    }
+}
+
+
+@media screen and (max-width:1975px) {
+
+
+    .mallnearme-card-imgbox {
+        height: 325px;
+    }
+
+    .mallnearme-card-main-wrapp-mx-width {
+        max-width: 1640px;
+    }
+
+    .mallnearme-card-main-wrapp {
+        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+        gap: 30px;
+    }
+}
+
+
+@media screen and (max-width:1650px) {
+
+
+    .mallnearme-card-imgbox {
+        height: 275px;
+    }
+
+    .mallnearme-card-main-wrapp-mx-width {
+        max-width: 1280px;
+    }
+
+    .mallnearme-card-main-wrapp {
+        grid-template-columns: repeat(auto-fill, minmax(325px, 1fr));
+        gap: 20px;
+    }
+}
+
+@media screen and (max-width: 1540px) {
+
+
+    .mallnearme-card-imgbox {
+        height: 250px;
+    }
+
+    .mallnearme-card-main-wrapp-mx-width {
+        max-width: 1180px;
+    }
+
+    .mallnearme-card-main-wrapp {
+        grid-template-columns: repeat(auto-fill, minmax(275, 1fr));
+        gap: 20px;
     }
 }

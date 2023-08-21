@@ -469,7 +469,7 @@ const MallAddStore = ({
                                     >
                                         Monday - Friday
                                     </label>
-                                    <div className="tranding_sigle_time_wrapp">
+                                    <div className="tranding_sigle_time_wrapp" style={{ gap: "0px", width: "138px" }}>
                                         {/* <select className="input_box">
                     <option value="1">09:00</option>
                   </select> */}
@@ -490,7 +490,7 @@ const MallAddStore = ({
 
                                         </p>
                                     </div>
-                                    <div className="tranding_sigle_time_wrapp">
+                                    <div className="tranding_sigle_time_wrapp" style={{ gap: "0px", width: "138px" }}>
                                         {/* <select className="input_box">
                     <option value="1">21:00</option>
                   </select> */}
@@ -524,7 +524,7 @@ const MallAddStore = ({
                                     >
                                         Saturday
                                     </label>
-                                    <div className="tranding_sigle_time_wrapp">
+                                    <div className="tranding_sigle_time_wrapp" style={{ gap: "0px", width: "138px" }}>
                                         {/* <select className="input_box">
                     <option value="1">09:00</option>
                   </select> */}
@@ -545,7 +545,7 @@ const MallAddStore = ({
 
                                         </p>
                                     </div>
-                                    <div className="tranding_sigle_time_wrapp">
+                                    <div className="tranding_sigle_time_wrapp" style={{ gap: "0px", width: "138px" }}>
                                         {/* <select className="input_box">
                     <option value="1">21:00</option>
                   </select> */}
@@ -579,7 +579,7 @@ const MallAddStore = ({
                                     >
                                         Sunday
                                     </label>
-                                    <div className="tranding_sigle_time_wrapp">
+                                    <div className="tranding_sigle_time_wrapp" style={{ gap: "0px", width: "138px" }}>
                                         {/* <select className="input_box">
                     <option value="1">09:00</option>
                   </select> */}
@@ -600,7 +600,7 @@ const MallAddStore = ({
 
                                         </p>
                                     </div>
-                                    <div className="tranding_sigle_time_wrapp">
+                                    <div className="tranding_sigle_time_wrapp" style={{ gap: "0px", width: "138px" }}>
                                         {/* <select className="input_box">
                     <option value="1">21:00</option>
                   </select> */}
@@ -634,7 +634,7 @@ const MallAddStore = ({
                                     >
                                         Public Holidays
                                     </label>
-                                    <div className="tranding_sigle_time_wrapp">
+                                    <div className="tranding_sigle_time_wrapp" style={{ gap: "0px", width: "138px" }}>
                                         {/* <select className="input_box">
                     <option value="1">09:00</option>
                   </select> */}
@@ -655,7 +655,7 @@ const MallAddStore = ({
 
                                         </p>
                                     </div>
-                                    <div className="tranding_sigle_time_wrapp">
+                                    <div className="tranding_sigle_time_wrapp" style={{ gap: "0px", width: "138px" }}>
                                         {/* <select className="input_box">
                     <option value="1">21:00</option>
                   </select> */}
@@ -700,7 +700,7 @@ const MallAddStore = ({
 
 
 
-                        <div className="signup_terms_wrapp indep-side">
+                        {/* <div className="signup_terms_wrapp indep-side">
                             <div className="mm_form_single_input mb_8">
                                 <label htmlFor="" style={{ minWidth: "140px" }}></label>
                                 <input
@@ -711,10 +711,83 @@ const MallAddStore = ({
                                 />
                                 {retailerType == 1 ? <p className="fs-des ">
                                     Independed Retailer
-                                    {/* <a className="signup_terms_link">Terms and Conditions</a> &{" "}
-              <a className="signup_terms_link">Privacy Policy</a> */}
+              
                                 </p> : <p>Group Retailer</p>}
                             </div>
+                        </div> */}
+
+                        <div className="signup_terms_wrapp indep-side">
+                            <div className="mm_form_single_input">
+                                <label htmlFor="">Retailer type</label>
+
+                                <div className="radio-btn-flex-brand">
+                                    <div className="radio-btn-inner-flex">
+                                        <input
+                                            type="radio"
+                                            id="Online"
+                                            name="gender"
+                                            value="1"
+                                            onChange={(e) => { setRetailerType(e.target.value); console.log("-->", retailerType); }}
+                                        // onChange={(e) => { setRetailerType(1); console.log("-->", retailerType); }}
+
+                                        />
+                                        <label className="course-form-txt" for="male">
+                                            Independent Retailer
+                                        </label>
+                                    </div>
+
+                                    <div className="radio-btn-inner-flex">
+                                        <input
+                                            type="radio"
+                                            id="In-Person"
+                                            name="gender"
+                                            value="2"
+                                            onChange={(e) => { setRetailerType(e.target.value); console.log("-->", retailerType); }}
+                                        />
+                                        <label className="course-form-txt" for="specifyColor">
+                                            Group Retailer
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div className="signup_terms_wrapp indep-side-show">
+                            <div className="mm_form_single_input" style={{ flexDirection: "column", alignItems: "start" }}>
+                                <label htmlFor="">Retailer type</label>
+
+                                <div className="radio-btn-flex-brand">
+                                    <div className="radio-btn-inner-flex">
+                                        <input
+                                            type="radio"
+                                            id="Online"
+                                            name="gender"
+                                            value="1"
+                                            onChange={(e) => { setRetailerType(e.target.value); console.log("-->", retailerType); }}
+                                        // onChange={(e) => { setRetailerType(1); console.log("-->", retailerType); }}
+
+                                        />
+                                        <label className="course-form-txt" for="male">
+                                            Independent Retailer
+                                        </label>
+                                    </div>
+
+                                    <div className="radio-btn-inner-flex">
+                                        <input
+                                            type="radio"
+                                            id="In-Person"
+                                            name="gender"
+                                            value="2"
+                                            onChange={(e) => { setRetailerType(e.target.value); console.log("-->", retailerType); }}
+                                        />
+                                        <label className="course-form-txt" for="specifyColor">
+                                            Group Retailer
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
 
                         <div className="mm_form_single_input mb_8">
@@ -868,7 +941,7 @@ const MallAddStore = ({
                     </div>
 
                 </div>
-                <div className="signup_terms_wrapp indep-side-show">
+                {/* <div className="signup_terms_wrapp indep-side-show">
                     <input
                         type="checkbox"
                         value={retailerType}
@@ -877,11 +950,12 @@ const MallAddStore = ({
                     />
                     {retailerType == 1 ? <p className="fs-des ">
                         Independed Retailer
-                        {/* <a className="signup_terms_link">Terms and Conditions</a> &{" "}
-              <a className="signup_terms_link">Privacy Policy</a> */}
+                       
                     </p> : <p>Group Retailer</p>}
 
-                </div>
+                </div> */}
+
+
 
                 <div className="signup_terms_wrapp indep-side-show">
                     <input

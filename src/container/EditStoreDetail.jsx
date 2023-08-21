@@ -92,6 +92,10 @@ const EditStoreDetail = ({
     getsingleStoreData.holiday_to_time && getsingleStoreData.holiday_to_time
   );
   const [retailerType, setRetailerType] = useState(getsingleStoreData.type && getsingleStoreData.type);
+  const [getcondition, setcondition] = useState(false);
+  const [getcondition2, setcondition2] = useState(false);
+  // const [selected, setSelected] = useState(1)
+
 
 
   useEffect(() => {
@@ -135,16 +139,15 @@ const EditStoreDetail = ({
   //   }
   // };
 
-  const handleTermChange = (event) => {
-    // setRetailerType((current) => !current);
-    if (retailerType == 1) {
-      setRetailerType(2);
-    } else {
-      setRetailerType(1);
-    }
+  // const handleTermChange = (event) => {
+  //   if (retailerType == 1) {
+  //     setRetailerType(2);
+  //   } else {
+  //     setRetailerType(1);
+  //   }
 
-    console.log("retailer type is", retailerType);
-  };
+  //   console.log("retailer type is", retailerType);
+  // };
 
   // update mall store api
 
@@ -256,6 +259,7 @@ const EditStoreDetail = ({
           )
         );
       }
+      setcondition(true);
       if (acceptedFiles.length === 0) {
         window.location.reload(true);
       }
@@ -275,6 +279,7 @@ const EditStoreDetail = ({
           )
         );
       }
+      setcondition2(true);
       if (acceptedFiles.length === 0) {
         window.location.reload(true);
       }
@@ -378,26 +383,28 @@ const EditStoreDetail = ({
             {/* single text-input */}
             <div className="mm_form_single_input">
               <label htmlFor="" style={{ minWidth: "140px" }}>Category</label>
-              <select
-                className="leaderboard-card-inp"
-                onChange={(e) => {
-                  setStoreCategory(e.target.value);
-                  setCategoryName(e.target.value);
-                  console.log(e.target.value);
-                }}
-              >
-                <option defaultValue value="">{categoryName}</option>
-                {catarray &&
-                  catarray.map((item, index) => {
-                    return (
-                      <>
-                        <option key={item.id} value={item.id}>
-                          {item.name}
-                        </option>
-                      </>
-                    );
-                  })}
-              </select>
+              <div className="select-wrapper" style={{ width: "100%" }}>
+                <select
+                  className="leaderboard-card-inp"
+                  onChange={(e) => {
+                    setStoreCategory(e.target.value);
+                    setCategoryName(e.target.value);
+                    console.log(e.target.value);
+                  }}
+                >
+                  <option defaultValue value="">{categoryName}</option>
+                  {catarray &&
+                    catarray.map((item, index) => {
+                      return (
+                        <>
+                          <option key={item.id} value={item.id}>
+                            {item.name}
+                          </option>
+                        </>
+                      );
+                    })}
+                </select>
+              </div>
               {/* <input
               type="text"
               value={getcategory}
@@ -489,7 +496,7 @@ const EditStoreDetail = ({
                   >
                     Monday - Friday
                   </label>
-                  <div className="tranding_sigle_time_wrapp">
+                  <div className="tranding_sigle_time_wrapp" style={{ gap: "0px", width: "138px" }}>
                     {/* <select className="input_box">
                     <option value="1">09:00</option>
                   </select> */}
@@ -510,7 +517,7 @@ const EditStoreDetail = ({
 
                     </p>
                   </div>
-                  <div className="tranding_sigle_time_wrapp">
+                  <div className="tranding_sigle_time_wrapp" style={{ gap: "0px", width: "138px" }}>
                     {/* <select className="input_box">
                     <option value="1">21:00</option>
                   </select> */}
@@ -544,7 +551,7 @@ const EditStoreDetail = ({
                   >
                     Saturday
                   </label>
-                  <div className="tranding_sigle_time_wrapp">
+                  <div className="tranding_sigle_time_wrapp" style={{ gap: "0px", width: "138px" }}>
                     {/* <select className="input_box">
                     <option value="1">09:00</option>
                   </select> */}
@@ -565,7 +572,7 @@ const EditStoreDetail = ({
 
                     </p>
                   </div>
-                  <div className="tranding_sigle_time_wrapp">
+                  <div className="tranding_sigle_time_wrapp" style={{ gap: "0px", width: "138px" }}>
                     {/* <select className="input_box">
                     <option value="1">21:00</option>
                   </select> */}
@@ -599,7 +606,7 @@ const EditStoreDetail = ({
                   >
                     Sunday
                   </label>
-                  <div className="tranding_sigle_time_wrapp">
+                  <div className="tranding_sigle_time_wrapp" style={{ gap: "0px", width: "138px" }}>
                     {/* <select className="input_box">
                     <option value="1">09:00</option>
                   </select> */}
@@ -620,7 +627,7 @@ const EditStoreDetail = ({
 
                     </p>
                   </div>
-                  <div className="tranding_sigle_time_wrapp">
+                  <div className="tranding_sigle_time_wrapp" style={{ gap: "0px", width: "138px" }}>
                     {/* <select className="input_box">
                     <option value="1">21:00</option>
                   </select> */}
@@ -654,7 +661,7 @@ const EditStoreDetail = ({
                   >
                     Public Holidays
                   </label>
-                  <div className="tranding_sigle_time_wrapp">
+                  <div className="tranding_sigle_time_wrapp" style={{ gap: "0px", width: "138px" }}>
                     {/* <select className="input_box">
                     <option value="1">09:00</option>
                   </select> */}
@@ -675,7 +682,7 @@ const EditStoreDetail = ({
 
                     </p>
                   </div>
-                  <div className="tranding_sigle_time_wrapp">
+                  <div className="tranding_sigle_time_wrapp" style={{ gap: "0px", width: "138px" }}>
                     {/* <select className="input_box">
                     <option value="1">21:00</option>
                   </select> */}
@@ -706,7 +713,7 @@ const EditStoreDetail = ({
               className="mm_form_single_input"
               style={{ alignItems: "flex-start" }}
             >
-              <label htmlFor="">Brand Description</label>
+              <label htmlFor="" style={{ minWidth: "140px" }}>Brand Description</label>
               <textarea
                 type="text"
                 value={storeDes}
@@ -721,19 +728,40 @@ const EditStoreDetail = ({
 
             {/* text-area sec end */}
             <div className="signup_terms_wrapp indep-side">
-              <div className="mm_form_single_input brand-resp-btn">
-                <label htmlFor="" style={{ minWidth: "140px" }}></label>
-                <input
-                  type="checkbox"
-                  value={retailerType}
-                  onChange={handleTermChange}
-                  checked={retailerType}
-                />
-                {retailerType == 1 ? <p className="fs-des">
-                  Independed Retailer
-                  {/* <a className="signup_terms_link">Terms and Conditions</a> &{" "}
-              <a className="signup_terms_link">Privacy Policy</a> */}
-                </p> : <p>Group Retailer</p>}
+              <div className="mm_form_single_input">
+                <label htmlFor="" style={{ minWidth: "140px" }}>Retailer type</label>
+
+                <div className="radio-btn-flex-brand">
+                  <div className="radio-btn-inner-flex">
+                    <input
+                      type="radio"
+                      id="Online"
+                      name="gender"
+                      value="1"
+                      checked={retailerType == 1}
+                      onChange={(e) => { setRetailerType(e.target.value); console.log("-->", retailerType); }}
+                    // onChange={(e) => { setRetailerType(1); console.log("-->", retailerType); }}
+
+                    />
+                    <label className="course-form-txt" for="male">
+                      Independent Retailer
+                    </label>
+                  </div>
+
+                  <div className="radio-btn-inner-flex">
+                    <input
+                      type="radio"
+                      id="In-Person"
+                      name="gender"
+                      value="2"
+                      checked={retailerType == 2}
+                      onChange={(e) => { setRetailerType(e.target.value); console.log("-->", retailerType); }}
+                    />
+                    <label className="course-form-txt" for="specifyColor">
+                      Group Retailer
+                    </label>
+                  </div>
+                </div>
               </div>
 
             </div>
@@ -775,52 +803,137 @@ const EditStoreDetail = ({
             {/* upload images wrapp start */}
             <div className="mm_img_upload_wrapp" style={{ width: "100%" }}>
               {/* single upload image */}
-              <div className="myprofile_inner_sec2">
-                <h4 style={{ marginBottom: "10px" }} className="myprofile_upload_img_card_name">Upload the brand logo <br />
-                  (200 x 200 pixels)</h4>
-                {files && files.length > 0 ? (
-                  <div className="myprofile_inner_sec2_img_upload">{thumbs}</div>
-                ) : (
-                  <div style={{ width: "100%" }} {...getRootLogoProps()}>
-                    <div className="myprofile_inner_sec2_img_upload">
-                      <AiOutlineCloudUpload
-                        style={{
-                          width: "60px",
-                          height: "60px",
-                          color: "var(--color-orange)",
-                          marginBottom: "10px",
-                        }}
-                      />
-                      <h4>.PDF .JPG .PNG</h4>
-                      <p>You can also upload file by</p>
-                      <input
-                        {...getInputLogoProps()}
-                        accept="image/jpeg, image/jpg, image/png, image/eps"
-                      />
-                      <button type="button" className="click_upload_btn" style={{ marginBottom: "10px" }}>
-                        click here
-                      </button>
-                      {/* <a href="">clicking here</a> */}
-                    </div>
-                    <div className="btnn-main">
-                      <button
-                        className="btn btn-orange"
-                        type="button"
-                        style={{ marginBottom: "10px" }}
-                        onClick={() => {
-                          // setFiles([]);
-                        }}
-                      >
-                        Upload File
-                      </button>
-                    </div>
-                  </div>
-                )}
-                {/* <div className="myprofile_upload_img_btn_wrapp"> */}
-                <button className="btn btn-blue" onClick={() => setFiles([])}>
-                  Cancel
-                </button>
-                {/* </div> */}
+              <div className="img-upl-border">
+
+                <div className="myprofile_inner_sec2" {...getRootLogoProps()} style={{ border: "none", paddingBottom: "0px", maxWidth: "250px" }}>
+                  {/* <input
+                {...getInputlogoProps()}
+                accept="image/jpeg, image/jpg, image/png, image/eps"
+              /> */}
+                  <h4 style={{ marginBottom: "10px" }} className="myprofile_upload_img_card_name">Upload the brand logo <br />
+                    (200 x 200 pixels)</h4>
+                  {getcondition === true ?
+
+                    <>
+                      {files && files.length > 0 ? <div className="myprofile_inner_sec2_img_upload">{thumbs}</div> :
+
+                        <div style={{ width: "100%" }}  >
+                          <div className="myprofile_inner_sec2_img_upload">
+                            <AiOutlineCloudUpload
+                              style={{
+                                width: "60px",
+                                height: "60px",
+                                color: "var(--color-orange)",
+                                marginBottom: "10px",
+                              }}
+                            />
+                            <h4>.PDF .JPG .PNG</h4>
+                            <p>You can also upload file by</p>
+                            {/* <input
+                              {...getRootLogoProps()}
+                              accept="image/jpeg, image/jpg, image/png, image/eps"
+                            /> */}
+                            <button type="button" className="click_upload_btn" style={{ marginBottom: "10px" }}>
+                              click here
+                            </button>
+                            {/* <a href="">clicking here</a> */}
+                          </div>
+                          <div className="btnn-main">
+                            <button
+                              className="btn btn-orange mb_8"
+                              type="button"
+                              onClick={() => {
+                                // setFiles([]);
+                              }}
+                            >
+                              Upload File
+                            </button>
+                          </div>
+                        </div>
+                      }
+
+                    </>
+                    :
+                    <>
+                      {getsingleStoreData.store_logo_path === null ?
+                        <>
+                          <div style={{ width: "100%" }}>
+                            <div className="myprofile_inner_sec2_img_upload">
+                              <AiOutlineCloudUpload
+                                style={{
+                                  width: "60px",
+                                  height: "60px",
+                                  color: "var(--color-orange)",
+                                  marginBottom: "10px",
+                                }}
+                              />
+                              <h4>.PDF .JPG .PNG</h4>
+                              <p>You can also upload file by</p>
+                              {/* <input
+                                {...getRootLogoProps()}
+                                accept="image/jpeg, image/jpg, image/png, image/eps"
+                              /> */}
+                              <button type="button" className="click_upload_btn" style={{ marginBottom: "10px" }}>
+                                click here
+                              </button>
+                              {/* <a href="">clicking here</a> */}
+                            </div>
+                            <div className="btnn-main">
+                              <button
+                                className="btn btn-orange mb_8"
+                                type="button"
+                                onClick={() => {
+                                  // setFiles([]);
+                                }}
+                              >
+                                Upload File
+                              </button>
+                            </div>
+                          </div>
+                          {/* <button className="btn btn-blue" onClick={() => setFiles([])}>
+                            Cancel
+                          </button> */}
+                        </>
+
+                        :
+                        <>
+                          <div className="myprofile_inner_sec2_img_upload">
+
+
+                            <img
+                              src={getsingleStoreData.store_logo_path}
+                              style={{ width: "100%", height: "100%" }}
+                              className="img-fluidb"
+                            />
+
+
+                          </div>
+                          <div className="btnn-main" style={{ width: "100%" }}>
+                            <button
+                              className="btn btn-orange mb_8"
+                              type="button"
+                              onClick={() => {
+                                // setFiles([]);
+                              }}
+                            >
+                              Upload File
+                            </button>
+                          </div>
+
+                        </>
+
+                      }
+
+
+                    </>
+
+                  }
+                </div>
+                <div style={{ display: "flex", alingitem: "center", paddingLeft: "5px", paddingRight: "5px" }}>
+                  <button className="btn btn-blue" onClick={() => setFiles([])} style={{ marginBottom: "10px", marginLeft: "10px", marginRight: "10px" }}>
+                    Cancel
+                  </button>
+                </div>
               </div>
             </div>
             {/* upload images wrapp end */}
@@ -828,72 +941,170 @@ const EditStoreDetail = ({
             {/* upload images wrapp start */}
             <div className="mm_img_upload_wrapp" style={{ width: "100%" }}>
               {/* single upload image */}
-              <div className="myprofile_inner_sec2">
-                <h4 style={{ marginBottom: "10px" }} className="myprofile_upload_img_card_name">Upload the brand banner <br />
-                  (200 x 200 pixels)</h4>
-                {files2 && files2.length > 0 ? (
-                  <div className="myprofile_inner_sec2_img_upload">{thumbs2}</div>
-                ) : (
-                  <div style={{ width: "100%" }} {...getRootBannerProps()}>
-                    <div className="myprofile_inner_sec2_img_upload">
-                      <AiOutlineCloudUpload
-                        style={{
-                          width: "60px",
-                          height: "60px",
-                          color: "var(--color-orange)",
-                          marginBottom: "10px",
-                        }}
-                      />
-                      <h4>.PDF .JPG .PNG</h4>
-                      <p>You can also upload file by</p>
-                      <input
-                        {...getInputBannerProps()}
-                        accept="image/jpeg, image/jpg, image/png, image/eps"
-                      />
-                      <button type="button" className="click_upload_btn" style={{ marginBottom: "10px" }}>
-                        click here
-                      </button>
-                      {/* <a href="">clicking here</a> */}
-                    </div>
-                    <div className="btnn-main">
-                      <button
-                        className="btn btn-orange"
-                        type="button"
-                        style={{ marginBottom: "10px" }}
-                        onClick={() => {
-                          // setFiles([]);
-                        }}
-                      >
-                        Upload File
-                      </button>
-                    </div>
-                  </div>
-                )}
-                {/* <div className="myprofile_upload_img_btn_wrapp"> */}
-                <button className="btn btn-blue" onClick={() => setFiles2([])}>
-                  Cancel
-                </button>
-                {/* </div> */}
+              <div className="img-upl-border">
+
+                <div className="myprofile_inner_sec2" {...getRootBannerProps()} style={{ border: "none", paddingBottom: "0px", maxWidth: "250px" }}>
+                  {/* <input
+                {...getInputlogoProps()}
+                accept="image/jpeg, image/jpg, image/png, image/eps"
+              /> */}
+                  <h4 style={{ marginBottom: "10px" }} className="myprofile_upload_img_card_name">Upload the brand logo <br />
+                    (200 x 200 pixels)</h4>
+                  {getcondition2 === true ?
+
+                    <>
+                      {files2 && files2.length > 0 ? <div className="myprofile_inner_sec2_img_upload">{thumbs2}</div> :
+
+                        <div style={{ width: "100%" }}  >
+                          <div className="myprofile_inner_sec2_img_upload">
+                            <AiOutlineCloudUpload
+                              style={{
+                                width: "60px",
+                                height: "60px",
+                                color: "var(--color-orange)",
+                                marginBottom: "10px",
+                              }}
+                            />
+                            <h4>.PDF .JPG .PNG</h4>
+                            <p>You can also upload file by</p>
+                            {/* <input
+                              {...getRootLogoProps()}
+                              accept="image/jpeg, image/jpg, image/png, image/eps"
+                            /> */}
+                            <button type="button" className="click_upload_btn" style={{ marginBottom: "10px" }}>
+                              click here
+                            </button>
+                            {/* <a href="">clicking here</a> */}
+                          </div>
+                          <div className="btnn-main">
+                            <button
+                              className="btn btn-orange mb_8"
+                              type="button"
+                              onClick={() => {
+                                // setFiles([]);
+                              }}
+                            >
+                              Upload File
+                            </button>
+                          </div>
+                        </div>
+                      }
+
+                    </>
+                    :
+                    <>
+                      {getsingleStoreData.banner_store_path === null ?
+                        <>
+                          <div style={{ width: "100%" }}>
+                            <div className="myprofile_inner_sec2_img_upload">
+                              <AiOutlineCloudUpload
+                                style={{
+                                  width: "60px",
+                                  height: "60px",
+                                  color: "var(--color-orange)",
+                                  marginBottom: "10px",
+                                }}
+                              />
+                              <h4>.PDF .JPG .PNG</h4>
+                              <p>You can also upload file by</p>
+                              {/* <input
+                                {...getRootBannerProps()}
+                                accept="image/jpeg, image/jpg, image/png, image/eps"
+                              /> */}
+                              <button type="button" className="click_upload_btn" style={{ marginBottom: "10px" }}>
+                                click here
+                              </button>
+                              {/* <a href="">clicking here</a> */}
+                            </div>
+                            <div className="btnn-main">
+                              <button
+                                className="btn btn-orange mb_8"
+                                type="button"
+                                onClick={() => {
+                                  // setFiles([]);
+                                }}
+                              >
+                                Upload File
+                              </button>
+                            </div>
+                          </div>
+                          {/* <button className="btn btn-blue" onClick={() => setFiles([])}>
+                            Cancel
+                          </button> */}
+                        </>
+
+                        :
+                        <>
+                          <div className="myprofile_inner_sec2_img_upload">
+
+
+                            <img
+                              src={getsingleStoreData.banner_store_path}
+                              style={{ width: "100%", height: "100%" }}
+                              alt=""
+                              className="img-fluidb"
+                            />
+
+
+                          </div>
+                          <div className="btnn-main" style={{ width: "100%" }}>
+                            <button
+                              className="btn btn-orange mb_8"
+                              type="button"
+                              onClick={() => {
+                                // setFiles([]);
+                              }}
+                            >
+                              Upload File
+                            </button>
+                          </div>
+
+                        </>
+
+                      }
+
+
+                    </>
+
+                  }
+                </div>
+                <div style={{ display: "flex", alingitem: "center", paddingLeft: "5px", paddingRight: "5px" }}>
+                  <button className="btn btn-blue" onClick={() => setFiles2([])} style={{ marginBottom: "10px", marginLeft: "10px", marginRight: "10px" }}>
+                    Cancel
+                  </button>
+                </div>
               </div>
             </div>
             {/* upload images wrapp end */}
           </div>
 
         </div>
-        <div className="signup_terms_wrapp indep-side-show">
+        {/* <div className="signup_terms_wrapp indep-side-show">
           <input
             type="checkbox"
             value={retailerType}
             onChange={handleTermChange}
-          // checked={retailerType}
+          checked={retailerType}
           />
           {retailerType == 1 ? <p className="fs-des">
             Independed Retailer
-            {/* <a className="signup_terms_link">Terms and Conditions</a> &{" "}
-              <a className="signup_terms_link">Privacy Policy</a> */}
+            <a className="signup_terms_link">Terms and Conditions</a> &{" "}
+              <a className="signup_terms_link">Privacy Policy</a>
           </p> : <p>Group Retailer</p>}
 
-        </div>
+        </div> */}
+        {/* <div className="signup_terms_wrapp indep-side-show">
+          <input
+            type="checkbox"
+            value={retailerType}
+            onChange={handleTermChange}
+          />
+          {retailerType == 1 ? <p className="fs-des">
+            Independed Retailer
+           
+          </p> : <p>Group Retailer</p>}
+
+        </div> */}
 
         <div className="signup_terms_wrapp indep-side-show">
           <input

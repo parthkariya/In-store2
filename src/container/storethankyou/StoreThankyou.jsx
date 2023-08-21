@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import images from "../../constants/images";
+import "./StoreThankyou.css"
 
 const StoreThankyou = ({ setTab, get_mall_auth_data }) => {
     return (
@@ -42,7 +43,7 @@ const StoreThankyou = ({ setTab, get_mall_auth_data }) => {
                         backgroundPosition: "center",
                     }}
                 >
-                    <h5 className="mallpp_part2_card_heading choose-card-heading">
+                    <h5 className="mallpp_part2_card_heading choose-card-heading choose-card-heading">
                         Leaderboard Banner
                     </h5>
                     <Link to="" className="mallpp_part2_card_description">
@@ -56,7 +57,7 @@ const StoreThankyou = ({ setTab, get_mall_auth_data }) => {
                         backgroundPosition: "center",
                     }}
                 >
-                    <h5 className="mallpp_part2_card_heading choose-card-heading">
+                    <h5 className="mallpp_part2_card_heading choose-card-heading choose-card-heading2">
                         Promotional Banners
                     </h5>
                     <Link to="" className="mallpp_part2_card_description">
@@ -70,7 +71,7 @@ const StoreThankyou = ({ setTab, get_mall_auth_data }) => {
                         backgroundPosition: "center",
                     }}
                 >
-                    <h5 className="mallpp_part2_card_heading choose-card-heading">
+                    <h5 className="mallpp_part2_card_heading choose-card-heading choose-card-heading">
                         Product Banners
                     </h5>
                     <Link to="" className="mallpp_part2_card_description">
@@ -84,7 +85,7 @@ const StoreThankyou = ({ setTab, get_mall_auth_data }) => {
                         backgroundPosition: "center",
                     }}
                 >
-                    <h5 className="mallpp_part2_card_heading choose-card-heading">
+                    <h5 className="mallpp_part2_card_heading choose-card-heading choose-card-heading">
                         Product Tiles
                     </h5>
                     <Link to="" className="mallpp_part2_card_description">
@@ -98,7 +99,7 @@ const StoreThankyou = ({ setTab, get_mall_auth_data }) => {
                         backgroundPosition: "center",
                     }}
                 >
-                    <h5 className="mallpp_part2_card_heading choose-card-heading">
+                    <h5 className="mallpp_part2_card_heading choose-card-heading choose-card-heading">
                         Track Analytics
                     </h5>
                     <Link to="" className="mallpp_part2_card_description">

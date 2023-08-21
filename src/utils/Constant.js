@@ -168,3 +168,18 @@ export const eatery_sample_export = BaseUrl + "eatery-sample-export";
 // eatery directory
 export const movie_sample_export = BaseUrl + "movie-sample-export";
 export const movie_import = BaseUrl + "movie-import";
+
+// home landing page
+export const get_home = BaseUrl + "get-home";
+
+// mall home landing page
+export const get_mall_landing = BaseUrl + "get-mall-landing";
+
+// retailer home landing page
+export const get_brand_landing = BaseUrl + "get-brand-landing";
+
+// about page
+export const get_about = BaseUrl + "get-about";
+
+// customer home page
+export const get_customer_landing = BaseUrl + "get-customer-landing";

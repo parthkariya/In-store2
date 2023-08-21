@@ -60,6 +60,10 @@
     .brand-hero-edit-main-wrapp {
         height: 20vh;
     }
+
+    .edit-icon-positon-resp {
+        right: 50px !important;
+    }
 }
 
 @media screen and (max-width:470px) {

@@ -31,6 +31,7 @@
     flex-grow: 1;
     flex-basis: 300px;
     align-self: start;
+    position: -webkit-sticky;
     position: sticky;
     top: 5rem;
     height: 100vh;
@@ -114,6 +115,17 @@
 
 .pro-transition {
     transition: top 0.3s ease, left 0.3s ease !important;
+}
+
+.homehero_text_base_retailer {
+    z-index: 1 !important;
+}
+
+.my-acc-nav-flex {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    margin-top: -5px;
 }
 
 

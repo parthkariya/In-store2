@@ -72,9 +72,9 @@ const MallEvents = ({ setTab, setEventId, SetEventData }) => {
           ? eventList.map((item, index) => {
             console.log("get event data 123", item);
             return (
-              <Link
+              <div
                 onClick={() => {
-                  setTab(11);
+                  // setTab(11);
                   setEventId(item.id);
                   // setEventList(item);
                   SetEventData(item);
@@ -95,7 +95,7 @@ const MallEvents = ({ setTab, setEventId, SetEventData }) => {
                   EventApi={EventApi}
                 />
                 <div className="mm_horizontal_line"></div>
-              </Link>
+              </div>
             );
           })
           : null}

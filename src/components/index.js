@@ -63,6 +63,17 @@ import RetailerWelcomeStore from "./retailerwelcomestore/RetailerWelcomeStore";
 import CustomerEateryHero from "./customereateryhero/CustomerEateryHero";
 import WelcomeCardHome from "./welcomecrdhome/WelcomeCardHome";
 import WhyJoinRetailer from "./whyjoinreailer/WhyJoinRetailer";
+
+// 15-8-23
+
+import WhyjoinMallHome from "./whyjoinmallhome/WhyjoinMallHome";
+import WhyjoinCustomerHome from "./whyjoincustomerhome/WhyjoinCustomerHome";
+import CustomerHomeWelcomeStore from "./customerhomewelcomestore/CustomerHomeWelcomeStore";
+import WelcomeStoreHome from "./welcomestorehome/WelcomeStoreHome";
+import WelcomeStoreHomeCard from "./welcomestorecardhome/WelcomeStoreHomeCard";
+
+import CustomerBrandCardWishlist from "./customerbrandcardwishlist/CustomerBrandCardWishlist";
+
 export {
   Imgcard,
   ProductCard,
@@ -121,4 +132,12 @@ export {
   WelcomeCardHome,
   RetailerWelcomeStore,
   WhyJoinRetailer,
+
+  // 15-8-23
+  WhyjoinMallHome,
+  WhyjoinCustomerHome,
+  CustomerHomeWelcomeStore,
+  WelcomeStoreHome,
+  WelcomeStoreHomeCard,
+  CustomerBrandCardWishlist,
 };

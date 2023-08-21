@@ -228,78 +228,77 @@ const CustomerDashboard = () => {
               {/* style={{ transform: sidebaropen === true ? "translate(px, 0px)" : "translate(-300px, 0px)" }} */}
 
               {/* side-bar start  */}
-
-              <div
-                className="cust-sidemenu-resp"
-                style={{
-                  display: "flex",
-                  gap: "5px",
-                  width: "25%",
-
-                  width: sidebaropen ? "400px" : "0px",
-                  transition: "width 1s ease",
-                  background: "#d4d4d4"
-                }}
-              >
+              <div style={{ backgroundColor: "#E5E4E2", minHeight: "100vh" }}>
                 <div
-                  className="customer_sidebar_wrapp"
+                  className="cust-sidemenu-resp"
                   style={{
-                    // position: "relative",
+                    display: "flex",
+                    gap: "5px",
+                    width: "25%",
+
                     width: sidebaropen ? "400px" : "0px",
                     transition: "width 1s ease",
+                    background: "#d4d4d4"
                   }}
                 >
-                  <div
-                    className="customer-sidebar-profile-part"
+                  <div className="customer_sidebar_wrapp">
+                    <div style={{
+                      position: "relative",
+                      width: sidebaropen ? "400px" : "0px",
+                      transition: "width 1s ease",
+                    }}>
+                      <div style={{
+                        background: gettab === 1 ? "#ff8b00" : "#ffb103",
+                        fontWeight: gettab === 1 ? "700" : "500",
+                        width: sidebaropen ? "400px" : "0px",
+                        overflow: "hidden",
+                        transition: "width 1s ease",
+                        whiteSpace: "nowrap",
+                        position: "relative"
+                      }}
+                        className="customer-sidebar-profile-part"
+                        onClick={() => setTab(1)}
 
-                    style={{ position: "relative" }}
-                  >
-                    <div className="cus-profile-mall-banner-main">
-                      <img
-                        src={
-                          getsingalmalldata.banner_mall_path === null
-                            ? images.mall_hero_banner
-                            : getsingalmalldata.banner_mall_path
-                        }
-                        className="cus-profile-mall-banner"
-                      />
-                      <div className={`${sidebaropen ? 'customer-sidebar-profile-img' : 'customer-sidebar-profile-img-none'}`}>
-                        <img
-                          src={
-                            getsingalmalldata.shopping_center_logo_mall_path ===
-                              null
-                              ? getsingalmalldata.mall_hero_logo
-                              : getsingalmalldata.shopping_center_logo_mall_path
-                          }
-                          className="customer-sidebar-profile-img_inner"
-                        />
-                      </div>
-                    </div>
-                    <div style={{ alignSelf: "end" }}>
-                      <p className="customer-sidebar-name" style={{ marginBottom: "10px" }}>
-                        {getsingalmalldata.name}
-                      </p>
-                      <div className="customer-sidebar-location-flex">
-                        <IoLocationSharp color="#fff" />
-                        <p className="customer-sidebar-location">3 KM away</p>
-                      </div>
-                    </div>
-
-
-                    <div>
-                      <div
-                        className="profile_sidebar_sig_btn_right_arrow"
-                        onClick={() => {
-                          setSidebarOpen(!sidebaropen);
-                          console.log("check", sidebaropen);
-                        }}
                       >
-                        <FiChevronLeft color="#fff" size={20} />
-                      </div>
-                    </div>
-                  </div>
+                        <div className="cus-profile-mall-banner-main">
+                          <img
+                            src={
+                              getsingalmalldata.banner_mall_path === null
+                                ? images.mall_hero_banner
+                                : getsingalmalldata.banner_mall_path
+                            }
+                            className="cus-profile-mall-banner"
+                          />
+                          <div className={`${sidebaropen ? 'customer-sidebar-profile-img' : 'customer-sidebar-profile-img-none'}`}>
+                            <img
+                              src={
+                                getsingalmalldata.shopping_center_logo_mall_path ===
+                                  null
+                                  ? getsingalmalldata.mall_hero_logo
+                                  : getsingalmalldata.shopping_center_logo_mall_path
+                              }
+                              className="customer-sidebar-profile-img_inner"
+                            />
+                          </div>
+                        </div>
+                        <div style={{ alignSelf: "end" }}>
+                          <p className="customer-sidebar-name" style={{
+                            marginBottom: "10px", whiteSpace: "nowrap"
+                          }}>
+                            {getsingalmalldata.name}
+                          </p>
+                          <div className="customer-sidebar-location-flex">
+                            <IoLocationSharp color="#fff" />
+                            <p className="customer-sidebar-location" style={{
+                              whiteSpace: "nowrap",
+                            }}>3 KM away</p>
+                          </div>
+                        </div>
 
-                  {/* <button
+
+                      </div>
+
+                      {/* <button
                     style={{
                       background: gettab === 1 ? "#ff8b00" : "#ffb103",
                       fontWeight: gettab === 1 ? "700" : "500",
@@ -309,107 +308,119 @@ const CustomerDashboard = () => {
                   >
                     Malls near me
                   </button> */}
-                  <>
-                    <button
-                      style={{
-                        background: gettab === 2 ? "#ff8b00" : "#ffb103",
-                        fontWeight: gettab === 2 ? "700" : "500",
-                        width: sidebaropen ? "400px" : "0px",
-                        overflow: "hidden",
-                        transition: "width 1s ease",
-                      }}
-                      onClick={() => setTab(2)}
-                      className="profile_sidebar_sig_btn customer_sidebar_sing_btn"
-                    >
-                      &nbsp;&nbsp;&nbsp;- Promotions
-                      {/* <div className="profile_sidebar_sig_btn_right_arrow">
-                    <FiChevronLeft color="#fff" size={20} />
-                  </div> */}
-                    </button>
-                    <button
-                      style={{
-                        background: gettab === 3 ? "#ff8b00" : "#ffb103",
-                        fontWeight: gettab === 3 ? "700" : "500",
-                        width: sidebaropen ? "400px" : "0px",
-                        overflow: "hidden",
-                        transition: "width 1s ease",
-                      }}
-                      onClick={() => setTab(3)}
-                      className="profile_sidebar_sig_btn customer_sidebar_sing_btn"
-                    >
-                      &nbsp;&nbsp;&nbsp;- Brands
-                      {/* <div className="profile_sidebar_sig_btn_right_arrow">
-                    <FiChevronLeft color="#fff" size={20} />
-                  </div> */}
-                    </button>
-                    <button
-                      style={{
-                        background: gettab === 4 ? "#ff8b00" : "#ffb103",
-                        fontWeight: gettab === 4 ? "700" : "500",
-                        width: sidebaropen ? "400px" : "0px",
-                        overflow: "hidden",
-                        transition: "width 1s ease",
-                      }}
-                      onClick={() => setTab(4)}
-                      className="profile_sidebar_sig_btn customer_sidebar_sing_btn"
-                    >
-                      &nbsp;&nbsp;&nbsp; - Eateries
-                      {/* <div className="profile_sidebar_sig_btn_right_arrow">
-                    <FiChevronLeft color="#fff" size={20} />
-                  </div> */}
-                    </button>
+                      <>
+                        <button
+                          style={{
+                            background: gettab === 2 ? "#ff8b00" : "#ffb103",
+                            fontWeight: gettab === 2 ? "700" : "500",
+                            width: sidebaropen ? "400px" : "0px",
+                            overflow: "hidden",
+                            transition: "width 1s ease",
+                            whiteSpace: "nowrap",
 
-                    <button
-                      style={{
-                        background: gettab === 28 ? "#ff8b00" : "#ffb103",
-                        fontWeight: gettab === 28 ? "700" : "500",
-                        width: sidebaropen ? "400px" : "0px",
-                        overflow: "hidden",
-                        transition: "width 1s ease",
-                      }}
-                      onClick={() => setTab(28)}
-                      className="profile_sidebar_sig_btn customer_sidebar_sing_btn"
-                    >
-                      &nbsp;&nbsp;&nbsp; - Movies
-                      {/* <div className="profile_sidebar_sig_btn_right_arrow">
+                          }}
+                          onClick={() => setTab(2)}
+                          className="profile_sidebar_sig_btn customer_sidebar_sing_btn"
+                        >
+                          &nbsp;&nbsp;&nbsp;- Promotions
+                          {/* <div className="profile_sidebar_sig_btn_right_arrow">
+                    <FiChevronLeft color="#fff" size={20} />
+                  </div> */}
+                        </button>
+                        <button
+                          style={{
+                            background: gettab === 3 ? "#ff8b00" : "#ffb103",
+                            fontWeight: gettab === 3 ? "700" : "500",
+                            width: sidebaropen ? "400px" : "0px",
+                            overflow: "hidden",
+                            transition: "width 1s ease",
+                            whiteSpace: "nowrap",
+
+                          }}
+                          onClick={() => setTab(3)}
+                          className="profile_sidebar_sig_btn customer_sidebar_sing_btn"
+                        >
+                          &nbsp;&nbsp;&nbsp;- Brands
+                          {/* <div className="profile_sidebar_sig_btn_right_arrow">
+                    <FiChevronLeft color="#fff" size={20} />
+                  </div> */}
+                        </button>
+                        <button
+                          style={{
+                            background: gettab === 4 ? "#ff8b00" : "#ffb103",
+                            fontWeight: gettab === 4 ? "700" : "500",
+                            width: sidebaropen ? "400px" : "0px",
+                            overflow: "hidden",
+                            transition: "width 1s ease",
+                            whiteSpace: "nowrap",
+
+                          }}
+                          onClick={() => setTab(4)}
+                          className="profile_sidebar_sig_btn customer_sidebar_sing_btn"
+                        >
+                          &nbsp;&nbsp;&nbsp; - Eateries
+                          {/* <div className="profile_sidebar_sig_btn_right_arrow">
+                    <FiChevronLeft color="#fff" size={20} />
+                  </div> */}
+                        </button>
+
+                        <button
+                          style={{
+                            background: gettab === 28 ? "#ff8b00" : "#ffb103",
+                            fontWeight: gettab === 28 ? "700" : "500",
+                            width: sidebaropen ? "400px" : "0px",
+                            overflow: "hidden",
+                            transition: "width 1s ease",
+                            whiteSpace: "nowrap",
+
+                          }}
+                          onClick={() => setTab(28)}
+                          className="profile_sidebar_sig_btn customer_sidebar_sing_btn"
+                        >
+                          &nbsp;&nbsp;&nbsp; - Movies
+                          {/* <div className="profile_sidebar_sig_btn_right_arrow">
                   <FiChevronLeft color="#fff" size={20} />
                 </div> */}
-                    </button>
-                    <button
-                      style={{
-                        background: gettab === 5 ? "#ff8b00" : "#ffb103",
-                        fontWeight: gettab === 5 ? "700" : "500",
-                        width: sidebaropen ? "400px" : "0px",
-                        overflow: "hidden",
-                        transition: "width 1s ease",
-                      }}
-                      onClick={() => setTab(5)}
-                      className="profile_sidebar_sig_btn customer_sidebar_sing_btn"
-                    >
-                      &nbsp;&nbsp;&nbsp; - Events
-                      {/* <div className="profile_sidebar_sig_btn_right_arrow">
-                    <FiChevronLeft color="#fff" size={20} />
-                  </div> */}
-                    </button>
-                    <button
-                      style={{
-                        background: gettab === 6 ? "#ff8b00" : "#ffb103",
-                        fontWeight: gettab === 6 ? "700" : "500",
-                        width: sidebaropen ? "400px" : "0px",
-                        overflow: "hidden",
-                        transition: "width 1s ease",
-                      }}
-                      onClick={() => setTab(6)}
-                      className="profile_sidebar_sig_btn customer_sidebar_sing_btn"
-                    >
-                      &nbsp;&nbsp;&nbsp; - Facilities
-                      {/* <div className="profile_sidebar_sig_btn_right_arrow">
-                    <FiChevronLeft color="#fff" size={20} />
-                  </div> */}
-                    </button>
-                  </>
+                        </button>
+                        <button
+                          style={{
+                            background: gettab === 5 ? "#ff8b00" : "#ffb103",
+                            fontWeight: gettab === 5 ? "700" : "500",
+                            width: sidebaropen ? "400px" : "0px",
+                            overflow: "hidden",
+                            transition: "width 1s ease",
+                            whiteSpace: "nowrap",
 
-                  {/* <button
+                          }}
+                          onClick={() => setTab(5)}
+                          className="profile_sidebar_sig_btn customer_sidebar_sing_btn"
+                        >
+                          &nbsp;&nbsp;&nbsp; - Events
+                          {/* <div className="profile_sidebar_sig_btn_right_arrow">
+                    <FiChevronLeft color="#fff" size={20} />
+                  </div> */}
+                        </button>
+                        <button
+                          style={{
+                            background: gettab === 6 ? "#ff8b00" : "#ffb103",
+                            fontWeight: gettab === 6 ? "700" : "500",
+                            width: sidebaropen ? "400px" : "0px",
+                            overflow: "hidden",
+                            transition: "width 1s ease",
+                            whiteSpace: "nowrap",
+
+                          }}
+                          onClick={() => setTab(6)}
+                          className="profile_sidebar_sig_btn customer_sidebar_sing_btn"
+                        >
+                          &nbsp;&nbsp;&nbsp; - Facilities
+                          {/* <div className="profile_sidebar_sig_btn_right_arrow">
+                    <FiChevronLeft color="#fff" size={20} />
+                  </div> */}
+                        </button>
+                      </>
+
+                      {/* <button
                     style={{
                       background: gettab === 7 ? "#ff8b00" : "#ffb103",
                       fontWeight: gettab === 7 ? "700" : "500",
@@ -422,39 +433,43 @@ const CustomerDashboard = () => {
                       <FiChevronLeft color="#fff" size={20} />
                     </div>
                   </button> */}
-                  <button
-                    style={{
-                      background: gettab === 8 ? "#ff8b00" : "#ffb103",
-                      fontWeight: gettab === 8 ? "700" : "500",
-                      width: sidebaropen ? "400px" : "0px",
-                      overflow: "hidden",
-                      transition: "width 1s ease",
-                    }}
-                    onClick={() => setTab(8)}
-                    className="profile_sidebar_sig_btn customer_sidebar_sing_btn"
-                  >
-                    &nbsp;&nbsp;&nbsp; - My wishlist
-                    {/* <div className="profile_sidebar_sig_btn_right_arrow">
+                      <button
+                        style={{
+                          background: gettab === 8 ? "#ff8b00" : "#ffb103",
+                          fontWeight: gettab === 8 ? "700" : "500",
+                          width: sidebaropen ? "400px" : "0px",
+                          overflow: "hidden",
+                          transition: "width 1s ease",
+                          whiteSpace: "nowrap",
+
+                        }}
+                        onClick={() => setTab(8)}
+                        className="profile_sidebar_sig_btn customer_sidebar_sing_btn"
+                      >
+                        &nbsp;&nbsp;&nbsp; - My wishlist
+                        {/* <div className="profile_sidebar_sig_btn_right_arrow">
                   <FiChevronLeft color="#fff" size={20} />
                 </div> */}
-                  </button>
-                  <button
-                    style={{
-                      background: gettab === 9 ? "#ff8b00" : "#ffb103",
-                      fontWeight: gettab === 9 ? "700" : "500",
-                      width: sidebaropen ? "400px" : "0px",
-                      overflow: "hidden",
-                      transition: "width 1s ease",
-                    }}
-                    onClick={() => setTab(9)}
-                    className="profile_sidebar_sig_btn customer_sidebar_sing_btn"
-                  >
-                    Account Settings
-                    {/* <div className="profile_sidebar_sig_btn_right_arrow">
+                      </button>
+                      <button
+                        style={{
+                          background: gettab === 9 ? "#ff8b00" : "#ffb103",
+                          fontWeight: gettab === 9 ? "700" : "500",
+                          width: sidebaropen ? "400px" : "0px",
+                          overflow: "hidden",
+                          transition: "width 1s ease",
+                          whiteSpace: "nowrap",
+
+                        }}
+                        onClick={() => setTab(9)}
+                        className="profile_sidebar_sig_btn customer_sidebar_sing_btn"
+                      >
+                        Account Settings
+                        {/* <div className="profile_sidebar_sig_btn_right_arrow">
                   <FiChevronLeft color="#fff" size={20} />
                 </div> */}
-                  </button>
-                  {/* <button
+                      </button>
+                      {/* <button
                     style={{
                       background: gettab === 10 ? "#ff8b00" : "#ffb103",
                       fontWeight: gettab === 10 ? "700" : "500",
@@ -467,7 +482,7 @@ const CustomerDashboard = () => {
                   <FiChevronLeft color="#fff" size={20} />
                 </div>
                   </button> */}
-                  {/* <button
+                      {/* <button
                     style={{
                       background: gettab === 26 ? "#ff8b00" : "#ffb103",
                       fontWeight: gettab === 26 ? "700" : "500",
@@ -477,7 +492,7 @@ const CustomerDashboard = () => {
                   >
                     Brand details
                   </button> */}
-                  {/* <button
+                      {/* <button
                     style={{
                       background: gettab === 27 ? "#ff8b00" : "#ffb103",
                       fontWeight: gettab === 27 ? "700" : "500",
@@ -489,28 +504,40 @@ const CustomerDashboard = () => {
                  
                   </button> */}
 
-                  <button
-                    style={{
-                      background: gettab === 29 ? "#ff8b00" : "#ffb103",
-                      fontWeight: gettab === 29 ? "700" : "500",
-                      width: sidebaropen ? "400px" : "0px",
-                      overflow: "hidden",
-                      transition: "width 1s ease",
-                    }}
-                    onClick={() => setTab(29)}
-                    className="profile_sidebar_sig_btn customer_sidebar_sing_btn"
-                  >
-                    Mall Map
-                    {/* <div className="profile_sidebar_sig_btn_right_arrow">
+                      <button
+                        style={{
+                          background: gettab === 29 ? "#ff8b00" : "#ffb103",
+                          fontWeight: gettab === 29 ? "700" : "500",
+                          width: sidebaropen ? "400px" : "0px",
+                          overflow: "hidden",
+                          transition: "width 1s ease",
+                          whiteSpace: "nowrap",
+
+                        }}
+                        onClick={() => setTab(29)}
+                        className="profile_sidebar_sig_btn customer_sidebar_sing_btn"
+                      >
+                        Mall Map
+                        {/* <div className="profile_sidebar_sig_btn_right_arrow">
                   <FiChevronLeft color="#fff" size={20} />
                 </div> */}
-                  </button>
-                </div>
-                {/* <div>
-                  <div className="profile_sidebar_sig_btn_right_arrow" onClick={() => { setSidebarOpen(!sidebaropen); console.log("check", sidebaropen); }}>
-                    <FiChevronLeft color="#fff" size={20} />
+                      </button>
+                      <div>
+                        <div
+                          className="profile_sidebar_sig_btn_right_arrow"
+                          onClick={() => {
+                            setSidebarOpen(!sidebaropen);
+                            console.log("check", sidebaropen);
+                          }}
+                        >
+                          <FiChevronLeft color="#fff" size={20} />
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                </div> */}
+
+
+                </div>
               </div>
               {/* side-bar end  */}
 
@@ -590,7 +617,7 @@ const CustomerDashboard = () => {
                   // <CustomerPromotionBanner />
                   <></>
                 )}
-                {gettab === 11 && (
+                {gettab === 1 && (
                   <CustomerWelcomMall
                     setTab={setTab}
                     getsingalmalldata={getsingalmalldata}

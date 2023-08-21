@@ -357,6 +357,7 @@ const CustomerNavbar = ({ setTab, getsingalmalldata }) => {
                   <Link
                     to={""}
                     onClick={() => setCustomerDropdown(!getcustomerDropdown)}
+                    className="my-acc-nav-flex"
                   >
                     Account{" "}
                     {getcustomerDropdown ? <BsChevronUp /> : <BsChevronDown />}
@@ -369,18 +370,19 @@ const CustomerNavbar = ({ setTab, getsingalmalldata }) => {
                   {getcustomerDropdown ? (
                     <>
                       <div className="navbar-acc-menu-open-warapp">
-                        <Link
+                        {/* <Link
                           to="/profile-page"
                           className="navbar-acc-menu-link"
                         >
                           Mall
-                        </Link>
-                        <Link to="/retailer" className="navbar-acc-menu-link">
+                        </Link> */}
+                        {/* <Link to="/retailer" className="navbar-acc-menu-link">
                           Brand
-                        </Link>
-                        <Link to="/customer" className="navbar-acc-menu-link">
+                        </Link> */}
+                        {/* <Link to="/customer" className="navbar-acc-menu-link">
                           Customer
-                        </Link>
+                        </Link> */}
+
                         {login === false || login === null ? (
                           <Link
                             className="navbar-acc-menu-link"
@@ -399,6 +401,12 @@ const CustomerNavbar = ({ setTab, getsingalmalldata }) => {
                         ) : null}
                         {/* <Link className="navbar-acc-menu-link">My profile</Link> */}
                         <Link className="navbar-acc-menu-link">Help</Link>
+                        {login === 'true' && getrole == 4 ?
+                          <Link to="" className="navbar-acc-menu-link" onClick={() => setTab(9)}>
+                            Account Settings
+                          </Link> : null
+                        }
+
                         {/* {is_login === true ? (<><Link onClick={logout}>Logout</Link></>) : (<></>)} */}
                         {login === "true" ? (
                           <button

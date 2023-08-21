@@ -14,8 +14,8 @@ import { ImGoogle } from "react-icons/im";
 import { useNavigate } from "react-router-dom";
 import Urls from "../../utils/Urls";
 import MallWelcomeStoreCard from "../../components/mallwelcomestorecard/MallWelcomeStoreCard";
-import { MallNavbar } from "../../components";
-import { ACCEPT_HEADER, get_mall_master } from "../../utils/Constant";
+import { MallNavbar, WhyjoinMallHome } from "../../components";
+import { ACCEPT_HEADER, get_mall_landing, get_mall_master } from "../../utils/Constant";
 import axios from "axios";
 
 const customStyles = {
@@ -66,6 +66,39 @@ const MallHomePage = () => {
   const [getpassword, setPassword] = useState("");
   const [isAcceptTerm, setIsAcceptTerm] = useState(0);
   const [modalIsOpen3, setIsOpen3] = useState(false);
+
+
+  const [getMallHomeData, setMallHomeData] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    getMallHomeDataApi();
+    // console.log("Get Home Data--->", getHomeData);
+  }, []);
+
+  const getMallHomeDataApi = async () => {
+    setLoading(true);
+    axios
+      .get(get_mall_landing, {
+        headers: {
+          Accept: ACCEPT_HEADER,
+        },
+      })
+      .then((res) => {
+        console.log("first");
+        console.log("mall home data", JSON.stringify(res.data, null, 2));
+        if (res.data.success == 1) {
+          setMallHomeData(res.data.data[0]);
+          setLoading(false);
+        } else {
+          null;
+        }
+      })
+      .catch((err) => {
+        console.log("err11", err);
+      });
+  };
+
 
   const SigninCustomerGoogle = async (gmail, type, data) => {
     if (gmail === "") {
@@ -270,94 +303,113 @@ const MallHomePage = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Mall Home Screen</title>
-      </Helmet>
-      {/* <Navbar
+      {loading === true ? (
+        <div
+          style={{
+            width: "100%",
+            height: "80vh",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}>
+          <div className="loader"></div>
+        </div>
+      ) : (
+        <>
+          <Helmet>
+            <title>Mall Home Screen</title>
+          </Helmet>
+          {/* <Navbar
       // setCustomerDropdown={setCustomerDropdown}
       // getcustomerDropdown={getcustomerDropdown}
       /> */}
-      <MallNavbar />
+          <MallNavbar />
 
-      <div>
-        {/* <HomeHero img={images.mall_home_hero_banner} /> */}
-        {/* hero start */}
-        <div
-          className="about_hero_wrapp"
-          style={{
-            backgroundImage: `url(${images.mall_home_page})`,
-            backgroundPosition: "center",
-            backgroundSize: "cover",
-          }}
-        >
-          {/* <img src={images.hero_banner} alt="" /> */}
-          <div className="homehero_text_main">
-            <div className="homehero_text_base">
-              <img src={images.hero_logo} alt="" />
-              <p
-                style={{
-                  fontSize: "32px",
-                  fontWeight: "500",
-                  color: "var(--color-orange)",
-                }}
-              >
-                for malls
-              </p>
-              <button
-                className="btn btn-black"
-                style={{ width: "auto" }}
-                onClick={() => {
-                  setIsOpen(true);
-                }}
-              >
-                Register your mall
-              </button>
-              {/* <div className="apps_logos_wrapp">
+          <div>
+            {/* <HomeHero img={images.mall_home_hero_banner} /> */}
+            {/* hero start */}
+            <div
+              className="about_hero_wrapp"
+              style={{
+                backgroundImage: `url(${getMallHomeData ? getMallHomeData.image_path : ""})`,
+                backgroundPosition: "center",
+                backgroundSize: "cover",
+              }}
+            >
+              {/* <img src={images.hero_banner} alt="" /> */}
+              <div className="homehero_text_main">
+                <div className="homehero_text_base homehero_text_base_retailer">
+                  <img src={getMallHomeData ? getMallHomeData.logo_img_path : ""} alt="" />
+                  <p
+                    style={{
+                      fontSize: "32px",
+                      fontWeight: "500",
+                      color: "var(--color-orange)",
+                    }}
+                  >
+                    for malls
+                  </p>
+                  <button
+                    className="btn btn-black"
+                    style={{ width: "auto" }}
+                    onClick={() => {
+                      setIsOpen(true);
+                    }}
+                  >
+                    Register your mall
+                  </button>
+                  {/* <div className="apps_logos_wrapp">
                   <img src={images.play_store_logo} alt='play store logo' />
                   <img src={images.app_store_logo} alt='app store logo' />
                 </div> */}
+                </div>
+              </div>
             </div>
+            {/* hero end */}
+            <MallWelcomeStoreCard
+              WcBtn={true}
+              titie={getMallHomeData}
+              des={getMallHomeData}
+            />
+            <WhyjoinMallHome getMallHomeData={getMallHomeData} />
+            {/* about in store register part-1 start*/}
+            <div className="main_wrapp registermall_main_wrapp bg-pink">
+              <div className="container registermall_base_wrapp">
+                <div className="registermall_sec1">
+                  <h2 className="h2">
+                    {getMallHomeData ? getMallHomeData.details_title_1 : ""}
+                  </h2>
+                  <p>
+                    {getMallHomeData ? getMallHomeData.details_description_1 : ""}
+                  </p>
+                  <button
+                    onClick={() => {
+                      setIsOpen(true);
+                    }}
+                  >
+                    Register your mall
+                  </button>
+                </div>
+                {/* <div className="registermall_sec2">
+                  <img src={getMallHomeData ? getMallHomeData.details_image_1_path : ""} alt="" />
+                </div> */}
+                <div className="registermall_sec2">
+                  <img
+                    src={getMallHomeData ? getMallHomeData.details_image_1_path : ""}
+                    alt=""
+                  />
+                  <img
+                    src={images.pink_blue}
+                    alt=""
+                    className="registermall_sec2_vector"
+                  />
+                </div>
+              </div>
+            </div>
+            {/* about in store register part-1 end*/}
           </div>
-        </div>
-        {/* hero end */}
-        <MallWelcomeStoreCard
-          WcBtn={true}
-          titie={"Welcome to In-store mall owners"}
-          des={
-            "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip."
-          }
-        />
-        <WhayJoin />
-        {/* about in store register part-1 start*/}
-        <div className="main_wrapp registermall_main_wrapp bg-pink">
-          <div className="container registermall_base_wrapp">
-            <div className="registermall_sec1">
-              <h2 className="h2">
-                Lorem ipsum dolor sit
-                <br /> consectetuer
-              </h2>
-              <p>
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
-                diam nonummy nibh euismod tincidunt ut laoreet dolore magna
-                aliquam erat volutpat. Ut wisi enim ad minim veniam, quis
-                nostrud exerci tation ullamcorper suscipit lobortis nisl ut
-                aliquip ex ea commodo.
-              </p>
-              <button
-                onClick={() => {
-                  setIsOpen(true);
-                }}
-              >
-                Register your mall
-              </button>
-            </div>
-            <div className="registermall_sec2">
-              <img src={images.about_1} alt="" />
-            </div>
-          </div>
-        </div>
-        {/* about in store register part-1 end*/}
-      </div>
+
+        </>)}
 
       {/* Register Modal */}
 

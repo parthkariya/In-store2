@@ -73,6 +73,8 @@ const PromotionBannerCard = ({
   const [Region, setRegion] = useState([]);
   const [getcondition, setCondition] = useState([]);
   const [mallsOption, setMallsOption] = useState([]);
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
 
   useEffect(() => {
     getBrand(item.stores.retailer_id);
@@ -144,8 +146,7 @@ const PromotionBannerCard = ({
 
   // select date funtion is start
 
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
+
 
   // Helper function to check if a date is a Monday
   const isMonday = (date) => {
@@ -185,6 +186,13 @@ const PromotionBannerCard = ({
     if (isRangeValid(startDate, date)) {
       setEndDate(date);
     }
+  };
+
+
+  const onDateChage = (dates) => {
+    const [start, end] = dates;
+    setStartDate(start);
+    setEndDate(end);
   };
 
   // const [gettitle, SetTitile] = useState(item.title ? item.title : "");
@@ -232,8 +240,12 @@ const PromotionBannerCard = ({
       return;
     } else if (mallidarray == "" || undefined) {
       Notification("error", "Error!", "Please Select Mall!");
-    } else if (Week == "" || undefined) {
-      Notification("error", "Error!", "Please Select Week!");
+    } else if (startDate == "" || startDate == undefined) {
+      Notification("error", "Error", "Please Enter Start Date");
+      return;
+    } else if (endDate == "" || endDate == undefined) {
+      Notification("error", "Error", "Please Enter End Date");
+      return;
     } else if (regionidarray == "" || undefined) {
       Notification("error", "Error!", "Please Select Region!");
     } else if (BrandName == "" || undefined) {
@@ -255,7 +267,10 @@ const PromotionBannerCard = ({
       await formdata.append("brand_id", BrandId);
 
       await formdata.append("category_id", CategoryId);
-      await formdata.append("week_id", Week);
+      await formdata.append("from_date", moment(startDate).format("YYYY-MM-DD"));
+      await formdata.append("to_date", moment(endDate).format("YYYY-MM-DD"));
+
+      // await formdata.append("week_id", Week);
       // await formdata.append("region_child_id[0]", "")
       if (files[0] !== undefined) {
         await formdata.append("image", files[0]);
@@ -406,6 +421,8 @@ const PromotionBannerCard = ({
     setToggle(id);
   };
 
+  // 
+
   return (
     <>
       <div className="leaderboard-card-main-wrapp">
@@ -528,7 +545,32 @@ const PromotionBannerCard = ({
               </div>
             </div>
             {/* Leaderboard inputbox end */}
+            <div className="leaderboard-card-inpbox-wrapp">
+              <label className="leaderboard-card-lbl" htmlFor="">Week</label>
+              {/* <input
+              type="date"
+              value={eventEndDate}
+              onChange={(e) => setEventEndDate(e.target.value)}
+              name=""
+              id=""
+              className="input_box"
+            /> */}
+              <DatePicker
+                selected={startDate}
+                onChange={onDateChage}
+                startDate={startDate}
+                endDate={endDate}
+                selectsRange
+                // selectsDisabledDaysInRange
+                // inline
+                monthsShown={2}
 
+
+                calendarStartDay={1}
+                className="leaderboard-card-inp"
+                placeholderText="Select your week"
+              />
+            </div>
             {/* Leaderboard inputbox start */}
             <div className="leaderboard-card-inpbox-wrapp">
               <label className="leaderboard-card-lbl">Categories:</label>
@@ -757,7 +799,7 @@ const PromotionBannerCard = ({
             </button> */}
             <div className="leaderboard-btn-box">
               <button
-                className="btn btn-orange"
+                className="btn btn-blue"
                 onClick={() => UpdatePromotionBanner()}
               >
                 Update
@@ -801,7 +843,7 @@ const PromotionBannerCard = ({
               />
             </Link> */}
             <div className="leaderboard-btn-box">
-              <button className="btn btn-orange">Update</button>
+              <button className="btn btn-blue" onClick={() => UpdatePromotionBanner()}>Update</button>
             </div>
           </div>
           {/* Leaderboard last part responsive side end */}
@@ -835,7 +877,7 @@ const PromotionBannerCard = ({
               />
             </div>
 
-            <div
+            {/* <div
               className="leaderboard-card-inpbox-wrapp"
               style={{ alignItems: "center" }}
             >
@@ -855,9 +897,7 @@ const PromotionBannerCard = ({
                   week_data.map((item, index) => {
                     return (
                       <>
-                        {/* <option selected disabled value="">
-                      Auto-fill from database
-                    </option> */}
+                      
                         <option value={item.id} key={index}>
                           {item.name} &nbsp;&nbsp;&nbsp; {item.from_date}{" "}
                           &nbsp;&nbsp;&nbsp; {item.to_date}
@@ -866,7 +906,7 @@ const PromotionBannerCard = ({
                     );
                   })}
               </select>
-            </div>
+            </div> */}
 
             {/* mall selected tag */}
             <div className="select_mall_tag_btns_wrapp">

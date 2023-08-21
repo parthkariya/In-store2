@@ -14,7 +14,7 @@ import { ImGoogle } from "react-icons/im";
 import { useAuthContext } from "../context/auth_context";
 import { useStoreContext } from "../context/store_context";
 import { useMallContext } from "../context/mall_context";
-import { ACCEPT_HEADER, get_mall, get_mall_master } from "../utils/Constant";
+import { ACCEPT_HEADER, get_brand_landing, get_mall, get_mall_master } from "../utils/Constant";
 import ReactCSSTransitionGroup from 'react-transition-group';
 import axios from "axios";
 import { RetailerPageNavbar, RetailerWelcomeStore } from "../components";
@@ -291,87 +291,130 @@ const AfterLoginPage = () => {
     }
   };
 
+  const [getRetailerHomeData, setRetailerHomeData] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    getRetailerHomeDataApi();
+    // console.log("Get Home Data--->", getHomeData);
+  }, []);
+
+  const getRetailerHomeDataApi = async () => {
+    setLoading(true);
+    axios
+      .get(get_brand_landing, {
+        headers: {
+          Accept: ACCEPT_HEADER,
+        },
+      })
+      .then((res) => {
+        console.log("first");
+        console.log("retailer home data", JSON.stringify(res.data, null, 2));
+        if (res.data.success == 1) {
+          setRetailerHomeData(res.data.data[0]);
+          setLoading(false);
+        } else {
+          null;
+        }
+      })
+      .catch((err) => {
+        console.log("err11", err);
+      });
+  };
+
+
   return (
     <>
-      <Helmet>
-        <title>Home Screen</title>
-      </Helmet>
-      {/* <Navbar
+      {loading === true ? (
+        <div
+          style={{
+            width: "100%",
+            height: "80vh",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}>
+          <div className="loader"></div>
+        </div>
+      ) : (
+        <>
+          <Helmet>
+            <title>Home Screen</title>
+          </Helmet>
+          {/* <Navbar
       // setCustomerDropdown={setCustomerDropdown}
       // getcustomerDropdown={getcustomerDropdown}
       /> */}
-      <RetailerNavbar />
+          <RetailerNavbar />
 
-      <div>
-        {/* <HomeHero img={images.after_login_img} /> */}
-        <div
-          className="about_hero_wrapp"
-          style={{
-            backgroundImage: `url(${images.brand_page_hero})`,
-            backgroundPosition: "center",
-            backgroundSize: "cover",
-          }}
-        >
-          {/* <img src={images.hero_banner} alt="" /> */}
-          <div className="homehero_text_main">
-            <div className="homehero_text_base">
-              <img src={images.hero_logo} alt="" />
-              <p
-                style={{
-                  fontSize: "32px",
-                  fontWeight: "500",
-                  color: "var(--color-orange)",
-                }}
-              >
-                for retailers
-              </p>
-              <button
-                className="btn btn-black"
-                style={{ width: "auto" }}
-                onClick={() => setModalIsOpenBrand(true)}
-              >
-                Register your brand
-              </button>
-              {/* <div className="apps_logos_wrapp">
+          <div>
+            {/* <HomeHero img={images.after_login_img} /> */}
+            <div
+              className="about_hero_wrapp"
+              style={{
+                backgroundImage: `url(${getRetailerHomeData ? getRetailerHomeData.image_path : ""})`,
+                backgroundPosition: "center",
+                backgroundSize: "cover",
+              }}
+            >
+              {/* <img src={images.hero_banner} alt="" /> */}
+              <div className="homehero_text_main">
+                <div className="homehero_text_base homehero_text_base_retailer">
+                  <img src={getRetailerHomeData ? getRetailerHomeData.logo_img_path : ""} alt="" />
+                  <p
+                    style={{
+                      fontSize: "32px",
+                      fontWeight: "500",
+                      color: "var(--color-orange)",
+                    }}
+                  >
+                    for retailers
+                  </p>
+                  <button
+                    className="btn btn-black"
+                    style={{ width: "auto" }}
+                    onClick={() => setModalIsOpenBrand(true)}
+                  >
+                    Register your brand
+                  </button>
+                  {/* <div className="apps_logos_wrapp">
                   <img src={images.play_store_logo} alt='play store logo' />
                   <img src={images.app_store_logo} alt='app store logo' />
                 </div> */}
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-        <RetailerWelcomeStore
-          WcBtn={false}
-          title={"Welcome to In-store retailers"}
-          des={
-            "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip."
-          }
-        />
-        <WhayJoinRetailer />
+            <RetailerWelcomeStore
+              WcBtn={false}
+              title={getRetailerHomeData}
+              des={
+                getRetailerHomeData
+              }
+            />
+            <WhayJoinRetailer getRetailerHomeData={getRetailerHomeData} />
 
-        {/* about in store register part-3 start*/}
-        <div className="main_wrapp registermall_main_wrapp bg-orange">
-          <div className="container registermall_base_wrapp">
-            <div className="registermall_sec1">
-              <h2 className="h2">
-                Lorem ipsum dolor sit
-                <br /> consectetuer
-              </h2>
-              <p>
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
-                diam nonummy nibh euismod tincidunt ut laoreet dolore magna
-                aliquam erat volutpat. Ut wisi enim ad minim veniam, quis
-                nostrud exerci tation ullamcorper suscipit lobortis nisl ut
-                aliquip ex ea commodo.
-              </p>
-              {/* <button>Register your brand</button> */}
+            {/* about in store register part-3 start*/}
+            <div className="main_wrapp registermall_main_wrapp bg-orange">
+              <div className="container registermall_base_wrapp">
+                <div className="registermall_sec1">
+                  <h2 className="h2">
+                    {getRetailerHomeData ? getRetailerHomeData.details_title_1 : ""}
+                  </h2>
+                  <p>
+                    {getRetailerHomeData ? getRetailerHomeData.details_description_1 : ""}
+                  </p>
+                  {/* <button>Register your brand</button> */}
+                </div>
+                <div className="registermall_sec2">
+                  {/* <img src={images.retailer_home_last_card} alt="" /> */}
+                  <img src={getRetailerHomeData ? getRetailerHomeData.details_image_1_path : ""} alt="" />
+                </div>
+              </div>
             </div>
-            <div className="registermall_sec2">
-              <img src={images.retailer_home_last_card} alt="" />
-            </div>
+            {/* about in store register part-3 start*/}
           </div>
-        </div>
-        {/* about in store register part-3 start*/}
-      </div>
+
+        </>)}
 
       {/* Brand register */}
 

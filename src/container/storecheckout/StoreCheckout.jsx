@@ -353,29 +353,30 @@ const StoreCheckout = ({ get_mall_auth_data, setTab }) => {
                         {/* single text-input */}
                         <div className="mm_form_single_input store-checkout-form-flex-column">
                             <label htmlFor="">Region</label>
-
-                            <select
-                                className="leaderboard-card-inp"
-                                onChange={(e) => {
-                                    console.log("rrr", e.target.value);
-                                    setBrandName(e.target.value);
-                                    setBrandId(e.target.value);
-                                }}
-                            >
-                                <option selected disabled value="">
-                                    {BrandName}
-                                </option>
-                                {region_data &&
-                                    region_data.map((item, index) => {
-                                        return (
-                                            <>
-                                                <option value={item.id} key={index}>
-                                                    {item.name}
-                                                </option>
-                                            </>
-                                        );
-                                    })}
-                            </select>
+                            <div className="select-wrapper" style={{ width: "100%" }}>
+                                <select
+                                    className="leaderboard-card-inp"
+                                    onChange={(e) => {
+                                        console.log("rrr", e.target.value);
+                                        setBrandName(e.target.value);
+                                        setBrandId(e.target.value);
+                                    }}
+                                >
+                                    <option selected disabled value="">
+                                        {BrandName}
+                                    </option>
+                                    {region_data &&
+                                        region_data.map((item, index) => {
+                                            return (
+                                                <>
+                                                    <option value={item.id} key={index}>
+                                                        {item.name}
+                                                    </option>
+                                                </>
+                                            );
+                                        })}
+                                </select>
+                            </div>
                         </div>
                         {/* single text-input */}
                         <div className="mm_form_single_input store-checkout-form-flex-column">

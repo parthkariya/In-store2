@@ -11,7 +11,7 @@ import { useStoreContext } from '../../context/store_context';
 import { useMallContext } from '../../context/mall_context';
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
-
+import Notification from "../../utils/Notification"
 const animatedComponents = makeAnimated();
 
 
@@ -31,14 +31,15 @@ const AddProductCard = ({ openMallModal, setTab, getweek, seteweek, peopleInfo,
     const [Price, setPrice] = useState("");
     const [Description, setDiscription] = useState("");
     const [mallsOption, setMallsOption] = useState([]);
+    const [startDate, setStartDate] = useState();
+    const [endDate, setEndDate] = useState();
 
     const [Week, setWeek] = useState("");
     const [Region, setRegion] = useState([]);
 
     // select date funtion is start
 
-    const [startDate, setStartDate] = useState(null);
-    const [endDate, setEndDate] = useState(null);
+
 
     useEffect(() => {
         console.log("startDate", startDate);
@@ -85,7 +86,11 @@ const AddProductCard = ({ openMallModal, setTab, getweek, seteweek, peopleInfo,
             setEndDate(date);
         }
     };
-
+    const onDateChage = (dates) => {
+        const [start, end] = dates;
+        setStartDate(start);
+        setEndDate(end);
+    };
 
     // select date funtion is end
 
@@ -125,34 +130,57 @@ const AddProductCard = ({ openMallModal, setTab, getweek, seteweek, peopleInfo,
 
         console.log("test");
 
-        const formdata = await new FormData();
-        // await formdata.append("id", item.id)
-        await formdata.append("title", title)
-        for (var i = 0; i < regionidarray.length; i++) {
-            await formdata.append("region_id[" + i + "]", regionidarray[i].id);
+        if (title == "" || undefined) {
+            Notification("error", "Error!", "Please Enter Title!");
+            return;
+        } else if (mallidarray == "" || undefined) {
+            Notification("error", "Error!", "Please Select Mall!");
+        } else if (regionidarray == "" || undefined) {
+            Notification("error", "Error!", "Please Select Region!");
+        } else if (startDate == "" || startDate == undefined) {
+            Notification("error", "Error", "Please Enter Start Date");
+            return;
+        } else if (endDate == "" || endDate == undefined) {
+            Notification("error", "Error", "Please Enter End Date");
+            return;
+        } else if (BrandName == "" || undefined) {
+            Notification("error", "Error!", "Please Select Brand!");
+        } else if (Category == "" || undefined) {
+            Notification("error", "Error!", "Please Select Category!");
         }
-        for (var i = 0; i < mallidarray.length; i++) {
-            await formdata.append("mall_id[" + i + "]", mallidarray[i].id);
-        }
-        await formdata.append("brand_id", BrandName)
-        await formdata.append("category_id", Category)
-        await formdata.append("week_id", getweek)
-        await formdata.append("region_child_id[0]", "")
-        await formdata.append("region_child_id[1]", "")
-        if (files[0] !== undefined) {
-            await formdata.append("image", files[0]);
-        }
+        else {
+            const formdata = await new FormData();
+            // await formdata.append("id", item.id)
+            await formdata.append("title", title)
+            for (var i = 0; i < regionidarray.length; i++) {
+                await formdata.append("region_id[" + i + "]", regionidarray[i].id);
+            }
+            for (var i = 0; i < mallidarray.length; i++) {
+                await formdata.append("mall_id[" + i + "]", mallidarray[i].id);
+            }
+            await formdata.append("brand_id", BrandName)
+            await formdata.append("category_id", Category)
+            // await formdata.append("week_id", getweek)
+            await formdata.append("from_date", moment(startDate).format("YYYY-MM-DD"));
+            await formdata.append("to_date", moment(endDate).format("YYYY-MM-DD"));
+            await formdata.append("region_child_id[0]", "")
+            await formdata.append("region_child_id[1]", "")
+            if (files[0] !== undefined) {
+                await formdata.append("image", files[0]);
+            }
 
 
 
-        console.log("-=-=-=->", formdata);
-        const data = await CreateProductBoardApi(formdata);
-        if (data) {
-            if (data.success === 1) {
-                console.log("category-data", data);
-                setTab(1);
-                // getLeaderboard();
-                // window.location.reload();
+            console.log("-=-=-=->", formdata);
+            const data = await CreateProductBoardApi(formdata);
+            if (data) {
+                if (data.success === 1) {
+                    console.log("category-data", data);
+                    Notification("success", "Success!", "Product Banner Added Successfully!");
+                    setTab(1);
+                    // getLeaderboard();
+                    // window.location.reload();
+                }
             }
         }
     }
@@ -227,7 +255,32 @@ const AddProductCard = ({ openMallModal, setTab, getweek, seteweek, peopleInfo,
             </button> */}
                     </div>
                     {/* Leaderboard inputbox end */}
+                    <div className="leaderboard-card-inpbox-wrapp">
+                        <label className="leaderboard-card-lbl" htmlFor="">Week</label>
+                        {/* <input
+              type="date"
+              value={eventEndDate}
+              onChange={(e) => setEventEndDate(e.target.value)}
+              name=""
+              id=""
+              className="input_box"
+            /> */}
+                        <DatePicker
+                            selected={startDate}
+                            onChange={onDateChage}
+                            startDate={startDate}
+                            endDate={endDate}
+                            selectsRange
+                            // selectsDisabledDaysInRange
+                            // inline
+                            monthsShown={2}
 
+
+                            calendarStartDay={1}
+                            className="leaderboard-card-inp"
+                            placeholderText="Select your week"
+                        />
+                    </div>
                     {/* Leaderboard inputbox start */}
                     <div className="leaderboard-card-inpbox-wrapp">
                         <label className="leaderboard-card-lbl">Brand(s):</label>
@@ -422,7 +475,7 @@ const AddProductCard = ({ openMallModal, setTab, getweek, seteweek, peopleInfo,
                         <img src={images.extend_icon} className="leaderboard-delete-icon" />
                     </Link> */}
                     <div className="leaderboard-btn-box">
-                        <button className="btn btn-orange">Publish</button>
+                        <button className="btn btn-orange" onClick={() => CreateProductBanner()}>Publish</button>
                     </div>
                 </div>
                 {/* Leaderboard last part responsive side end */}

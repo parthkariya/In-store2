@@ -331,16 +331,16 @@ const PromotionalBanner = ({ get_mall_auth_data, setTab, getTab }) => {
                 >
                   Filter by region:
                 </label>
-                 <div className="select-wrapper" style={{ width: "100%" }}>
-                <select className="leaderboard-card-inp">
-                  <option selected disabled value="">
-                    Select region
-                  </option>
-                  <option value="1">ONE SIZE</option>
-                  <option value="2">TWO SIZE</option>
-                  <option value="3">THREE SIZE</option>
-                    </select>
-                    </div>
+                <div className="select-wrapper" style={{ width: "100%" }}>
+                  <select className="leaderboard-card-inp">
+                    <option selected disabled value="">
+                      Select region
+                    </option>
+                    <option value="1">ONE SIZE</option>
+                    <option value="2">TWO SIZE</option>
+                    <option value="3">THREE SIZE</option>
+                  </select>
+                </div>
               </div>
 
               <div className="leaderboard-filter-part-sec">
@@ -349,17 +349,17 @@ const PromotionalBanner = ({ get_mall_auth_data, setTab, getTab }) => {
                   style={{ minWidth: "125px" }}
                 >
                   Filter by mall:
-                    </label>
-                     <div className="select-wrapper" style={{ width: "100%" }}>
-                <select className="leaderboard-card-inp">
-                  <option selected disabled value="">
-                    Select mall
-                  </option>
-                  <option value="1">ONE SIZE</option>
-                  <option value="2">TWO SIZE</option>
-                  <option value="3">THREE SIZE</option>
-                </select>
-              </div>
+                </label>
+                <div className="select-wrapper" style={{ width: "100%" }}>
+                  <select className="leaderboard-card-inp">
+                    <option selected disabled value="">
+                      Select mall
+                    </option>
+                    <option value="1">ONE SIZE</option>
+                    <option value="2">TWO SIZE</option>
+                    <option value="3">THREE SIZE</option>
+                  </select>
+                </div>
               </div>
             </div>
             {/* Leaderboard Filter End */}
@@ -439,7 +439,7 @@ const PromotionalBanner = ({ get_mall_auth_data, setTab, getTab }) => {
                   />
                 </div>
 
-                <div
+                {/* <div
                   className="leaderboard-card-inpbox-wrapp"
                   style={{ alignItems: "center" }}
                 >
@@ -460,9 +460,7 @@ const PromotionalBanner = ({ get_mall_auth_data, setTab, getTab }) => {
                       week_data.map((item, index) => {
                         return (
                           <>
-                            {/* <option selected disabled value="">
-                      Auto-fill from database
-                    </option> */}
+                 
                             <option value={item.id} key={index}>
                               {item.name} &nbsp;&nbsp;&nbsp; {item.from_date}{" "}
                               &nbsp;&nbsp;&nbsp; {item.to_date}
@@ -471,14 +469,8 @@ const PromotionalBanner = ({ get_mall_auth_data, setTab, getTab }) => {
                         );
                       })}
                   </select>
-                  {/* <button
-              className="leaderboard-card-inp"
-              style={{ color: "rgb(129 128 128)", textAlign: "start" }}
-              onClick={() => openMallModal()}
-            >
-              Select Mall
-            </button> */}
-                </div>
+           
+                </div> */}
 
                 {/* mall selected tag */}
                 <div className="select_mall_tag_btns_wrapp">

@@ -18,6 +18,7 @@
     justify-self: flex-end;
     /* transform: translate(375px, -105px); */
     transform: translate(390px, -60px);
+    z-index: 999;
 }
 
 .band-inn-logo-wrapp {
@@ -37,6 +38,7 @@
     width: 25px;
     height: 25px;
 }
+
 
 
 @media screen and (max-width: 1690px) {

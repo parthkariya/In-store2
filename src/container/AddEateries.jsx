@@ -292,7 +292,7 @@ const AddEateries = ({ get_mall_auth_data, setTab }) => {
                   >
                     Monday - Friday
                   </label>
-                  <div className="tranding_sigle_time_wrapp">
+                  <div className="tranding_sigle_time_wrapp" style={{ gap: "0px", width: "138px" }}>
                     {/* <select className="input_box">
                     <option value="1">09:00</option>
                   </select> */}
@@ -313,7 +313,7 @@ const AddEateries = ({ get_mall_auth_data, setTab }) => {
 
                     </p>
                   </div>
-                  <div className="tranding_sigle_time_wrapp">
+                  <div className="tranding_sigle_time_wrapp" style={{ gap: "0px", width: "138px" }}>
                     {/* <select className="input_box">
                     <option value="1">21:00</option>
                   </select> */}
@@ -347,7 +347,7 @@ const AddEateries = ({ get_mall_auth_data, setTab }) => {
                   >
                     Saturday
                   </label>
-                  <div className="tranding_sigle_time_wrapp">
+                  <div className="tranding_sigle_time_wrapp" style={{ gap: "0px", width: "138px" }}>
                     {/* <select className="input_box">
                     <option value="1">09:00</option>
                   </select> */}
@@ -368,7 +368,7 @@ const AddEateries = ({ get_mall_auth_data, setTab }) => {
 
                     </p>
                   </div>
-                  <div className="tranding_sigle_time_wrapp">
+                  <div className="tranding_sigle_time_wrapp" style={{ gap: "0px", width: "138px" }}>
                     <input
                       type="time"
                       name=""
@@ -399,7 +399,7 @@ const AddEateries = ({ get_mall_auth_data, setTab }) => {
                   >
                     Sunday
                   </label>
-                  <div className="tranding_sigle_time_wrapp">
+                  <div className="tranding_sigle_time_wrapp" style={{ gap: "0px", width: "138px" }}>
                     <input
                       type="time"
                       name=""
@@ -417,7 +417,7 @@ const AddEateries = ({ get_mall_auth_data, setTab }) => {
 
                     </p>
                   </div>
-                  <div className="tranding_sigle_time_wrapp">
+                  <div className="tranding_sigle_time_wrapp" style={{ gap: "0px", width: "138px" }}>
                     <input
                       type="time"
                       name=""
@@ -448,7 +448,7 @@ const AddEateries = ({ get_mall_auth_data, setTab }) => {
                   >
                     Public Holidays
                   </label>
-                  <div className="tranding_sigle_time_wrapp">
+                  <div className="tranding_sigle_time_wrapp" style={{ gap: "0px", width: "138px" }}>
                     <input
                       type="time"
                       name=""
@@ -466,7 +466,7 @@ const AddEateries = ({ get_mall_auth_data, setTab }) => {
 
                     </p>
                   </div>
-                  <div className="tranding_sigle_time_wrapp">
+                  <div className="tranding_sigle_time_wrapp" style={{ gap: "0px", width: "138px" }}>
                     <input
                       type="time"
                       name=""

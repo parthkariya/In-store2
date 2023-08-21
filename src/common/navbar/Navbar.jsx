@@ -480,6 +480,8 @@ const Navbar = (
                 <Link
                   to={""}
                   onClick={() => setCustomerDropdown(!getcustomerDropdown)}
+                  className="my-acc-nav-flex"
+
                 >
                   Account{" "}
                   {getcustomerDropdown ? <BsChevronUp /> : <BsChevronDown />}
@@ -533,21 +535,21 @@ const Navbar = (
                           className="navbar-acc-menu-link"
                           onClick={() => setIsOpen3(true)}
                         >
-                          Login
+                          Login / SignUp
                         </Link>
                       ) : null}
-                      {login === false || login === null ? (
+                      {/* {login === false || login === null ? (
                         <Link
                           className="navbar-acc-menu-link"
                           onClick={() => setRegisterCustomerOpen(true)}
                         >
                           Sign Up
                         </Link>
-                      ) : null}
+                      ) : null} */}
                       {/* <Link className="navbar-acc-menu-link">My profile</Link> */}
-                      <Link to="/customer" className="navbar-acc-menu-link">
+                      {/* <Link to="/customer" className="navbar-acc-menu-link">
                         Customer Registration
-                      </Link>
+                      </Link> */}
                       <Link className="navbar-acc-menu-link">Help</Link>
                       {/* {is_login === true ? (<><Link onClick={logout}>Logout</Link></>) : (<></>)} */}
                       {login === "true" ? (

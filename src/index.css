@@ -4,6 +4,7 @@
   --font-base: "Montserrat", sans-serif;
   --font-alt: "Montserrat", sans-serif;
   --color-orange: #ff8b00;
+  --color-green: #51B712;
   --color-blue: #4397ff;
   --color-dark-blue: #0080ff;
   --color-pink: #d813a5;
@@ -384,6 +385,11 @@ p {
   background: var(--color-orange);
 }
 
+.btn-green {
+  color: var(--color-white);
+  background: var(--color-green);
+}
+
 .btn-blue {
   color: var(--color-white);
   background: var(--color-blue);
@@ -565,4 +571,21 @@ p {
 
 .css-1u9des2-indicatorSeparator {
   width: 0px;
+}
+
+
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: 1px solid transparent;
+  -webkit-text-fill-color: #000;
+  -webkit-box-shadow: 0 0 0px 1000px rgb(218, 217, 216) inset;
+  transition: background-color 5000s ease-in-out 0s;
 }

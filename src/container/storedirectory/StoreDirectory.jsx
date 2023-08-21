@@ -287,19 +287,19 @@ const StoreDirectory = ({
               </div>
               <div className="sd_model_sec1_name_part">
                 <h3
-                  className="h3 mb_8"
-                  style={{ letterSpacing: "1px", fontWeight: "800" }}
+                  className="mb_8"
+                  style={{ letterSpacing: "1px", fontWeight: "800", fontSize: "26px" }}
                 >
                   {getsingleStoreData.name}
                 </h3>
                 <p>
-                  Shop no: <span>{getsingleStoreData.store_no}</span>
+                  Shop no: <span style={{ fontSize: "14px" }}>{getsingleStoreData.store_no}</span>
                 </p>
                 <p>
                   Level:
-                  <span>{getsingleStoreData.store_level}</span>
+                  <span style={{ fontSize: "14px" }}>{getsingleStoreData.store_level}</span>
                 </p>
-                <p>
+                {/* <p>
                   Trading Hours:
                   <span>
                     {getsingleStoreData.mon_fri_from_time === "" ||
@@ -314,11 +314,72 @@ const StoreDirectory = ({
                       ? ""
                       : getsingleStoreData.mon_fri_to_time} PM
                   </span>
-                </p>
+                </p> */}
+
+                <div className="sd_model_sec2" style={{ marginTop: "12px", flexDirection: "column", gap: "8px" }}>
+                  <div className="sd_model_sec2_sigle" style={{ gap: "8px" }}>
+                    <FaPhone color="var(--color-orange)" size={16} />
+                    <p style={{ fontSize: "14px" }}>+{getsingleStoreData.contact_no}</p>
+                  </div>
+                  <div className="sd_model_sec2_sigle">
+                    <img src={images.send} alt="" />
+                    <p style={{ fontSize: "14px" }}>{getsingleStoreData.email}</p>
+                  </div>
+                </div>
               </div>
+              <div className="sd_modal_time">
+                <p className="sd_modal_time_head">Trading Hours:</p>
+                <div className="sd_modal_time_inner">
+                  <p>
+                    <span style={{ fontSize: "14px", fontWeight: "300" }}>Mo - Fri: {getsingleStoreData.mon_fri_from_time === "" ||
+                      getsingleStoreData.mon_fri_from_time == null ||
+                      getsingleStoreData.mon_fri_from_time == "undefined"
+                      ? ""
+                      : getsingleStoreData.mon_fri_from_time}am - {getsingleStoreData.mon_fri_to_time === "" ||
+                        getsingleStoreData.mon_fri_to_time == null ||
+                        getsingleStoreData.mon_fri_to_time == "undefined"
+                        ? ""
+                        : getsingleStoreData.mon_fri_to_time}pm</span></p>
+
+                  <p><span style={{ fontSize: "14px", fontWeight: "300" }}>Sat: {getsingleStoreData.mon_fri_from_time === "" ||
+                    getsingleStoreData.sat_from_time == null ||
+                    getsingleStoreData.sat_from_time == "undefined"
+                    ? ""
+                    : getsingleStoreData.sat_from_time}am - {getsingleStoreData.sat_to_time === "" ||
+                      getsingleStoreData.sat_to_time == null ||
+                      getsingleStoreData.sat_to_time == "undefined"
+                      ? ""
+                      : getsingleStoreData.sat_to_time}pm</span></p>
+
+                  <p><span style={{ fontSize: "14px", fontWeight: "300" }}>Sun: {getsingleStoreData.mon_fri_from_time === "" ||
+                    getsingleStoreData.sat_from_time == null ||
+                    getsingleStoreData.sat_from_time == "undefined"
+                    ? ""
+                    : getsingleStoreData.sat_from_time}am - {getsingleStoreData.sat_to_time === "" ||
+                      getsingleStoreData.sat_to_time == null ||
+                      getsingleStoreData.sat_to_time == "undefined"
+                      ? ""
+                      : getsingleStoreData.sat_to_time}pm</span></p>
+
+
+                  <p><span style={{ fontSize: "14px", fontWeight: "300" }}>Public Holiday: {getsingleStoreData.mon_fri_from_time === "" ||
+                    getsingleStoreData.sat_from_time == null ||
+                    getsingleStoreData.sat_from_time == "undefined"
+                    ? ""
+                    : getsingleStoreData.sat_from_time}am - {getsingleStoreData.sat_to_time === "" ||
+                      getsingleStoreData.sat_to_time == null ||
+                      getsingleStoreData.sat_to_time == "undefined"
+                      ? ""
+                      : getsingleStoreData.sat_to_time}pm</span></p>
+
+
+                </div>
+              </div>
+
+
             </div>
             {/* pert - 2 */}
-            <div className="sd_model_sec2">
+            {/* <div className="sd_model_sec2">
               <div className="sd_model_sec2_sigle">
                 <FaPhone color="var(--color-orange)" size={16} />
                 <p>+{getsingleStoreData.contact_no}</p>
@@ -327,10 +388,10 @@ const StoreDirectory = ({
                 <img src={images.send} alt="" />
                 <p>{getsingleStoreData.email}</p>
               </div>
-            </div>
+            </div> */}
             {/* pert - 3 */}
             <div className="sd_model_sec3">
-              <p>{getsingleStoreData.description}</p>
+              <p style={{ fontSize: "14px" }}>{getsingleStoreData.description}</p>
             </div>
           </div>
           {/* </div> */}

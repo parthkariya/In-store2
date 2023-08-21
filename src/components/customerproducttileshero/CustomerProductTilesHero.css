@@ -1,0 +1,17 @@
+.product-tiles-hero-img {
+    object-fit: initial;
+}
+
+.producttiles-hero {
+    height: 250px;
+}
+
+@media screen and (max-width:600px) {
+    .producttiles-hero {
+        max-height: 250px !important;
+    }
+
+    .producttiles-hero {
+        height: 30vh !important;
+    }
+}

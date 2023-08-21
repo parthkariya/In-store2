@@ -16,6 +16,8 @@ import hero_banner2 from "../assets/images/hero_banner2.webp";
 import wcard_1 from "../assets/logos/home/wcard_1.png";
 import wcard_2 from "../assets/logos/home/wcard_2.png";
 import wcard_3 from "../assets/logos/home/wcard_3.png";
+import orange_blue from "../assets/logos/home/orange_blue.png";
+import pink_blue from "../assets/logos/home/pink_org.png";
 import home_eye from "../assets/logos/home/home_eye.png";
 import home_location from "../assets/logos/home/home_location.png";
 import home_shapes from "../assets/logos/home/home_shapes.png";
@@ -355,4 +357,7 @@ export default {
   in_store_google_download,
   in_store_apple_download,
   retailer_home_last_card,
+
+  orange_blue,
+  pink_blue,
 };

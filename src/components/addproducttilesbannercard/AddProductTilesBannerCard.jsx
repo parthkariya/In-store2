@@ -11,6 +11,7 @@ import { useStoreContext } from '../../context/store_context';
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
 import Notification from "../../utils/Notification"
+import moment from 'moment';
 
 
 const animatedComponents = makeAnimated();
@@ -36,6 +37,9 @@ const AddProductTilesBannerCard = ({ item, mindx, openMallModal,
     const [Week, setWeek] = useState("");
     const [Region, setRegion] = useState([]);
     const [mallsOption, setMallsOption] = useState([]);
+    const [getTag, setTag] = useState("");
+    const [startDate, setStartDate] = useState();
+    const [endDate, setEndDate] = useState();
 
     // const [deletemodalstate, setDleteModalstate] = useState(false);
     const [getcondition, setCondition] = useState(true);
@@ -102,16 +106,23 @@ const AddProductTilesBannerCard = ({ item, mindx, openMallModal,
             return;
         } else if (mallidarray == "" || undefined) {
             Notification("error", "Error!", "Please Select Mall!");
-        } else if (gatweek == "" || undefined) {
-            Notification("error", "Error!", "Please Select Week!");
+            return;
+        } else if (startDate == "" || startDate == undefined) {
+            Notification("error", "Error", "Please Enter Start Date");
+            return;
+        } else if (endDate == "" || endDate == undefined) {
+            Notification("error", "Error", "Please Enter End Date");
+            return;
         } else if (regionidarray == "" || undefined) {
             Notification("error", "Error!", "Please Select Region!");
         } else if (BrandName == "" || undefined) {
             Notification("error", "Error!", "Please Select Brand!");
         } else if (Price == "" || undefined) {
             Notification("error", "Error!", "Please Enter Price!");
+            return;
         } else if (Description == "" || undefined) {
             Notification("error", "Error!", "Please Enter Description!");
+            return;
         } else {
             const formdata = await new FormData();
             // await formdata.append("id", item.id)
@@ -125,7 +136,9 @@ const AddProductTilesBannerCard = ({ item, mindx, openMallModal,
             await formdata.append("category_id", Category)
             await formdata.append("price", Price)
             await formdata.append("description", Description)
-            await formdata.append("week_id", gatweek)
+            await formdata.append("tag", getTag)
+            await formdata.append("from_date", moment(startDate).format("YYYY-MM-DD"));
+            await formdata.append("to_date", moment(endDate).format("YYYY-MM-DD"));
             await formdata.append("region_child_id[0]", "")
             if (files[0] !== undefined) {
                 await formdata.append("image", files[0]);
@@ -170,6 +183,13 @@ const AddProductTilesBannerCard = ({ item, mindx, openMallModal,
     // const testfunction = () => {
     //   console.log("test");
     // }
+
+
+    const onDateChage = (dates) => {
+        const [start, end] = dates;
+        setStartDate(start);
+        setEndDate(end);
+    };
 
     useEffect(() => {
         console.log("cdategory data", category_data);
@@ -238,7 +258,32 @@ const AddProductTilesBannerCard = ({ item, mindx, openMallModal,
             </button> */}
                     </div>
                     {/* Leaderboard inputbox end */}
+                    <div className="leaderboard-card-inpbox-wrapp">
+                        <label className="leaderboard-card-lbl" htmlFor="">Week</label>
+                        {/* <input
+              type="date"
+              value={eventEndDate}
+              onChange={(e) => setEventEndDate(e.target.value)}
+              name=""
+              id=""
+              className="input_box"
+            /> */}
+                        <DatePicker
+                            selected={startDate}
+                            onChange={onDateChage}
+                            startDate={startDate}
+                            endDate={endDate}
+                            selectsRange
+                            // selectsDisabledDaysInRange
+                            // inline
+                            monthsShown={2}
 
+
+                            calendarStartDay={1}
+                            className="leaderboard-card-inp"
+                            placeholderText="Select your week"
+                        />
+                    </div>
                     {/* Leaderboard inputbox start */}
                     <div className="leaderboard-card-inpbox-wrapp">
                         <label className="leaderboard-card-lbl">Brand(s):</label>
@@ -305,6 +350,17 @@ const AddProductTilesBannerCard = ({ item, mindx, openMallModal,
                     <div className="leaderboard-card-inpbox-wrapp">
                         <label className="leaderboard-card-lbl">Description:</label>
                         <textarea style={{ height: "30px" }} className="leaderboard-card-inp" placeholder='XS, S, M, L, XL, XXL' value={Description} onChange={(e) => setDiscription(e.target.value)} />
+                    </div>
+                    {/* Leaderboard inputbox start */}
+                    <div className="leaderboard-card-inpbox-wrapp">
+                        <label className="leaderboard-card-lbl">Tags:<br /><span style={{ fontSize: "9px" }}>[seperated by commas]</span></label>
+                        <textarea
+                            style={{ height: "60px" }}
+                            className="leaderboard-card-inp"
+                            placeholder="White,tekkies,sneakers,shoes,trainers,running"
+                            value={getTag}
+                            onChange={(e) => setTag(e.target.value)}
+                        />
                     </div>
                     {/* <button onClick={() => openMallModal()} className="leaderboard-delete-icon-btn">
                         <span className="leaderboard-extend-txt">Chose Date</span>{" "}

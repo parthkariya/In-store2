@@ -87,11 +87,14 @@ const BrandHeroEdit = ({ get_mall_auth_data, sidebaropen }) => {
             )}
           </>
         ) : (
-          <img
-            src={get_mall_auth_data.store_banner_path}
-            style={{ width: "100%", height: "100%", }}
-            className="img-fluid"
-          />
+          <>
+            <img
+              src={get_mall_auth_data.store_banner_path}
+              style={{ width: "100%", height: "100%", }}
+              className="img-fluid"
+            />
+            <img src={images.card_edit} alt="" style={{ position: "absolute", top: "105px", right: "100px" }} className="mall-hero-edit-icon edit-icon-positon-resp" />
+          </>
         )}
       </div>
 
@@ -116,11 +119,15 @@ const BrandHeroEdit = ({ get_mall_auth_data, sidebaropen }) => {
             )}
           </>
         ) : (
-          <img
-            src={get_mall_auth_data.store_logo_path}
-            style={{ width: "100%", height: "100%", maxHeight: "175px", objectFit: "contain" }}
-          // className="img-fluidb"
-          />
+          <>
+            <img
+              src={get_mall_auth_data.store_logo_path}
+              style={{ width: "100%", height: "100%", maxHeight: "175px", objectFit: "contain" }}
+            // className="img-fluidb"
+            />
+
+            <img src={images.card_edit} alt="" style={{ position: "absolute", top: "25px", right: "20px" }} className="" />
+          </>
         )}
         {/* </div> */}
       </div>

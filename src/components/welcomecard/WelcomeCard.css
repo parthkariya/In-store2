@@ -14,8 +14,8 @@
 
 .wc_bottom_img {
     position: absolute;
-    bottom: 0px;
-    right: 0px;
+    bottom: -1px;
+    right: -1px;
     max-width: 135.23px;
     max-height: 81.26px;
 }

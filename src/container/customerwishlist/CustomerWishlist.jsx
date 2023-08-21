@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./CustomerWishlist.css";
 import { BsArrowRight, BsChevronDown, BsChevronUp } from "react-icons/bs";
 import { Link } from "react-router-dom";
-import { CustomerBrandCard } from "../../components";
+import { CustomerBrandCard, CustomerBrandCardWishlist } from "../../components";
 import axios from "axios";
 import { ACCEPT_HEADER, get_wishlist } from "../../utils/Constant";
 
@@ -161,7 +161,7 @@ const CustomerWishlist = () => {
                     ? item.products.map((itm1, inx1) => {
                       return (
                         <div className="cus-wishlist-dropdown-prod-wrapp">
-                          <CustomerBrandCard data={itm1} replce={2} mainitem={item} getWishlist={getWishlist} />
+                          <CustomerBrandCardWishlist data={itm1} replce={2} mainitem={item} getWishlist={getWishlist} />
                         </div>
                       );
                     })

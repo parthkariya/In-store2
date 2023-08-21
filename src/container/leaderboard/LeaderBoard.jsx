@@ -387,23 +387,23 @@ const LeaderBoard = ({ get_mall_auth_data, setTab, getTab }) => {
             {/* LeaderBoard Card Component start */}
             {getliast && getliast.length > 0
               ? getliast.map((mall, mindx) => {
-                  return (
-                    <LeaderBoardCard
-                      openMallModal={openMallModal}
-                      item={mall}
-                      mindx={mindx}
-                      getLeaderboard={getLeaderboard}
-                      setTab={setTab}
-                      peopleInfo={peopleInfo}
-                      setPeopleInfo={setPeopleInfo}
-                      getweek={getweek}
-                      seteweek={setWeek}
-                      regionidarray={regionidarray}
-                      mallidarray={mallidarray}
-                      selectedMalls={selectedMalls}
-                    />
-                  );
-                })
+                return (
+                  <LeaderBoardCard
+                    openMallModal={openMallModal}
+                    item={mall}
+                    mindx={mindx}
+                    getLeaderboard={getLeaderboard}
+                    setTab={setTab}
+                    peopleInfo={peopleInfo}
+                    setPeopleInfo={setPeopleInfo}
+                    getweek={getweek}
+                    seteweek={setWeek}
+                    regionidarray={regionidarray}
+                    mallidarray={mallidarray}
+                    selectedMalls={selectedMalls}
+                  />
+                );
+              })
               : null}
             {totalPages !== page && (
               <button
@@ -465,14 +465,13 @@ const LeaderBoard = ({ get_mall_auth_data, setTab, getTab }) => {
                   styles={{ width: '100%' }}
                 /> */}
 
-                <div
+                {/* <div
                   className="leaderboard-card-inpbox-wrapp"
                   style={{ alignItems: "center" }}
                 >
                   <label className="leaderboard-card-lbl">Slect Weeks:</label>
                   <select
                     className="leaderboard-card-inp"
-                    // value={MallName}
                     onChange={(e) => {
                       setWeek(e.target.value);
                       console.log(e.target.value);
@@ -484,9 +483,7 @@ const LeaderBoard = ({ get_mall_auth_data, setTab, getTab }) => {
                       week_data.map((item, index) => {
                         return (
                           <>
-                            {/* <option selected disabled value="">
-                      Auto-fill from database
-                    </option> */}
+                           
                             <option value={item.id} key={index}>
                               {item.name} &nbsp;&nbsp;&nbsp; {item.from_date}{" "}
                               &nbsp;&nbsp;&nbsp; {item.to_date}
@@ -495,39 +492,35 @@ const LeaderBoard = ({ get_mall_auth_data, setTab, getTab }) => {
                         );
                       })}
                   </select>
-                  {/* <button
-              className="leaderboard-card-inp"
-              style={{ color: "rgb(129 128 128)", textAlign: "start" }}
-              onClick={() => openMallModal()}
-            >
-              Select Mall
-            </button> */}
-                </div>
+                  
+                </div> */}
+
+
 
                 {/* mall selected tag */}
                 <div className="select_mall_tag_btns_wrapp">
                   {selectedMalls && selectedMalls.length > 0
                     ? selectedMalls.map((mall, mindx) => {
-                        // console.log("gggg", mall);
-                        return (
-                          <button
-                            className="select_mall_tag_single_btn"
-                            style={{ backgroundColor: "#4FBB10" }}
-                            key={mindx}
-                            // onClick={() => {
-                            //   handleMallChange(mall);
-                            //   // setPeopleInfo(
-                            //   //   peopleInfo.filter(
-                            //   //     (people) => people.name !== mall.name
-                            //   //   )
-                            //   // );
-                            // }}
-                          >
-                            {mall}
-                            {/* <IoIosClose className="select_mall_tag_single_btn_close" /> */}
-                          </button>
-                        );
-                      })
+                      // console.log("gggg", mall);
+                      return (
+                        <button
+                          className="select_mall_tag_single_btn"
+                          style={{ backgroundColor: "#4FBB10" }}
+                          key={mindx}
+                        // onClick={() => {
+                        //   handleMallChange(mall);
+                        //   // setPeopleInfo(
+                        //   //   peopleInfo.filter(
+                        //   //     (people) => people.name !== mall.name
+                        //   //   )
+                        //   // );
+                        // }}
+                        >
+                          {mall}
+                          {/* <IoIosClose className="select_mall_tag_single_btn_close" /> */}
+                        </button>
+                      );
+                    })
                     : null}
                 </div>
 
@@ -544,88 +537,88 @@ const LeaderBoard = ({ get_mall_auth_data, setTab, getTab }) => {
 
                   {getregion_array && getregion_array.length > 0
                     ? getregion_array.map((item, index) => {
-                        return (
-                          <div
-                            className="bim_accordian_wrapp"
-                            style={{ marginBottom: "6px" }}
-                            key={item.region_id}
+                      return (
+                        <div
+                          className="bim_accordian_wrapp"
+                          style={{ marginBottom: "6px" }}
+                          key={item.region_id}
+                        >
+                          <button
+                            className="bim_accordian_btn"
+                            onClick={() => {
+                              setToggle(item.region_id);
+                              handleRegionChange(
+                                item.region_name,
+                                item.region_id
+                              );
+                            }}
                           >
-                            <button
-                              className="bim_accordian_btn"
-                              onClick={() => {
-                                setToggle(item.region_id);
-                                handleRegionChange(
-                                  item.region_name,
-                                  item.region_id
-                                );
+                            <p
+                              style={{
+                                color:
+                                  item.region_id === toggle
+                                    ? "#ff8b00"
+                                    : "#000",
+                                fontWeight:
+                                  item.region_id === toggle ? "500" : "300",
                               }}
                             >
-                              <p
-                                style={{
-                                  color:
-                                    item.region_id === toggle
-                                      ? "#ff8b00"
-                                      : "#000",
-                                  fontWeight:
-                                    item.region_id === toggle ? "500" : "300",
-                                }}
-                              >
-                                {item.region_name}
-                              </p>
+                              {item.region_name}
+                            </p>
 
-                              {item.region_id == toggle ? (
-                                <IoIosArrowUp size={20} color="#ff8b00" />
-                              ) : (
-                                <IoIosArrowDown size={20} />
-                              )}
-                            </button>
                             {item.region_id == toggle ? (
-                              <div className="bim_accordian_mall_wrapp">
-                                {item.malls.map((itm, ind) => {
-                                  return (
-                                    <>
-                                      <div
-                                        key={itm.id}
-                                        style={{
-                                          display: "flex",
-                                          gap: "10px",
-                                          marginLeft: "10px",
-                                        }}
-                                      >
-                                        <input
-                                          type="checkbox"
-                                          checked={selectedMalls.includes(
-                                            itm.name
-                                          )}
-                                          // value={peopleInfo}
-                                          onChange={(e) => {
-                                            // handleCheckboxChange(e, itm, ind);
-                                            handleMallChange(itm.name, itm.id);
-                                          }}
-
-                                          // type="checkbox"
-                                          // checked={
-                                          //   getcheck[(itm, ind, "", item.region_id)]
-                                          // }
-                                          // onChange={(e) => {
-                                          //   check(itm, ind, "", item.region_id);
-                                          // }}
-                                          // value={peopleInfo}
-                                        />
-                                        <label htmlFor={itm.id}>
-                                          {itm.name}
-                                        </label>
-                                      </div>
-                                    </>
-                                  );
-                                })}
-                              </div>
+                              <IoIosArrowUp size={20} color="#ff8b00" />
                             ) : (
-                              ""
+                              <IoIosArrowDown size={20} />
                             )}
-                          </div>
-                        );
-                      })
+                          </button>
+                          {item.region_id == toggle ? (
+                            <div className="bim_accordian_mall_wrapp">
+                              {item.malls.map((itm, ind) => {
+                                return (
+                                  <>
+                                    <div
+                                      key={itm.id}
+                                      style={{
+                                        display: "flex",
+                                        gap: "10px",
+                                        marginLeft: "10px",
+                                      }}
+                                    >
+                                      <input
+                                        type="checkbox"
+                                        checked={selectedMalls.includes(
+                                          itm.name
+                                        )}
+                                        // value={peopleInfo}
+                                        onChange={(e) => {
+                                          // handleCheckboxChange(e, itm, ind);
+                                          handleMallChange(itm.name, itm.id);
+                                        }}
+
+                                      // type="checkbox"
+                                      // checked={
+                                      //   getcheck[(itm, ind, "", item.region_id)]
+                                      // }
+                                      // onChange={(e) => {
+                                      //   check(itm, ind, "", item.region_id);
+                                      // }}
+                                      // value={peopleInfo}
+                                      />
+                                      <label htmlFor={itm.id}>
+                                        {itm.name}
+                                      </label>
+                                    </div>
+                                  </>
+                                );
+                              })}
+                            </div>
+                          ) : (
+                            ""
+                          )}
+                        </div>
+                      );
+                    })
                     : null}
                 </div>
 
